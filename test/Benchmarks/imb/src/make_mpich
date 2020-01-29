@@ -1,0 +1,21 @@
+# Enter root directory of mpich install
+MPI_HOME=
+
+MPI_INCLUDE := -I/usr/include/mpich-x86_64
+
+LIB_PATH    =
+LIBS        = 
+CC          = mpicc 
+OPTFLAGS    = -O3
+CLINKER     = ${CC}
+LDFLAGS     =
+CPPFLAGS    = 
+
+IMB-MPI1 = IMB-MPI1
+IMB-EXT  = IMB-EXT
+IMB-IO   = IMB-IO
+IMB-NBC  = IMB-NBC
+IMB-RMA  = IMB-RMA
+
+export MPI_INCLUDE CC LIB_PATH LIBS OPTFLAGS CLINKER LDFLAGS CPPFLAGS IMB-MPI1 IMB-EXT IMB-IO IMB-NBC IMB-RMA
+include Makefile.base

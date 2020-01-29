@@ -1,0 +1,27 @@
+TAP version 13
+# MPICH test suite results (TAP format)
+# date 2017-11-18-21-10
+ok 1 - ./attrt 2
+ok 2 - ./attric 4
+ok 3 - ./attrerr 1
+ok 4 - ./attrend 1
+ok 5 - ./attrend 4
+ok 6 - ./attrend2 1
+ok 7 - ./attrend2 5
+ok 8 - ./attrerrcomm 1
+ok 9 - ./attrerrtype 1
+ok 10 - ./attrdeleteget 1
+ok 11 - ./attr2type 1
+ok 12 - ./attrorder 1
+ok 13 - ./attrordercomm 1
+ok 14 - ./attrordertype 1
+ok 15 - ./baseattr2 1
+ok 16 - ./baseattrcomm 1
+ok 17 - ./fkeyval 1
+ok 18 - ./fkeyvalcomm 1
+ok 19 - ./fkeyvaltype 1
+ok 20 - ./keyval_double_free 1
+ok 21 - ./keyval_double_free_comm 1
+ok 22 - ./keyval_double_free_type 1
+ok 23 - ./keyval_double_free_win 1
+1..23

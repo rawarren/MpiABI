@@ -1,0 +1,65 @@
+TAP version 13
+# MPICH test suite results (TAP format)
+# date 2017-11-18-21-15
+ok 1 - ./allred 4
+ok 2 - ./allred 7
+ok 3 - ./allred 4
+ok 4 - ./allredmany 4
+ok 5 - ./allred2 4
+ok 6 - ./allred3 10
+ok 7 - ./allred4 4
+ok 8 - ./allred5 5
+ok 9 - ./allred5 10
+ok 10 - ./allred6 4
+ok 11 - ./allred6 7
+ok 12 - ./reduce 5
+ok 13 - ./reduce 10
+ok 14 - ./reduce_local 2  # SKIP requires MPI version 2.2
+ok 14 - ./op_commutative 2
+ok 15 - ./red3 10
+ok 16 - ./red4 10
+ok 17 - ./alltoall1 8
+ok 18 - ./alltoallv 10
+ok 19 - ./alltoallv0 10
+ok 20 - ./alltoallw1 10
+ok 21 - ./alltoallw2 10
+ok 22 - ./alltoallw_zeros 1
+ok 23 - ./alltoallw_zeros 2
+ok 24 - ./alltoallw_zeros 5
+ok 25 - ./alltoallw_zeros 8
+ok 26 - ./allgather2 10
+ok 27 - ./allgather3 10
+ok 28 - ./allgatherv2 10
+ok 29 - ./allgatherv3 10
+ok 30 - ./allgatherv4 4
+ok 31 - ./allgather_struct 10
+ok 32 - ./bcasttest 4
+ok 33 - ./bcasttest 8
+ok 34 - ./bcasttest 10
+not ok 35 - ./bcast_full 4
+  ---
+  Directory: .
+  File: bcast_full
+  Num-procs: 4
+  Timeout: 300
+  Date: "Sat Nov 18 21:25:57 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [mpiexec@rawlinux.local] APPLICATION TIMED OUT
+## [proxy:0:0@rawlinux.local] HYD_pmcd_pmip_control_cmd_cb (pm/pmiserv/pmip_cb.c:885): assert (!closed) failed
+## [proxy:0:0@rawlinux.local] HYDT_dmxu_poll_wait_for_event (tools/demux/demux_poll.c:76): callback returned error status
+## [proxy:0:0@rawlinux.local] main (pm/pmiserv/pmip.c:206): demux engine error waiting for event
+## [mpiexec@rawlinux.local] HYDT_bscu_wait_for_completion (tools/bootstrap/utils/bscu_wait.c:76): one of the processes terminated badly; aborting
+## [mpiexec@rawlinux.local] HYDT_bsci_wait_for_completion (tools/bootstrap/src/bsci_wait.c:23): launcher returned error waiting for completion
+## [mpiexec@rawlinux.local] HYD_pmci_wait_for_completion (pm/pmiserv/pmiserv_pmci.c:189): launcher returned error waiting for completion
+## [mpiexec@rawlinux.local] main (ui/mpich/mpiexec.c:344): process manager error waiting for completion
+not ok 36 - ./bcast_min_datatypes 10
+  ---
+  Directory: .
+  File: bcast_min_datatypes
+  Num-procs: 10
+  Timeout: 1200
+  Date: "Sat Nov 18 21:45:58 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [mpiexec@rawlinux.local] APPLICATION TIMED OUT

@@ -1,0 +1,1888 @@
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./attr/attrt " > runtests.1.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./attrt  >> runtests.1.out 2>&1
+echo $? > runtests.1.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./attr/attric " > runtests.2.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./attric  >> runtests.2.out 2>&1
+echo $? > runtests.2.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrerr " > runtests.3.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrerr  >> runtests.3.out 2>&1
+echo $? > runtests.3.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrend " > runtests.4.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrend  >> runtests.4.out 2>&1
+echo $? > runtests.4.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./attr/attrend " > runtests.5.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./attrend  >> runtests.5.out 2>&1
+echo $? > runtests.5.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrend2 " > runtests.6.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrend2  >> runtests.6.out 2>&1
+echo $? > runtests.6.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./attr/attrend2 " > runtests.7.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./attrend2  >> runtests.7.out 2>&1
+echo $? > runtests.7.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrerrcomm " > runtests.8.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrerrcomm  >> runtests.8.out 2>&1
+echo $? > runtests.8.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrerrtype " > runtests.9.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrerrtype  >> runtests.9.out 2>&1
+echo $? > runtests.9.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrdeleteget " > runtests.10.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrdeleteget  >> runtests.10.out 2>&1
+echo $? > runtests.10.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attr2type " > runtests.11.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr2type  >> runtests.11.out 2>&1
+echo $? > runtests.11.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrorder " > runtests.12.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrorder  >> runtests.12.out 2>&1
+echo $? > runtests.12.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrordercomm " > runtests.13.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrordercomm  >> runtests.13.out 2>&1
+echo $? > runtests.13.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/attrordertype " > runtests.14.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrordertype  >> runtests.14.out 2>&1
+echo $? > runtests.14.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/baseattr2 " > runtests.15.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./baseattr2  >> runtests.15.out 2>&1
+echo $? > runtests.15.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/baseattrcomm " > runtests.16.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./baseattrcomm  >> runtests.16.out 2>&1
+echo $? > runtests.16.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/fkeyval " > runtests.17.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./fkeyval  >> runtests.17.out 2>&1
+echo $? > runtests.17.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/fkeyvalcomm " > runtests.18.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./fkeyvalcomm  >> runtests.18.out 2>&1
+echo $? > runtests.18.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/fkeyvaltype " > runtests.19.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./fkeyvaltype  >> runtests.19.out 2>&1
+echo $? > runtests.19.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/keyval_double_free " > runtests.20.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./keyval_double_free  >> runtests.20.out 2>&1
+echo $? > runtests.20.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/keyval_double_free_comm " > runtests.21.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./keyval_double_free_comm  >> runtests.21.out 2>&1
+echo $? > runtests.21.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/keyval_double_free_type " > runtests.22.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./keyval_double_free_type  >> runtests.22.out 2>&1
+echo $? > runtests.22.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./attr/keyval_double_free_win " > runtests.23.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./keyval_double_free_win  >> runtests.23.out 2>&1
+echo $? > runtests.23.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/allred " > runtests.24.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./allred  >> runtests.24.out 2>&1
+echo $? > runtests.24.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/allred " > runtests.25.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./allred  >> runtests.25.out 2>&1
+echo $? > runtests.25.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/allred  100" > runtests.26.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./allred  100 >> runtests.26.out 2>&1
+echo $? > runtests.26.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/allredmany " > runtests.27.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./allredmany  >> runtests.27.out 2>&1
+echo $? > runtests.27.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/allred2 " > runtests.28.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./allred2  >> runtests.28.out 2>&1
+echo $? > runtests.28.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/allred3 " > runtests.29.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./allred3  >> runtests.29.out 2>&1
+echo $? > runtests.29.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/allred4 " > runtests.30.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./allred4  >> runtests.30.out 2>&1
+echo $? > runtests.30.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/allred5 " > runtests.31.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./allred5  >> runtests.31.out 2>&1
+echo $? > runtests.31.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/allred5 " > runtests.32.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./allred5  >> runtests.32.out 2>&1
+echo $? > runtests.32.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/allred6 " > runtests.33.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./allred6  >> runtests.33.out 2>&1
+echo $? > runtests.33.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/allred6 " > runtests.34.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./allred6  >> runtests.34.out 2>&1
+echo $? > runtests.34.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/reduce " > runtests.35.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./reduce  >> runtests.35.out 2>&1
+echo $? > runtests.35.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/reduce " > runtests.36.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./reduce  >> runtests.36.out 2>&1
+echo $? > runtests.36.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./coll/op_commutative " > runtests.37.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./op_commutative  >> runtests.37.out 2>&1
+echo $? > runtests.37.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/red3 " > runtests.38.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./red3  >> runtests.38.out 2>&1
+echo $? > runtests.38.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/red4 " > runtests.39.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./red4  >> runtests.39.out 2>&1
+echo $? > runtests.39.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./coll/alltoall1 " > runtests.40.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./alltoall1  >> runtests.40.out 2>&1
+echo $? > runtests.40.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/alltoallv " > runtests.41.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./alltoallv  >> runtests.41.out 2>&1
+echo $? > runtests.41.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/alltoallv0 " > runtests.42.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./alltoallv0  >> runtests.42.out 2>&1
+echo $? > runtests.42.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/alltoallw1 " > runtests.43.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./alltoallw1  >> runtests.43.out 2>&1
+echo $? > runtests.43.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/alltoallw2 " > runtests.44.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./alltoallw2  >> runtests.44.out 2>&1
+echo $? > runtests.44.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./coll/alltoallw_zeros " > runtests.45.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./alltoallw_zeros  >> runtests.45.out 2>&1
+echo $? > runtests.45.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./coll/alltoallw_zeros " > runtests.46.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./alltoallw_zeros  >> runtests.46.out 2>&1
+echo $? > runtests.46.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/alltoallw_zeros " > runtests.47.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./alltoallw_zeros  >> runtests.47.out 2>&1
+echo $? > runtests.47.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./coll/alltoallw_zeros " > runtests.48.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./alltoallw_zeros  >> runtests.48.out 2>&1
+echo $? > runtests.48.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/allgather2 " > runtests.49.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./allgather2  >> runtests.49.out 2>&1
+echo $? > runtests.49.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/allgather3 " > runtests.50.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./allgather3  >> runtests.50.out 2>&1
+echo $? > runtests.50.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/allgatherv2 " > runtests.51.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./allgatherv2  >> runtests.51.out 2>&1
+echo $? > runtests.51.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/allgatherv3 " > runtests.52.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./allgatherv3  >> runtests.52.out 2>&1
+echo $? > runtests.52.status
+export MPIEXEC_TIMEOUT=600
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/allgatherv4 " > runtests.53.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./allgatherv4  >> runtests.53.out 2>&1
+echo $? > runtests.53.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/allgather_struct " > runtests.54.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./allgather_struct  >> runtests.54.out 2>&1
+echo $? > runtests.54.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/bcasttest " > runtests.55.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./bcasttest  >> runtests.55.out 2>&1
+echo $? > runtests.55.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./coll/bcasttest " > runtests.56.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./bcasttest  >> runtests.56.out 2>&1
+echo $? > runtests.56.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/bcasttest " > runtests.57.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./bcasttest  >> runtests.57.out 2>&1
+echo $? > runtests.57.status
+export MPIEXEC_TIMEOUT=300
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/bcast_full " > runtests.58.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./bcast_full  >> runtests.58.out 2>&1
+echo $? > runtests.58.status
+export MPIEXEC_TIMEOUT=1200
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/bcast_min_datatypes " > runtests.59.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./bcast_min_datatypes  >> runtests.59.out 2>&1
+echo $? > runtests.59.status
+export MPIEXEC_TIMEOUT=1200
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/bcast_comm_world " > runtests.60.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./bcast_comm_world  >> runtests.60.out 2>&1
+echo $? > runtests.60.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./coll/bcastzerotype " > runtests.61.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./bcastzerotype  >> runtests.61.out 2>&1
+echo $? > runtests.61.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/bcastzerotype " > runtests.62.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./bcastzerotype  >> runtests.62.out 2>&1
+echo $? > runtests.62.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/bcastzerotype " > runtests.63.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./bcastzerotype  >> runtests.63.out 2>&1
+echo $? > runtests.63.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/bcastzerotype " > runtests.64.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./bcastzerotype  >> runtests.64.out 2>&1
+echo $? > runtests.64.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/coll2 " > runtests.65.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll2  >> runtests.65.out 2>&1
+echo $? > runtests.65.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/coll3 " > runtests.66.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll3  >> runtests.66.out 2>&1
+echo $? > runtests.66.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/coll4 " > runtests.67.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll4  >> runtests.67.out 2>&1
+echo $? > runtests.67.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/coll5 " > runtests.68.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll5  >> runtests.68.out 2>&1
+echo $? > runtests.68.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/coll6 " > runtests.69.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll6  >> runtests.69.out 2>&1
+echo $? > runtests.69.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./coll/coll7 " > runtests.70.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./coll7  >> runtests.70.out 2>&1
+echo $? > runtests.70.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./coll/coll7 " > runtests.71.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./coll7  >> runtests.71.out 2>&1
+echo $? > runtests.71.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/coll7 " > runtests.72.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll7  >> runtests.72.out 2>&1
+echo $? > runtests.72.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/coll8 " > runtests.73.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll8  >> runtests.73.out 2>&1
+echo $? > runtests.73.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/coll9 " > runtests.74.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll9  >> runtests.74.out 2>&1
+echo $? > runtests.74.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/coll10 " > runtests.75.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll10  >> runtests.75.out 2>&1
+echo $? > runtests.75.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/coll11 " > runtests.76.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll11  >> runtests.76.out 2>&1
+echo $? > runtests.76.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/coll12 " > runtests.77.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll12  >> runtests.77.out 2>&1
+echo $? > runtests.77.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/coll13 " > runtests.78.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll13  >> runtests.78.out 2>&1
+echo $? > runtests.78.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/longuser " > runtests.79.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./longuser  >> runtests.79.out 2>&1
+echo $? > runtests.79.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/redscat " > runtests.80.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./redscat  >> runtests.80.out 2>&1
+echo $? > runtests.80.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 6    ./coll/redscat " > runtests.81.out
+/home/riwarren/mpich-install/bin/mpiexec -n 6    ./redscat  >> runtests.81.out 2>&1
+echo $? > runtests.81.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/redscat2 " > runtests.82.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./redscat2  >> runtests.82.out 2>&1
+echo $? > runtests.82.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/redscat2 " > runtests.83.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./redscat2  >> runtests.83.out 2>&1
+echo $? > runtests.83.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/redscat2 " > runtests.84.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./redscat2  >> runtests.84.out 2>&1
+echo $? > runtests.84.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./coll/redscat3 " > runtests.85.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./redscat3  >> runtests.85.out 2>&1
+echo $? > runtests.85.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./coll/redscatinter " > runtests.86.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./redscatinter  >> runtests.86.out 2>&1
+echo $? > runtests.86.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/scantst " > runtests.87.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./scantst  >> runtests.87.out 2>&1
+echo $? > runtests.87.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/exscan " > runtests.88.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./exscan  >> runtests.88.out 2>&1
+echo $? > runtests.88.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/exscan2 " > runtests.89.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./exscan2  >> runtests.89.out 2>&1
+echo $? > runtests.89.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/gather " > runtests.90.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./gather  >> runtests.90.out 2>&1
+echo $? > runtests.90.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/gather2 " > runtests.91.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./gather2  >> runtests.91.out 2>&1
+echo $? > runtests.91.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/scattern " > runtests.92.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./scattern  >> runtests.92.out 2>&1
+echo $? > runtests.92.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/scatter2 " > runtests.93.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./scatter2  >> runtests.93.out 2>&1
+echo $? > runtests.93.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/scatter3 " > runtests.94.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./scatter3  >> runtests.94.out 2>&1
+echo $? > runtests.94.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/scatterv " > runtests.95.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./scatterv  >> runtests.95.out 2>&1
+echo $? > runtests.95.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/icbcast " > runtests.96.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./icbcast  >> runtests.96.out 2>&1
+echo $? > runtests.96.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./coll/icbcast " > runtests.97.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./icbcast  >> runtests.97.out 2>&1
+echo $? > runtests.97.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icallreduce " > runtests.98.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icallreduce  >> runtests.98.out 2>&1
+echo $? > runtests.98.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icallreduce " > runtests.99.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icallreduce  >> runtests.99.out 2>&1
+echo $? > runtests.99.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icreduce " > runtests.100.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icreduce  >> runtests.100.out 2>&1
+echo $? > runtests.100.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icreduce " > runtests.101.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icreduce  >> runtests.101.out 2>&1
+echo $? > runtests.101.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icscatter " > runtests.102.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icscatter  >> runtests.102.out 2>&1
+echo $? > runtests.102.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icscatter " > runtests.103.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icscatter  >> runtests.103.out 2>&1
+echo $? > runtests.103.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icgather " > runtests.104.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icgather  >> runtests.104.out 2>&1
+echo $? > runtests.104.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icgather " > runtests.105.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icgather  >> runtests.105.out 2>&1
+echo $? > runtests.105.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icallgather " > runtests.106.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icallgather  >> runtests.106.out 2>&1
+echo $? > runtests.106.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icallgather " > runtests.107.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icallgather  >> runtests.107.out 2>&1
+echo $? > runtests.107.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icbarrier " > runtests.108.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icbarrier  >> runtests.108.out 2>&1
+echo $? > runtests.108.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icbarrier " > runtests.109.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icbarrier  >> runtests.109.out 2>&1
+echo $? > runtests.109.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icallgatherv " > runtests.110.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icallgatherv  >> runtests.110.out 2>&1
+echo $? > runtests.110.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icallgatherv " > runtests.111.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icallgatherv  >> runtests.111.out 2>&1
+echo $? > runtests.111.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icgatherv " > runtests.112.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icgatherv  >> runtests.112.out 2>&1
+echo $? > runtests.112.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icgatherv " > runtests.113.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icgatherv  >> runtests.113.out 2>&1
+echo $? > runtests.113.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icscatterv " > runtests.114.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icscatterv  >> runtests.114.out 2>&1
+echo $? > runtests.114.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icscatterv " > runtests.115.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icscatterv  >> runtests.115.out 2>&1
+echo $? > runtests.115.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icalltoall " > runtests.116.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icalltoall  >> runtests.116.out 2>&1
+echo $? > runtests.116.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icalltoall " > runtests.117.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icalltoall  >> runtests.117.out 2>&1
+echo $? > runtests.117.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icalltoallv " > runtests.118.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icalltoallv  >> runtests.118.out 2>&1
+echo $? > runtests.118.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icalltoallv " > runtests.119.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icalltoallv  >> runtests.119.out 2>&1
+echo $? > runtests.119.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/icalltoallw " > runtests.120.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./icalltoallw  >> runtests.120.out 2>&1
+echo $? > runtests.120.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./coll/icalltoallw " > runtests.121.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./icalltoallw  >> runtests.121.out 2>&1
+echo $? > runtests.121.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/opland " > runtests.122.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./opland  >> runtests.122.out 2>&1
+echo $? > runtests.122.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/oplor " > runtests.123.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./oplor  >> runtests.123.out 2>&1
+echo $? > runtests.123.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/oplxor " > runtests.124.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./oplxor  >> runtests.124.out 2>&1
+echo $? > runtests.124.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/oplxor " > runtests.125.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./oplxor  >> runtests.125.out 2>&1
+echo $? > runtests.125.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/opband " > runtests.126.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./opband  >> runtests.126.out 2>&1
+echo $? > runtests.126.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/opbor " > runtests.127.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./opbor  >> runtests.127.out 2>&1
+echo $? > runtests.127.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/opbxor " > runtests.128.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./opbxor  >> runtests.128.out 2>&1
+echo $? > runtests.128.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/opbxor " > runtests.129.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./opbxor  >> runtests.129.out 2>&1
+echo $? > runtests.129.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/opprod " > runtests.130.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./opprod  >> runtests.130.out 2>&1
+echo $? > runtests.130.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 6    ./coll/opprod " > runtests.131.out
+/home/riwarren/mpich-install/bin/mpiexec -n 6    ./opprod  >> runtests.131.out 2>&1
+echo $? > runtests.131.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/opsum " > runtests.132.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./opsum  >> runtests.132.out 2>&1
+echo $? > runtests.132.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/opmin " > runtests.133.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./opmin  >> runtests.133.out 2>&1
+echo $? > runtests.133.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/opminloc " > runtests.134.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./opminloc  >> runtests.134.out 2>&1
+echo $? > runtests.134.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/opmax " > runtests.135.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./opmax  >> runtests.135.out 2>&1
+echo $? > runtests.135.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./coll/opmaxloc " > runtests.136.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./opmaxloc  >> runtests.136.out 2>&1
+echo $? > runtests.136.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./coll/uoplong " > runtests.137.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./uoplong  >> runtests.137.out 2>&1
+echo $? > runtests.137.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 11    ./coll/uoplong " > runtests.138.out
+/home/riwarren/mpich-install/bin/mpiexec -n 11    ./uoplong  >> runtests.138.out 2>&1
+echo $? > runtests.138.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 16    ./coll/uoplong " > runtests.139.out
+/home/riwarren/mpich-install/bin/mpiexec -n 16    ./uoplong  >> runtests.139.out 2>&1
+echo $? > runtests.139.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./comm/dup " > runtests.140.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./dup  >> runtests.140.out 2>&1
+echo $? > runtests.140.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./comm/dupic " > runtests.141.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./dupic  >> runtests.141.out 2>&1
+echo $? > runtests.141.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./comm/commcreate1 " > runtests.142.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./commcreate1  >> runtests.142.out 2>&1
+echo $? > runtests.142.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./comm/commname " > runtests.143.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./commname  >> runtests.143.out 2>&1
+echo $? > runtests.143.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./comm/ic1 " > runtests.144.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./ic1  >> runtests.144.out 2>&1
+echo $? > runtests.144.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 33    ./comm/ic2 " > runtests.145.out
+/home/riwarren/mpich-install/bin/mpiexec -n 33    ./ic2  >> runtests.145.out 2>&1
+echo $? > runtests.145.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./comm/icgroup " > runtests.146.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./icgroup  >> runtests.146.out 2>&1
+echo $? > runtests.146.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./comm/icm " > runtests.147.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./icm  >> runtests.147.out 2>&1
+echo $? > runtests.147.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./comm/icsplit " > runtests.148.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./icsplit  >> runtests.148.out 2>&1
+echo $? > runtests.148.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./comm/iccreate " > runtests.149.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./iccreate  >> runtests.149.out 2>&1
+echo $? > runtests.149.status
+export MPIEXEC_TIMEOUT=300
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./comm/ctxalloc " > runtests.150.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./ctxalloc  >> runtests.150.out 2>&1
+echo $? > runtests.150.status
+export MPIEXEC_TIMEOUT=300
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./comm/ctxsplit " > runtests.151.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./ctxsplit  >> runtests.151.out 2>&1
+echo $? > runtests.151.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./comm/cmfree " > runtests.152.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cmfree  >> runtests.152.out 2>&1
+echo $? > runtests.152.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./comm/cmsplit " > runtests.153.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cmsplit  >> runtests.153.out 2>&1
+echo $? > runtests.153.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 12    ./comm/cmsplit2 " > runtests.154.out
+/home/riwarren/mpich-install/bin/mpiexec -n 12    ./cmsplit2  >> runtests.154.out 2>&1
+echo $? > runtests.154.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./comm/probe-intercomm " > runtests.155.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./probe-intercomm  >> runtests.155.out 2>&1
+echo $? > runtests.155.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/contents " > runtests.156.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./contents  >> runtests.156.out 2>&1
+echo $? > runtests.156.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/gaddress " > runtests.157.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./gaddress  >> runtests.157.out 2>&1
+echo $? > runtests.157.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/lbub " > runtests.158.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./lbub  >> runtests.158.out 2>&1
+echo $? > runtests.158.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/localpack " > runtests.159.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./localpack  >> runtests.159.out 2>&1
+echo $? > runtests.159.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/simple-pack " > runtests.160.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./simple-pack  >> runtests.160.out 2>&1
+echo $? > runtests.160.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/simple-pack-external " > runtests.161.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./simple-pack-external  >> runtests.161.out 2>&1
+echo $? > runtests.161.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/simple-pack-external2 " > runtests.162.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./simple-pack-external2  >> runtests.162.out 2>&1
+echo $? > runtests.162.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/transpose-pack " > runtests.163.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./transpose-pack  >> runtests.163.out 2>&1
+echo $? > runtests.163.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/slice-pack " > runtests.164.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./slice-pack  >> runtests.164.out 2>&1
+echo $? > runtests.164.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/struct-pack " > runtests.165.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./struct-pack  >> runtests.165.out 2>&1
+echo $? > runtests.165.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/structpack2 " > runtests.166.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./structpack2  >> runtests.166.out 2>&1
+echo $? > runtests.166.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/typecommit " > runtests.167.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./typecommit  >> runtests.167.out 2>&1
+echo $? > runtests.167.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/typename " > runtests.168.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./typename  >> runtests.168.out 2>&1
+echo $? > runtests.168.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/typefree " > runtests.169.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./typefree  >> runtests.169.out 2>&1
+echo $? > runtests.169.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/zeroparms " > runtests.170.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./zeroparms  >> runtests.170.out 2>&1
+echo $? > runtests.170.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./datatype/getpartelm " > runtests.171.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./getpartelm  >> runtests.171.out 2>&1
+echo $? > runtests.171.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./datatype/tresized " > runtests.172.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./tresized  >> runtests.172.out 2>&1
+echo $? > runtests.172.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./datatype/tresized2 " > runtests.173.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./tresized2  >> runtests.173.out 2>&1
+echo $? > runtests.173.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./datatype/sendrecvt2 " > runtests.174.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./sendrecvt2  >> runtests.174.out 2>&1
+echo $? > runtests.174.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./datatype/sendrecvt4 " > runtests.175.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./sendrecvt4  >> runtests.175.out 2>&1
+echo $? > runtests.175.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/tmatchsize " > runtests.176.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./tmatchsize  >> runtests.176.out 2>&1
+echo $? > runtests.176.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./datatype/tfree " > runtests.177.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./tfree  >> runtests.177.out 2>&1
+echo $? > runtests.177.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/typelb " > runtests.178.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./typelb  >> runtests.178.out 2>&1
+echo $? > runtests.178.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/contigstruct " > runtests.179.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./contigstruct  >> runtests.179.out 2>&1
+echo $? > runtests.179.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/struct-zero-count " > runtests.180.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./struct-zero-count  >> runtests.180.out 2>&1
+echo $? > runtests.180.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/blockindexed-zero-count " > runtests.181.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./blockindexed-zero-count  >> runtests.181.out 2>&1
+echo $? > runtests.181.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/blockindexed-misc " > runtests.182.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./blockindexed-misc  >> runtests.182.out 2>&1
+echo $? > runtests.182.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/indexed-misc " > runtests.183.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./indexed-misc  >> runtests.183.out 2>&1
+echo $? > runtests.183.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/subarray-pack " > runtests.184.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./subarray-pack  >> runtests.184.out 2>&1
+echo $? > runtests.184.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./datatype/subarray " > runtests.185.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./subarray  >> runtests.185.out 2>&1
+echo $? > runtests.185.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/darray-pack " > runtests.186.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./darray-pack  >> runtests.186.out 2>&1
+echo $? > runtests.186.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 9    ./datatype/darray-pack " > runtests.187.out
+/home/riwarren/mpich-install/bin/mpiexec -n 9    ./darray-pack  >> runtests.187.out 2>&1
+echo $? > runtests.187.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 72    ./datatype/darray-pack " > runtests.188.out
+/home/riwarren/mpich-install/bin/mpiexec -n 72    ./darray-pack  >> runtests.188.out 2>&1
+echo $? > runtests.188.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 12    ./datatype/darray-cyclic " > runtests.189.out
+/home/riwarren/mpich-install/bin/mpiexec -n 12    ./darray-cyclic  >> runtests.189.out 2>&1
+echo $? > runtests.189.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/pairtype-size-extent " > runtests.190.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./pairtype-size-extent  >> runtests.190.out 2>&1
+echo $? > runtests.190.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/simple-commit " > runtests.191.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./simple-commit  >> runtests.191.out 2>&1
+echo $? > runtests.191.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/simple-size-extent " > runtests.192.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./simple-size-extent  >> runtests.192.out 2>&1
+echo $? > runtests.192.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/struct-no-real-types " > runtests.193.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./struct-no-real-types  >> runtests.193.out 2>&1
+echo $? > runtests.193.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/struct-empty-el " > runtests.194.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./struct-empty-el  >> runtests.194.out 2>&1
+echo $? > runtests.194.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/contig-zero-count " > runtests.195.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./contig-zero-count  >> runtests.195.out 2>&1
+echo $? > runtests.195.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/simple-resized " > runtests.196.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./simple-resized  >> runtests.196.out 2>&1
+echo $? > runtests.196.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/unusual-noncontigs " > runtests.197.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./unusual-noncontigs  >> runtests.197.out 2>&1
+echo $? > runtests.197.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/hindexed-zeros " > runtests.198.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./hindexed-zeros  >> runtests.198.out 2>&1
+echo $? > runtests.198.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/lots-of-types " > runtests.199.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./lots-of-types  >> runtests.199.out 2>&1
+echo $? > runtests.199.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/get-elements-pairtype " > runtests.200.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./get-elements-pairtype  >> runtests.200.out 2>&1
+echo $? > runtests.200.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/unpack " > runtests.201.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./unpack  >> runtests.201.out 2>&1
+echo $? > runtests.201.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/struct-ezhov " > runtests.202.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./struct-ezhov  >> runtests.202.out 2>&1
+echo $? > runtests.202.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/zeroblks " > runtests.203.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./zeroblks  >> runtests.203.out 2>&1
+echo $? > runtests.203.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/struct-derived-zeros " > runtests.204.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./struct-derived-zeros  >> runtests.204.out 2>&1
+echo $? > runtests.204.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/struct-verydeep " > runtests.205.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./struct-verydeep  >> runtests.205.out 2>&1
+echo $? > runtests.205.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/get-elements " > runtests.206.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./get-elements  >> runtests.206.out 2>&1
+echo $? > runtests.206.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/vecblklen " > runtests.207.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./vecblklen  >> runtests.207.out 2>&1
+echo $? > runtests.207.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./datatype/hvecblklen " > runtests.208.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./hvecblklen  >> runtests.208.out 2>&1
+echo $? > runtests.208.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./datatype/dataalign " > runtests.209.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./dataalign  >> runtests.209.out 2>&1
+echo $? > runtests.209.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errhan/adderr " > runtests.210.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./adderr  >> runtests.210.out 2>&1
+echo $? > runtests.210.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errhan/commcall " > runtests.211.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./commcall  >> runtests.211.out 2>&1
+echo $? > runtests.211.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errhan/predef_eh " > runtests.212.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./predef_eh  >> runtests.212.out 2>&1
+echo $? > runtests.212.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errhan/predef_eh " > runtests.213.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./predef_eh  >> runtests.213.out 2>&1
+echo $? > runtests.213.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errhan/errstring2 " > runtests.214.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./errstring2  >> runtests.214.out 2>&1
+echo $? > runtests.214.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errhan/dynamic_errcode_predefined_errclass " > runtests.215.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./dynamic_errcode_predefined_errclass  >> runtests.215.out 2>&1
+echo $? > runtests.215.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./group/groupcreate " > runtests.216.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./groupcreate  >> runtests.216.out 2>&1
+echo $? > runtests.216.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./group/grouptest " > runtests.217.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./grouptest  >> runtests.217.out 2>&1
+echo $? > runtests.217.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./group/grouptest2 " > runtests.218.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./grouptest2  >> runtests.218.out 2>&1
+echo $? > runtests.218.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./group/groupnullincl " > runtests.219.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./groupnullincl  >> runtests.219.out 2>&1
+echo $? > runtests.219.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./group/gtranks " > runtests.220.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./gtranks  >> runtests.220.out 2>&1
+echo $? > runtests.220.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 20    ./group/gtranksperf " > runtests.221.out
+/home/riwarren/mpich-install/bin/mpiexec -n 20    ./gtranksperf  >> runtests.221.out 2>&1
+echo $? > runtests.221.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./info/infodup " > runtests.222.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./infodup  >> runtests.222.out 2>&1
+echo $? > runtests.222.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./info/infodel " > runtests.223.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./infodel  >> runtests.223.out 2>&1
+echo $? > runtests.223.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./info/infovallen " > runtests.224.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./infovallen  >> runtests.224.out 2>&1
+echo $? > runtests.224.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./info/infoorder " > runtests.225.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./infoorder  >> runtests.225.out 2>&1
+echo $? > runtests.225.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./info/infomany " > runtests.226.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./infomany  >> runtests.226.out 2>&1
+echo $? > runtests.226.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./info/infomany2 " > runtests.227.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./infomany2  >> runtests.227.out 2>&1
+echo $? > runtests.227.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./info/infotest " > runtests.228.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./infotest  >> runtests.228.out 2>&1
+echo $? > runtests.228.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./info/infoget " > runtests.229.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./infoget  >> runtests.229.out 2>&1
+echo $? > runtests.229.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./init/initstat " > runtests.230.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./initstat  >> runtests.230.out 2>&1
+echo $? > runtests.230.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./init/version " > runtests.231.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./version  >> runtests.231.out 2>&1
+echo $? > runtests.231.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./init/finalized " > runtests.232.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./finalized  >> runtests.232.out 2>&1
+echo $? > runtests.232.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./init/attrself " > runtests.233.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrself  >> runtests.233.out 2>&1
+echo $? > runtests.233.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./pt2pt/sendrecv1 " > runtests.234.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./sendrecv1  >> runtests.234.out 2>&1
+echo $? > runtests.234.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/sendrecv2 " > runtests.235.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./sendrecv2  >> runtests.235.out 2>&1
+echo $? > runtests.235.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/sendrecv3 " > runtests.236.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./sendrecv3  >> runtests.236.out 2>&1
+echo $? > runtests.236.status
+export MPIEXEC_TIMEOUT=600
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./pt2pt/sendflood " > runtests.237.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./sendflood  >> runtests.237.out 2>&1
+echo $? > runtests.237.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/sendself " > runtests.238.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./sendself  >> runtests.238.out 2>&1
+echo $? > runtests.238.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./pt2pt/sendall " > runtests.239.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./sendall  >> runtests.239.out 2>&1
+echo $? > runtests.239.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/anyall " > runtests.240.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./anyall  >> runtests.240.out 2>&1
+echo $? > runtests.240.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/eagerdt " > runtests.241.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./eagerdt  >> runtests.241.out 2>&1
+echo $? > runtests.241.status
+export MPIEXEC_TIMEOUT=500
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/pingping " > runtests.242.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./pingping  >> runtests.242.out 2>&1
+echo $? > runtests.242.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/bottom " > runtests.243.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./bottom  >> runtests.243.out 2>&1
+echo $? > runtests.243.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/bsend1 " > runtests.244.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./bsend1  >> runtests.244.out 2>&1
+echo $? > runtests.244.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/bsend2 " > runtests.245.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./bsend2  >> runtests.245.out 2>&1
+echo $? > runtests.245.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/bsend3 " > runtests.246.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./bsend3  >> runtests.246.out 2>&1
+echo $? > runtests.246.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/bsend4 " > runtests.247.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./bsend4  >> runtests.247.out 2>&1
+echo $? > runtests.247.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./pt2pt/bsend5 " > runtests.248.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./bsend5  >> runtests.248.out 2>&1
+echo $? > runtests.248.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/bsendalign " > runtests.249.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./bsendalign  >> runtests.249.out 2>&1
+echo $? > runtests.249.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/bsendpending " > runtests.250.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./bsendpending  >> runtests.250.out 2>&1
+echo $? > runtests.250.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/isendself " > runtests.251.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./isendself  >> runtests.251.out 2>&1
+echo $? > runtests.251.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./pt2pt/isendirecv " > runtests.252.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./isendirecv  >> runtests.252.out 2>&1
+echo $? > runtests.252.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/bsendfrag " > runtests.253.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./bsendfrag  >> runtests.253.out 2>&1
+echo $? > runtests.253.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./pt2pt/icsend " > runtests.254.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./icsend  >> runtests.254.out 2>&1
+echo $? > runtests.254.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/rqstatus " > runtests.255.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./rqstatus  >> runtests.255.out 2>&1
+echo $? > runtests.255.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./pt2pt/rqfreeb " > runtests.256.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./rqfreeb  >> runtests.256.out 2>&1
+echo $? > runtests.256.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/greq1 " > runtests.257.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./greq1  >> runtests.257.out 2>&1
+echo $? > runtests.257.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./pt2pt/probe-unexp " > runtests.258.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./probe-unexp  >> runtests.258.out 2>&1
+echo $? > runtests.258.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/probenull " > runtests.259.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./probenull  >> runtests.259.out 2>&1
+echo $? > runtests.259.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/rcancel " > runtests.260.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./rcancel  >> runtests.260.out 2>&1
+echo $? > runtests.260.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/cancelanysrc " > runtests.261.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./cancelanysrc  >> runtests.261.out 2>&1
+echo $? > runtests.261.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/isendselfprobe " > runtests.262.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./isendselfprobe  >> runtests.262.out 2>&1
+echo $? > runtests.262.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/inactivereq " > runtests.263.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./inactivereq  >> runtests.263.out 2>&1
+echo $? > runtests.263.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/waittestnull " > runtests.264.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./waittestnull  >> runtests.264.out 2>&1
+echo $? > runtests.264.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./pt2pt/waitany-null " > runtests.265.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./waitany-null  >> runtests.265.out 2>&1
+echo $? > runtests.265.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./pt2pt/large_message " > runtests.266.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./large_message  >> runtests.266.out 2>&1
+echo $? > runtests.266.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./pt2pt/many_isend " > runtests.267.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./many_isend  >> runtests.267.out 2>&1
+echo $? > runtests.267.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/manylmt " > runtests.268.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./manylmt  >> runtests.268.out 2>&1
+echo $? > runtests.268.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/dtype_send " > runtests.269.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./dtype_send  >> runtests.269.out 2>&1
+echo $? > runtests.269.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/recv_any " > runtests.270.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./recv_any  >> runtests.270.out 2>&1
+echo $? > runtests.270.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./pt2pt/irecv_any " > runtests.271.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./irecv_any  >> runtests.271.out 2>&1
+echo $? > runtests.271.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/winname " > runtests.272.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./winname  >> runtests.272.out 2>&1
+echo $? > runtests.272.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/allocmem " > runtests.273.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./allocmem  >> runtests.273.out 2>&1
+echo $? > runtests.273.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/putfence1 " > runtests.274.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./putfence1  >> runtests.274.out 2>&1
+echo $? > runtests.274.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/putfidx " > runtests.275.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./putfidx  >> runtests.275.out 2>&1
+echo $? > runtests.275.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/getfence1 " > runtests.276.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./getfence1  >> runtests.276.out 2>&1
+echo $? > runtests.276.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/accfence1 " > runtests.277.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./accfence1  >> runtests.277.out 2>&1
+echo $? > runtests.277.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/adlb_mimic1 " > runtests.278.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./adlb_mimic1  >> runtests.278.out 2>&1
+echo $? > runtests.278.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/accfence2 " > runtests.279.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./accfence2  >> runtests.279.out 2>&1
+echo $? > runtests.279.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/putpscw1 " > runtests.280.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./putpscw1  >> runtests.280.out 2>&1
+echo $? > runtests.280.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/accpscw1 " > runtests.281.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./accpscw1  >> runtests.281.out 2>&1
+echo $? > runtests.281.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/getgroup " > runtests.282.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./getgroup  >> runtests.282.out 2>&1
+echo $? > runtests.282.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/transpose1 " > runtests.283.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./transpose1  >> runtests.283.out 2>&1
+echo $? > runtests.283.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/transpose2 " > runtests.284.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./transpose2  >> runtests.284.out 2>&1
+echo $? > runtests.284.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/transpose3 " > runtests.285.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./transpose3  >> runtests.285.out 2>&1
+echo $? > runtests.285.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/transpose3_shm " > runtests.286.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./transpose3_shm  >> runtests.286.out 2>&1
+echo $? > runtests.286.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/transpose5 " > runtests.287.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./transpose5  >> runtests.287.out 2>&1
+echo $? > runtests.287.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./rma/transpose6 " > runtests.288.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./transpose6  >> runtests.288.out 2>&1
+echo $? > runtests.288.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/transpose7 " > runtests.289.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./transpose7  >> runtests.289.out 2>&1
+echo $? > runtests.289.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test1 " > runtests.290.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test1  >> runtests.290.out 2>&1
+echo $? > runtests.290.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test2 " > runtests.291.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test2  >> runtests.291.out 2>&1
+echo $? > runtests.291.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test2_shm " > runtests.292.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test2_shm  >> runtests.292.out 2>&1
+echo $? > runtests.292.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test3 " > runtests.293.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test3  >> runtests.293.out 2>&1
+echo $? > runtests.293.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test3_shm " > runtests.294.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test3_shm  >> runtests.294.out 2>&1
+echo $? > runtests.294.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test4 " > runtests.295.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test4  >> runtests.295.out 2>&1
+echo $? > runtests.295.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test5 " > runtests.296.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test5  >> runtests.296.out 2>&1
+echo $? > runtests.296.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/lockcontention " > runtests.297.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./lockcontention  >> runtests.297.out 2>&1
+echo $? > runtests.297.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/lockcontention2 " > runtests.298.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./lockcontention2  >> runtests.298.out 2>&1
+echo $? > runtests.298.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./rma/lockcontention2 " > runtests.299.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./lockcontention2  >> runtests.299.out 2>&1
+echo $? > runtests.299.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./rma/lockcontention3 " > runtests.300.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./lockcontention3  >> runtests.300.out 2>&1
+echo $? > runtests.300.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/lockopts " > runtests.301.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./lockopts  >> runtests.301.out 2>&1
+echo $? > runtests.301.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/lock_dt " > runtests.302.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./lock_dt  >> runtests.302.out 2>&1
+echo $? > runtests.302.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/lock_dt_flush " > runtests.303.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./lock_dt_flush  >> runtests.303.out 2>&1
+echo $? > runtests.303.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/lock_dt_flushlocal " > runtests.304.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./lock_dt_flushlocal  >> runtests.304.out 2>&1
+echo $? > runtests.304.status
+export MPIEXEC_TIMEOUT=240
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/lockall_dt " > runtests.305.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./lockall_dt  >> runtests.305.out 2>&1
+echo $? > runtests.305.status
+export MPIEXEC_TIMEOUT=240
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/lockall_dt_flush " > runtests.306.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./lockall_dt_flush  >> runtests.306.out 2>&1
+echo $? > runtests.306.status
+export MPIEXEC_TIMEOUT=240
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/lockall_dt_flushall " > runtests.307.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./lockall_dt_flushall  >> runtests.307.out 2>&1
+echo $? > runtests.307.status
+export MPIEXEC_TIMEOUT=240
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/lockall_dt_flushlocal " > runtests.308.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./lockall_dt_flushlocal  >> runtests.308.out 2>&1
+echo $? > runtests.308.status
+export MPIEXEC_TIMEOUT=240
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/lockall_dt_flushlocalall " > runtests.309.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./lockall_dt_flushlocalall  >> runtests.309.out 2>&1
+echo $? > runtests.309.status
+export MPIEXEC_TIMEOUT=240
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/lock_contention_dt " > runtests.310.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./lock_contention_dt  >> runtests.310.out 2>&1
+echo $? > runtests.310.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/transpose4 " > runtests.311.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./transpose4  >> runtests.311.out 2>&1
+echo $? > runtests.311.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./rma/fetchandadd " > runtests.312.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./fetchandadd  >> runtests.312.out 2>&1
+echo $? > runtests.312.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./rma/fetchandadd_tree " > runtests.313.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./fetchandadd_tree  >> runtests.313.out 2>&1
+echo $? > runtests.313.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/wintest " > runtests.314.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./wintest  >> runtests.314.out 2>&1
+echo $? > runtests.314.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/wintest_shm " > runtests.315.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./wintest_shm  >> runtests.315.out 2>&1
+echo $? > runtests.315.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./rma/contig_displ " > runtests.316.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./contig_displ  >> runtests.316.out 2>&1
+echo $? > runtests.316.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test1_am " > runtests.317.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test1_am  >> runtests.317.out 2>&1
+echo $? > runtests.317.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test2_am " > runtests.318.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test2_am  >> runtests.318.out 2>&1
+echo $? > runtests.318.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test2_am_shm " > runtests.319.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test2_am_shm  >> runtests.319.out 2>&1
+echo $? > runtests.319.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test3_am " > runtests.320.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test3_am  >> runtests.320.out 2>&1
+echo $? > runtests.320.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test3_am_shm " > runtests.321.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test3_am_shm  >> runtests.321.out 2>&1
+echo $? > runtests.321.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test4_am " > runtests.322.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test4_am  >> runtests.322.out 2>&1
+echo $? > runtests.322.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test5_am " > runtests.323.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test5_am  >> runtests.323.out 2>&1
+echo $? > runtests.323.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./rma/fetchandadd_am " > runtests.324.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./fetchandadd_am  >> runtests.324.out 2>&1
+echo $? > runtests.324.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./rma/fetchandadd_tree_am " > runtests.325.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./fetchandadd_tree_am  >> runtests.325.out 2>&1
+echo $? > runtests.325.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/accfence2_am " > runtests.326.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./accfence2_am  >> runtests.326.out 2>&1
+echo $? > runtests.326.status
+export MPIEXEC_TIMEOUT=30
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/test1_dt " > runtests.327.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./test1_dt  >> runtests.327.out 2>&1
+echo $? > runtests.327.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./rma/nullpscw " > runtests.328.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./nullpscw  >> runtests.328.out 2>&1
+echo $? > runtests.328.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 7    ./rma/nullpscw_shm " > runtests.329.out
+/home/riwarren/mpich-install/bin/mpiexec -n 7    ./nullpscw_shm  >> runtests.329.out 2>&1
+echo $? > runtests.329.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./rma/attrorderwin " > runtests.330.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./attrorderwin  >> runtests.330.out 2>&1
+echo $? > runtests.330.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/wincall " > runtests.331.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./wincall  >> runtests.331.out 2>&1
+echo $? > runtests.331.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./rma/baseattrwin " > runtests.332.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./baseattrwin  >> runtests.332.out 2>&1
+echo $? > runtests.332.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./rma/fkeyvalwin " > runtests.333.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./fkeyvalwin  >> runtests.333.out 2>&1
+echo $? > runtests.333.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./rma/selfrma " > runtests.334.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./selfrma  >> runtests.334.out 2>&1
+echo $? > runtests.334.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/mixedsync " > runtests.335.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./mixedsync  >> runtests.335.out 2>&1
+echo $? > runtests.335.status
+export MPIEXEC_TIMEOUT=300
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/epochtest " > runtests.336.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./epochtest  >> runtests.336.out 2>&1
+echo $? > runtests.336.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/locknull " > runtests.337.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./locknull  >> runtests.337.out 2>&1
+echo $? > runtests.337.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/rmanull " > runtests.338.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./rmanull  >> runtests.338.out 2>&1
+echo $? > runtests.338.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/rmazero " > runtests.339.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./rmazero  >> runtests.339.out 2>&1
+echo $? > runtests.339.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/strided_acc_indexed " > runtests.340.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./strided_acc_indexed  >> runtests.340.out 2>&1
+echo $? > runtests.340.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/strided_acc_onelock " > runtests.341.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./strided_acc_onelock  >> runtests.341.out 2>&1
+echo $? > runtests.341.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/strided_acc_subarray " > runtests.342.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./strided_acc_subarray  >> runtests.342.out 2>&1
+echo $? > runtests.342.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/strided_get_indexed " > runtests.343.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./strided_get_indexed  >> runtests.343.out 2>&1
+echo $? > runtests.343.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/strided_putget_indexed " > runtests.344.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./strided_putget_indexed  >> runtests.344.out 2>&1
+echo $? > runtests.344.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/window_creation " > runtests.345.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./window_creation  >> runtests.345.out 2>&1
+echo $? > runtests.345.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/contention_put " > runtests.346.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./contention_put  >> runtests.346.out 2>&1
+echo $? > runtests.346.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/contention_putget " > runtests.347.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./contention_putget  >> runtests.347.out 2>&1
+echo $? > runtests.347.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/put_base " > runtests.348.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./put_base  >> runtests.348.out 2>&1
+echo $? > runtests.348.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/put_bottom " > runtests.349.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./put_bottom  >> runtests.349.out 2>&1
+echo $? > runtests.349.status
+export MPIEXEC_TIMEOUT=500
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/manyrma2 " > runtests.350.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./manyrma2  >> runtests.350.out 2>&1
+echo $? > runtests.350.status
+export MPIEXEC_TIMEOUT=500
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/manyrma2_shm " > runtests.351.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./manyrma2_shm  >> runtests.351.out 2>&1
+echo $? > runtests.351.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/manyrma3 " > runtests.352.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./manyrma3  >> runtests.352.out 2>&1
+echo $? > runtests.352.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./rma/acc-loc " > runtests.353.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./acc-loc  >> runtests.353.out 2>&1
+echo $? > runtests.353.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/get-struct " > runtests.354.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./get-struct  >> runtests.354.out 2>&1
+echo $? > runtests.354.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/at_complete " > runtests.355.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./at_complete  >> runtests.355.out 2>&1
+echo $? > runtests.355.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/atomic_rmw_fop " > runtests.356.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./atomic_rmw_fop  >> runtests.356.out 2>&1
+echo $? > runtests.356.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/atomic_rmw_cas " > runtests.357.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./atomic_rmw_cas  >> runtests.357.out 2>&1
+echo $? > runtests.357.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/atomic_rmw_gacc " > runtests.358.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./atomic_rmw_gacc  >> runtests.358.out 2>&1
+echo $? > runtests.358.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/acc-pairtype " > runtests.359.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./acc-pairtype  >> runtests.359.out 2>&1
+echo $? > runtests.359.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/manyget " > runtests.360.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./manyget  >> runtests.360.out 2>&1
+echo $? > runtests.360.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./rma/large-small-acc " > runtests.361.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./large-small-acc  >> runtests.361.out 2>&1
+echo $? > runtests.361.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/overlap_wins_put " > runtests.362.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./overlap_wins_put  >> runtests.362.out 2>&1
+echo $? > runtests.362.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/overlap_wins_acc " > runtests.363.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./overlap_wins_acc  >> runtests.363.out 2>&1
+echo $? > runtests.363.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/overlap_wins_gacc " > runtests.364.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./overlap_wins_gacc  >> runtests.364.out 2>&1
+echo $? > runtests.364.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/overlap_wins_fop " > runtests.365.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./overlap_wins_fop  >> runtests.365.out 2>&1
+echo $? > runtests.365.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/overlap_wins_cas " > runtests.366.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./overlap_wins_cas  >> runtests.366.out 2>&1
+echo $? > runtests.366.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./rma/lock_nested " > runtests.367.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./lock_nested  >> runtests.367.out 2>&1
+echo $? > runtests.367.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawn/namepub " > runtests.368.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./namepub  >> runtests.368.out 2>&1
+echo $? > runtests.368.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spawn1 " > runtests.369.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn1  >> runtests.369.out 2>&1
+echo $? > runtests.369.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spawn2 " > runtests.370.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn2  >> runtests.370.out 2>&1
+echo $? > runtests.370.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spawninfo1 " > runtests.371.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawninfo1  >> runtests.371.out 2>&1
+echo $? > runtests.371.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spawnminfo1 " > runtests.372.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawnminfo1  >> runtests.372.out 2>&1
+echo $? > runtests.372.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spawnintra " > runtests.373.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawnintra  >> runtests.373.out 2>&1
+echo $? > runtests.373.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawn/spawnintra " > runtests.374.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawnintra  >> runtests.374.out 2>&1
+echo $? > runtests.374.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spawnargv " > runtests.375.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawnargv  >> runtests.375.out 2>&1
+echo $? > runtests.375.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spawnmanyarg " > runtests.376.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawnmanyarg  >> runtests.376.out 2>&1
+echo $? > runtests.376.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawn/spawnmult2 " > runtests.377.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawnmult2  >> runtests.377.out 2>&1
+echo $? > runtests.377.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spaconacc " > runtests.378.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spaconacc  >> runtests.378.out 2>&1
+echo $? > runtests.378.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/spaconacc2 " > runtests.379.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./spaconacc2  >> runtests.379.out 2>&1
+echo $? > runtests.379.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawn/selfconacc " > runtests.380.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./selfconacc  >> runtests.380.out 2>&1
+echo $? > runtests.380.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawn/spaiccreate " > runtests.381.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./spaiccreate  >> runtests.381.out 2>&1
+echo $? > runtests.381.status
+export MPIEXEC_TIMEOUT=600
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/taskmaster " > runtests.382.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./taskmaster  >> runtests.382.out 2>&1
+echo $? > runtests.382.status
+export MPIEXEC_TIMEOUT=600
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawn/taskmaster " > runtests.383.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./taskmaster  >> runtests.383.out 2>&1
+echo $? > runtests.383.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./spawn/join " > runtests.384.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./join  >> runtests.384.out 2>&1
+echo $? > runtests.384.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./spawn/disconnect_reconnect " > runtests.385.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./disconnect_reconnect  >> runtests.385.out 2>&1
+echo $? > runtests.385.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./spawn/disconnect_reconnect2 " > runtests.386.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./disconnect_reconnect2  >> runtests.386.out 2>&1
+echo $? > runtests.386.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./spawn/disconnect_reconnect3 " > runtests.387.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./disconnect_reconnect3  >> runtests.387.out 2>&1
+echo $? > runtests.387.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./spawn/multiple_ports " > runtests.388.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./multiple_ports  >> runtests.388.out 2>&1
+echo $? > runtests.388.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./spawn/multiple_ports2 " > runtests.389.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./multiple_ports2  >> runtests.389.out 2>&1
+echo $? > runtests.389.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./spawn/disconnect " > runtests.390.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./disconnect  >> runtests.390.out 2>&1
+echo $? > runtests.390.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./spawn/disconnect2 " > runtests.391.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./disconnect2  >> runtests.391.out 2>&1
+echo $? > runtests.391.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 3    ./spawn/disconnect3 " > runtests.392.out
+/home/riwarren/mpich-install/bin/mpiexec -n 3    ./disconnect3  >> runtests.392.out 2>&1
+echo $? > runtests.392.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./spawn/concurrent_spawns " > runtests.393.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./concurrent_spawns  >> runtests.393.out 2>&1
+echo $? > runtests.393.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./spawn/pgroup_connect_test " > runtests.394.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./pgroup_connect_test  >> runtests.394.out 2>&1
+echo $? > runtests.394.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./spawn/pgroup_intercomm_test " > runtests.395.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./pgroup_intercomm_test  >> runtests.395.out 2>&1
+echo $? > runtests.395.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 10    ./spawn/spawn-rootargs " > runtests.396.out
+/home/riwarren/mpich-install/bin/mpiexec -n 10    ./spawn-rootargs  >> runtests.396.out 2>&1
+echo $? > runtests.396.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/cartmap1 " > runtests.397.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cartmap1  >> runtests.397.out 2>&1
+echo $? > runtests.397.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/cartzero " > runtests.398.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cartzero  >> runtests.398.out 2>&1
+echo $? > runtests.398.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/cartshift1 " > runtests.399.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cartshift1  >> runtests.399.out 2>&1
+echo $? > runtests.399.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/cartsuball " > runtests.400.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cartsuball  >> runtests.400.out 2>&1
+echo $? > runtests.400.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/cartcreates " > runtests.401.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cartcreates  >> runtests.401.out 2>&1
+echo $? > runtests.401.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/dims1 " > runtests.402.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./dims1  >> runtests.402.out 2>&1
+echo $? > runtests.402.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./topo/dims2 " > runtests.403.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./dims2  >> runtests.403.out 2>&1
+echo $? > runtests.403.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./topo/dims3 " > runtests.404.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./dims3  >> runtests.404.out 2>&1
+echo $? > runtests.404.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./topo/dims4 " > runtests.405.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./dims4  >> runtests.405.out 2>&1
+echo $? > runtests.405.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./topo/dims5 " > runtests.406.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./dims5  >> runtests.406.out 2>&1
+echo $? > runtests.406.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/graphmap1 " > runtests.407.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./graphmap1  >> runtests.407.out 2>&1
+echo $? > runtests.407.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/topotest " > runtests.408.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./topotest  >> runtests.408.out 2>&1
+echo $? > runtests.408.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/topodup " > runtests.409.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./topodup  >> runtests.409.out 2>&1
+echo $? > runtests.409.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/graphcr " > runtests.410.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./graphcr  >> runtests.410.out 2>&1
+echo $? > runtests.410.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./topo/graphcr2 " > runtests.411.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./graphcr2  >> runtests.411.out 2>&1
+echo $? > runtests.411.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./perf/sendrecvl " > runtests.412.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./sendrecvl  >> runtests.412.out 2>&1
+echo $? > runtests.412.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./perf/non_zero_root " > runtests.413.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./non_zero_root  >> runtests.413.out 2>&1
+echo $? > runtests.413.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./perf/timer " > runtests.414.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./timer  >> runtests.414.out 2>&1
+echo $? > runtests.414.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 16    ./perf/commcreatep " > runtests.415.out
+/home/riwarren/mpich-install/bin/mpiexec -n 16    ./commcreatep  >> runtests.415.out 2>&1
+echo $? > runtests.415.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./io/rdwrord " > runtests.416.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./rdwrord  >> runtests.416.out 2>&1
+echo $? > runtests.416.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./io/rdwrzero " > runtests.417.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./rdwrzero  >> runtests.417.out 2>&1
+echo $? > runtests.417.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./io/getextent " > runtests.418.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./getextent  >> runtests.418.out 2>&1
+echo $? > runtests.418.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./io/setinfo " > runtests.419.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./setinfo  >> runtests.419.out 2>&1
+echo $? > runtests.419.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./io/i_noncontig " > runtests.420.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./i_noncontig  >> runtests.420.out 2>&1
+echo $? > runtests.420.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./io/async_any " > runtests.421.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./async_any  >> runtests.421.out 2>&1
+echo $? > runtests.421.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./io/userioerr " > runtests.422.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./userioerr  >> runtests.422.out 2>&1
+echo $? > runtests.422.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./io/resized " > runtests.423.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./resized  >> runtests.423.out 2>&1
+echo $? > runtests.423.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./io/resized2 " > runtests.424.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./resized2  >> runtests.424.out 2>&1
+echo $? > runtests.424.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./io/bigtype " > runtests.425.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./bigtype  >> runtests.425.out 2>&1
+echo $? > runtests.425.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./io/hindexed_io " > runtests.426.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./hindexed_io  >> runtests.426.out 2>&1
+echo $? > runtests.426.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./io/simple_collective  "simple_collective.testfile"" > runtests.427.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./simple_collective  "simple_collective.testfile" >> runtests.427.out 2>&1
+echo $? > runtests.427.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./io/external32-derived-dtype " > runtests.428.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./external32-derived-dtype  >> runtests.428.out 2>&1
+echo $? > runtests.428.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/attr/keyvalmis " > runtests.429.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./keyvalmis  >> runtests.429.out 2>&1
+echo $? > runtests.429.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/coll/noalias " > runtests.430.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./noalias  >> runtests.430.out 2>&1
+echo $? > runtests.430.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/coll/rerr " > runtests.431.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./rerr  >> runtests.431.out 2>&1
+echo $? > runtests.431.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/coll/reduce_local " > runtests.432.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./reduce_local  >> runtests.432.out 2>&1
+echo $? > runtests.432.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/coll/bcastlength " > runtests.433.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./bcastlength  >> runtests.433.out 2>&1
+echo $? > runtests.433.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/comm/cfree " > runtests.434.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cfree  >> runtests.434.out 2>&1
+echo $? > runtests.434.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 8    ./errors/comm/ccreate1 " > runtests.435.out
+/home/riwarren/mpich-install/bin/mpiexec -n 8    ./ccreate1  >> runtests.435.out 2>&1
+echo $? > runtests.435.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/comm/userdup " > runtests.436.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./userdup  >> runtests.436.out 2>&1
+echo $? > runtests.436.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/comm/manysplit " > runtests.437.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./manysplit  >> runtests.437.out 2>&1
+echo $? > runtests.437.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/comm/too_many_comms " > runtests.438.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./too_many_comms  >> runtests.438.out 2>&1
+echo $? > runtests.438.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/comm/too_many_icomms " > runtests.439.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./too_many_icomms  >> runtests.439.out 2>&1
+echo $? > runtests.439.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/comm/too_many_comms2 " > runtests.440.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./too_many_comms2  >> runtests.440.out 2>&1
+echo $? > runtests.440.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/comm/too_many_comms3 " > runtests.441.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./too_many_comms3  >> runtests.441.out 2>&1
+echo $? > runtests.441.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/comm/too_many_icomms2 " > runtests.442.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./too_many_icomms2  >> runtests.442.out 2>&1
+echo $? > runtests.442.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/group/gerr " > runtests.443.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./gerr  >> runtests.443.out 2>&1
+echo $? > runtests.443.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/pt2pt/proberank " > runtests.444.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./proberank  >> runtests.444.out 2>&1
+echo $? > runtests.444.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/pt2pt/truncmsg1 " > runtests.445.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./truncmsg1  >> runtests.445.out 2>&1
+echo $? > runtests.445.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/pt2pt/truncmsg2 " > runtests.446.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./truncmsg2  >> runtests.446.out 2>&1
+echo $? > runtests.446.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/pt2pt/errinstatts " > runtests.447.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./errinstatts  >> runtests.447.out 2>&1
+echo $? > runtests.447.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/pt2pt/errinstatta " > runtests.448.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./errinstatta  >> runtests.448.out 2>&1
+echo $? > runtests.448.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/pt2pt/errinstatws " > runtests.449.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./errinstatws  >> runtests.449.out 2>&1
+echo $? > runtests.449.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/pt2pt/errinstatwa " > runtests.450.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./errinstatwa  >> runtests.450.out 2>&1
+echo $? > runtests.450.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 4    ./errors/topo/cartsmall " > runtests.451.out
+/home/riwarren/mpich-install/bin/mpiexec -n 4    ./cartsmall  >> runtests.451.out 2>&1
+echo $? > runtests.451.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/winerr " > runtests.452.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./winerr  >> runtests.452.out 2>&1
+echo $? > runtests.452.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/winerr2 " > runtests.453.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./winerr2  >> runtests.453.out 2>&1
+echo $? > runtests.453.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_unlock " > runtests.454.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_unlock  >> runtests.454.out 2>&1
+echo $? > runtests.454.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_free_pt " > runtests.455.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_free_pt  >> runtests.455.out 2>&1
+echo $? > runtests.455.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_free_at " > runtests.456.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_free_at  >> runtests.456.out 2>&1
+echo $? > runtests.456.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_complete " > runtests.457.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_complete  >> runtests.457.out 2>&1
+echo $? > runtests.457.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_lock_at " > runtests.458.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_lock_at  >> runtests.458.out 2>&1
+echo $? > runtests.458.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_lock_pt " > runtests.459.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_lock_pt  >> runtests.459.out 2>&1
+echo $? > runtests.459.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_lock_fence " > runtests.460.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_lock_fence  >> runtests.460.out 2>&1
+echo $? > runtests.460.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_nested " > runtests.461.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_nested  >> runtests.461.out 2>&1
+echo $? > runtests.461.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/rma/win_sync_op " > runtests.462.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./win_sync_op  >> runtests.462.out 2>&1
+echo $? > runtests.462.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/spawn/badport " > runtests.463.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./badport  >> runtests.463.out 2>&1
+echo $? > runtests.463.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/spawn/unpub " > runtests.464.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./unpub  >> runtests.464.out 2>&1
+echo $? > runtests.464.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/spawn/lookup_name " > runtests.465.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./lookup_name  >> runtests.465.out 2>&1
+echo $? > runtests.465.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/spawn/connect_timeout_no_accept " > runtests.466.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./connect_timeout_no_accept  >> runtests.466.out 2>&1
+echo $? > runtests.466.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 2    ./errors/spawn/connect_timeout_mismatch " > runtests.467.out
+/home/riwarren/mpich-install/bin/mpiexec -n 2    ./connect_timeout_mismatch  >> runtests.467.out 2>&1
+echo $? > runtests.467.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./errors/spawn/connect_timeout_no_accept " > runtests.468.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./connect_timeout_no_accept  >> runtests.468.out 2>&1
+echo $? > runtests.468.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 5    ./errors/spawn/connect_timeout_mismatch " > runtests.469.out
+/home/riwarren/mpich-install/bin/mpiexec -n 5    ./connect_timeout_mismatch  >> runtests.469.out 2>&1
+echo $? > runtests.469.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/io/fileerrret " > runtests.470.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./fileerrret  >> runtests.470.out 2>&1
+echo $? > runtests.470.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/io/openerr " > runtests.471.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./openerr  >> runtests.471.out 2>&1
+echo $? > runtests.471.status
+export MPIEXEC_TIMEOUT=180
+echo "# /home/riwarren/mpich-install/bin/mpiexec -n 1    ./errors/io/file_errhdl " > runtests.472.out
+/home/riwarren/mpich-install/bin/mpiexec -n 1    ./file_errhdl  >> runtests.472.out 2>&1
+echo $? > runtests.472.status

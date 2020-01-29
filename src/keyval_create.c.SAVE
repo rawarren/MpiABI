@@ -1,0 +1,66 @@
+
+/*
+ * This text was generated automatically
+ * It provides the ISC implementation of
+ * MPI_Keyval_create
+ */
+
+#include <_mpi.h>
+
+int
+MPI_Keyval_create (MPI_Copy_function *copy_fn, MPI_Delete_function *delete_fn, int *keyval, void *extra_state)
+{
+  static void *address=0;
+  int mpi_const = 0;
+  int mpi_return;
+  api_use_ints *local_a0 = active_miscs->api_declared;
+  api_use_ptrs *local_a1 = active_addrs->api_declared;
+
+  if (!address) {
+    if ((address = dlsym(MPI_libhandle,"MPI_Keyval_create")) == NULL) {
+      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Keyval_create",SYM_MISSING_TRAILER);
+      return -1;
+    }
+  }
+
+  *keyval = new_index(active_miscs);
+
+  int (*VendorMPI_Keyval_create) (void *copy_fn, void *delete_fn, int *keyval, void *extra_state) = address;
+#if 1
+  mpi_return = (*VendorMPI_Keyval_create)(NULLCOPYFN(copy_fn),NULLDELFN(delete_fn),keyval,extra_state);
+  if (copy_fn != MPI_NULL_COPY_FN) {
+    save_user_copy_callback(copy_fn,*keyval);
+  }
+  if (delete_fn != MPI_NULL_DELETE_FN) {
+    save_user_delete_callback(delete_fn,*keyval);
+  }
+
+#else  /* Was more complicated... */
+  if (copy_fn == MPI_NULL_COPY_FN) {
+    if (delete_fn == MPI_NULL_DELETE_FN) {
+      mpi_return = (*VendorMPI_Keyval_create)((void *)local_a1[ISC_NULL_COPY_FN].mpi_const,
+					      (void *)local_a1[ISC_NULL_DELETE_FN].mpi_const,
+					      &local_a0[*keyval].mpi_const,extra_state);      
+    }
+    else {
+      mpi_return = (*VendorMPI_Keyval_create)((void *)local_a1[ISC_NULL_COPY_FN].mpi_const,
+					      delete_fn,
+					      &local_a0[*keyval].mpi_const,extra_state);      
+    }
+  }
+  else {
+    if (delete_fn == MPI_NULL_DELETE_FN) {
+      mpi_return = (*VendorMPI_Keyval_create)(copy_fn,
+					      (void *)local_a1[ISC_NULL_DELETE_FN].mpi_const,
+					      &local_a0[*keyval].mpi_const,extra_state);
+    }
+    else {
+      mpi_return = (*VendorMPI_Keyval_create)(copy_fn,
+					      delete_fn,
+					      &local_a0[*keyval].mpi_const,extra_state);
+    }
+  }
+#endif
+    
+  return mpi_return;
+}

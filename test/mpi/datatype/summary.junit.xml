@@ -1,0 +1,125 @@
+    <testcase name="1 - ./contents 1">
+      <failure type="TestFailed"
+               message="not ok 1 - ./contents 1"><![CDATA[not ok 1 - ./contents 1
+  ---
+  Directory: .
+  File: contents
+  Num-procs: 1
+  Timeout: 180
+  Date: "Sun Nov 26 12:23:00 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [rawlinux.local:02907] mca_base_component_repository_open: unable to open mca_mtl_ofi: libfabric.so.1: cannot open shared object file: No such file or directory (ignored)
+## Found 1 errors in builtin float test.
+## Found 1 errors in vector of vectors test.
+## Found 2 errors in vector of basics test.
+## Found 2 errors in indexed of basics test.
+## Found 1 errors in indexed of vectors test.
+## Found 7 errors
+    ]]></failure>
+    </testcase>
+    <testcase name="2 - ./gaddress 1">
+      <failure type="TestFailed"
+               message="not ok 2 - ./gaddress 1"><![CDATA[not ok 2 - ./gaddress 1
+  ---
+  Directory: .
+  File: gaddress
+  Num-procs: 1
+  Timeout: 180
+  Date: "Sun Nov 26 12:23:01 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [rawlinux.local:02955] mca_base_component_repository_open: unable to open mca_mtl_ofi: libfabric.so.1: cannot open shared object file: No such file or directory (ignored)
+##  No Errors
+    ]]></failure>
+    </testcase>
+    <testcase name="3 - ./lbub 1">
+      <failure type="TestFailed"
+               message="not ok 3 - ./lbub 1"><![CDATA[not ok 3 - ./lbub 1
+  ---
+  Directory: .
+  File: lbub
+  Num-procs: 1
+  Timeout: 180
+  Date: "Sun Nov 26 12:23:02 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [rawlinux.local:03003] mca_base_component_repository_open: unable to open mca_mtl_ofi: libfabric.so.1: cannot open shared object file: No such file or directory (ignored)
+##  No Errors
+    ]]></failure>
+    </testcase>
+    <testcase name="4 - ./localpack 1">
+      <failure type="TestFailed"
+               message="not ok 4 - ./localpack 1"><![CDATA[not ok 4 - ./localpack 1
+  ---
+  Directory: .
+  File: localpack
+  Num-procs: 1
+  Timeout: 180
+  Date: "Sun Nov 26 12:23:03 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [rawlinux.local:03051] mca_base_component_repository_open: unable to open mca_mtl_ofi: libfabric.so.1: cannot open shared object file: No such file or directory (ignored)
+##  No Errors
+    ]]></failure>
+    </testcase>
+    <testcase name="5 - ./simple-pack 1">
+      <failure type="TestFailed"
+               message="not ok 5 - ./simple-pack 1"><![CDATA[not ok 5 - ./simple-pack 1
+  ---
+  Directory: .
+  File: simple-pack
+  Num-procs: 1
+  Timeout: 180
+  Date: "Sun Nov 26 12:23:03 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [rawlinux.local:03099] mca_base_component_repository_open: unable to open mca_mtl_ofi: libfabric.so.1: cannot open shared object file: No such file or directory (ignored)
+## Found 1 errors
+    ]]></failure>
+    </testcase>
+    <testcase name="6 - ./simple-pack-external 1">
+      <failure type="TestFailed"
+               message="not ok 6 - ./simple-pack-external 1"><![CDATA[not ok 6 - ./simple-pack-external 1
+  ---
+  Directory: .
+  File: simple-pack-external
+  Num-procs: 1
+  Timeout: 180
+  Date: "Sun Nov 26 12:23:04 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [rawlinux.local:03160] mca_base_component_repository_open: unable to open mca_mtl_ofi: libfabric.so.1: cannot open shared object file: No such file or directory (ignored)
+##  Found 1 errors
+    ]]></failure>
+    </testcase>
+    <testcase name="7 - ./simple-pack-external2 1">
+      <failure type="TestFailed"
+               message="not ok 7 - ./simple-pack-external2 1"><![CDATA[not ok 7 - ./simple-pack-external2 1
+  ---
+  Directory: .
+  File: simple-pack-external2
+  Num-procs: 1
+  Timeout: 180
+  Date: "Sun Nov 26 12:23:05 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [rawlinux.local:03209] mca_base_component_repository_open: unable to open mca_mtl_ofi: libfabric.so.1: cannot open shared object file: No such file or directory (ignored)
+##  No Errors
+    ]]></failure>
+    </testcase>
+    <testcase name="8 - ./transpose-pack 1">
+      <failure type="TestFailed"
+               message="not ok 8 - ./transpose-pack 1"><![CDATA[not ok 8 - ./transpose-pack 1
+  ---
+  Directory: .
+  File: transpose-pack
+  Num-procs: 1
+  Timeout: 180
+  Date: "Sun Nov 26 12:23:05 2017"
+  ...
+## Test output (expected 'No Errors'):
+## [rawlinux.local:03257] mca_base_component_repository_open: unable to open mca_mtl_ofi: libfabric.so.1: cannot open shared object file: No such file or directory (ignored)
+##  No Errors
+    ]]></failure>
+    </testcase>

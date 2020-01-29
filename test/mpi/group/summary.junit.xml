@@ -1,0 +1,17 @@
+<testsuites>
+  <testsuite failures="0"
+             errors="0"
+             skipped="0"
+             tests="6"
+             date="2017-11-18-23-12"
+             name="summary_junit_xml">
+    <testcase name="1 - ./groupcreate 4"></testcase>
+    <testcase name="2 - ./grouptest 8"></testcase>
+    <testcase name="3 - ./grouptest2 4"></testcase>
+    <testcase name="4 - ./groupnullincl 4"></testcase>
+    <testcase name="5 - ./gtranks 8"></testcase>
+    <testcase name="6 - ./gtranksperf 20"></testcase>
+    <system-out></system-out>
+    <system-err></system-err>
+  </testsuite>
+</testsuites>
