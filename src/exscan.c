@@ -23,12 +23,12 @@ MPI_Exscan (void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_
     api_use_ptrs *local_a1=active_ops->api_declared;
     api_use_ptrs *local_a2= active_comms->api_declared;
     int (*VendorMPI_Exscan)(void *sendbuf,void *recvbuf,int count,void *,void *,void *) = address;
-    mpi_return = (*VendorMPI_Exscan)(sendbuf,recvbuf,count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,local_a2[comm].mpi_const);
+    mpi_return = (*VendorMPI_Exscan)(INPLACE(sendbuf),recvbuf,count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,local_a2[comm].mpi_const);
   } else { api_use_ints *local_a0 = active_datatypes->api_declared;
     api_use_ints *local_a1=active_ops->api_declared;
     api_use_ints *local_a2= active_comms->api_declared;
     int (*VendorMPI_Exscan)(void *sendbuf,void *recvbuf,int count,int,int,int) = address;
-    mpi_return = (*VendorMPI_Exscan)(sendbuf,recvbuf,count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,local_a2[comm].mpi_const);
+    mpi_return = (*VendorMPI_Exscan)(INPLACE(sendbuf),recvbuf,count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,local_a2[comm].mpi_const);
   }
   return mpi_return;
 }

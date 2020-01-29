@@ -76,6 +76,7 @@ resolve_mpi_library(void)
 {
   void *address=0;
   void *libhandle=0;
+  void *self=0;
 
   char *vendor_mpi_library=0;
   char *vendor_mpio_library=0;
@@ -83,6 +84,9 @@ resolve_mpi_library(void)
 
   char *(*get_vendor_mpilib)() = 0;  
 
+  if ((self = dlopen("libiscmpi.so", RTLD_NOW|RTLD_GLOBAL)) == NULL) {
+      printf("A self dlopen failed: %s\n", dlerror());
+  }
 
   if (!(libhandle = ISC_maphandle)) {
     libhandle = dlopen("isc_mapping.so", RTLD_LAZY);
@@ -196,8 +200,8 @@ allocate_and_fill(void *libhandle,
 
 static int use_mutex = 0;
 static pthread_mutex_t funnel_new_index;
-#define LOCK(x) if (use_mutex) pthread_mutex_lock(&(x))
-#define UNLOCK(x) if (use_mutex) pthread_mutex_unlock(&(x))
+#define LOCK(x,line) if (use_mutex) {pthread_mutex_lock(&(x));}
+#define UNLOCK(x,line) if (use_mutex) {pthread_mutex_unlock(&(x));}
 
 
 void
@@ -258,7 +262,7 @@ get_index(isc_const *store, void *value)
 int
 new_index(isc_const *store) 
 {
-  LOCK(funnel_new_index);
+  LOCK(funnel_new_index, __LINE__);
   int index;
   isc_freelist *nextfree;
   if ((nextfree = store->freed) != NULL) {
@@ -268,7 +272,7 @@ new_index(isc_const *store)
       elem->MPI_name = NULL;
       elem->mpi_const = 0;
       free(nextfree);
-      UNLOCK(funnel_new_index);
+      UNLOCK(funnel_new_index, __LINE__);
       return elem->self;
     }
     else {
@@ -277,7 +281,7 @@ new_index(isc_const *store)
       elem->MPI_name = NULL;
       elem->mpi_const = 0;
       free(nextfree);
-      UNLOCK(funnel_new_index);
+      UNLOCK(funnel_new_index, __LINE__);
       return elem->self;
     }
   }
@@ -294,7 +298,7 @@ new_index(isc_const *store)
     next[index].self = index;
     next[index].mpi_const = 0;
   }
-  UNLOCK(funnel_new_index);
+  UNLOCK(funnel_new_index, __LINE__);
   return index;
 }
 
@@ -303,7 +307,7 @@ free_index(isc_const *store, int index)
 {
   /* Don't attempt to free a builtin object */
   if (index < store->permlimit) return;
-  LOCK(funnel_new_index);
+  LOCK(funnel_new_index,__LINE__);
 #if 0  
   if (store->freed) {
     if (store->use_ptrs) {
@@ -369,7 +373,7 @@ free_index(isc_const *store, int index)
 
   }
 #endif
-  UNLOCK(funnel_new_index);
+  UNLOCK(funnel_new_index,__LINE__);
 
   return;
 }
@@ -511,7 +515,7 @@ int save_user_copy_callback(void *copyfn, int keyval, callback_t this_callback_t
 {
   keyvalpair_t *new_callback = (keyvalpair_t *)calloc(1, sizeof(keyvalpair_t));
   if (new_callback == NULL) return -1;
-  LOCK(funnel_new_callback);
+  LOCK(funnel_new_callback,__LINE__);
   new_callback->keyval = keyval;
   new_callback->ftn_pointer = copyfn;
   if (this_callback_type == COMM_CALLBACK) {
@@ -522,7 +526,7 @@ int save_user_copy_callback(void *copyfn, int keyval, callback_t this_callback_t
     new_callback->next = datatype_attr_copy_callbacks;
     datatype_attr_copy_callbacks = new_callback;
   }
-  UNLOCK(funnel_new_callback);
+  UNLOCK(funnel_new_callback,__LINE__);
   return 0;
 }
 
@@ -530,7 +534,7 @@ int save_user_delete_callback(void *delfn, int keyval, callback_t this_callback_
 {
   keyvalpair_t *new_callback = (keyvalpair_t *)calloc(1, sizeof(keyvalpair_t));
   if (new_callback == NULL) return -1;
-  LOCK(funnel_new_callback);
+  LOCK(funnel_new_callback,__LINE__);
   new_callback->keyval = keyval;
   new_callback->ftn_pointer = delfn;
   if (this_callback_type == COMM_CALLBACK) {
@@ -541,7 +545,7 @@ int save_user_delete_callback(void *delfn, int keyval, callback_t this_callback_
     new_callback->next = datatype_attr_delete_callbacks;
     datatype_attr_delete_callbacks = new_callback;
   }
-  UNLOCK(funnel_new_callback);
+  UNLOCK(funnel_new_callback, __LINE__);
   return 0;
 }
 
@@ -593,7 +597,7 @@ static keyvalpair_t * __maybe_delete_callbacks(keyvalpair_t *head, int isc_objec
 int remove_object_keyval_callbacks(int isc_object, int keyval, callback_t this_callback_type)
 {
     keyvalpair_t *callback = NULL;
-    LOCK(funnel_new_callback);
+    LOCK(funnel_new_callback, __LINE__);
     if (this_callback_type == COMM_CALLBACK) {
       if ((comm_attr_copy_callbacks != NULL) && 
 	  ((callback = __maybe_delete_callbacks(comm_attr_copy_callbacks, isc_object, keyval)))) {
@@ -626,7 +630,7 @@ int remove_object_keyval_callbacks(int isc_object, int keyval, callback_t this_c
 	free(callback);
       }
     }
-    UNLOCK(funnel_new_callback);
+    UNLOCK(funnel_new_callback, __LINE__);
     return 0;
 }
 
@@ -649,13 +653,15 @@ int maybe_dup_internal_reference(int keyval, int isc_object, int new_isc_object 
 {
   int i, dups=0;
   keyvalpair_t *callback;
+
+  LOCK(funnel_new_callback, __LINE__);
+
   for(i=0; i<2; i++) {
     int referenced = 0;
     if (callback_type == COMM_CALLBACK)
       callback = (i == 0 ? comm_attr_delete_callbacks : comm_attr_copy_callbacks);
     else if (callback_type == DATATYPE_CALLBACK)
       callback = (i == 0 ? datatype_attr_delete_callbacks : datatype_attr_copy_callbacks);
-    LOCK(funnel_new_callback);
 
     while((callback != NULL) && (referenced == 0)) {
       if ((keyval > 0) && (callback->keyval == keyval)) referenced++;
@@ -679,7 +685,7 @@ int maybe_dup_internal_reference(int keyval, int isc_object, int new_isc_object 
       }
     }
   }  
-  UNLOCK(funnel_new_callback);
+  UNLOCK(funnel_new_callback, __LINE__);
 
   return dups;
 }
@@ -1277,7 +1283,7 @@ MPI_Init_thread (int *argc, char ***argv, int required, int *provided)
   mpi_return = (*VendorMPI_Init_thread)(argc,argv,required,provided);
 
   /* initialize mutex operations */
-  if (*provided == ISC_THREAD_MULTIPLE) {
+  if ((mpi_return == MPI_SUCCESS) && (provided != NULL) && (*provided != ISC_THREAD_SINGLE)) {
     pthread_mutex_init(&funnel_new_index,NULL);
     use_mutex = 1;
   }
