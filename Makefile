@@ -34,9 +34,9 @@ SGIICE_INCLUDE = -IVENDOR/SGI/include
 # -------------------------------------------------------
 # OpenMPI
 # 
-OMPI_INCLUDE = -I/home/riwarren/openmpi-install/include
-OMPI4_INCLUDE = -I/home/riwarren/openmpi-install-4.0.0/include
-OMPI401_INCLUDE = -I/home/riwarren/openmpi-install-4.0.1/include
+OMPI_INCLUDE = -I$(HOME)/openmpi-install/include
+OMPI4_INCLUDE = -I$(HOME)/openmpi-install-4.0.0/include
+OMPI401_INCLUDE = -I$(HOME)/openmpi-install-4.0.1/include
 
 default:	install
 
@@ -55,7 +55,7 @@ hpmpi_map:
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(HPMPI_INCLUDE) -DHPMPI -DVENDOR_MPI_SO=\"libmpi.so,libmpio.so\" \
         $(MAP_SRCDIR)/iscmpi_mapping.c -o isc_mapping_hpmpi.so
 
-MPICH2_INCLUDE = -I/home/riwarren/mpich-install/include
+MPICH2_INCLUDE = -I$(HOME)/mpich-install/include
 mpich2_map: 
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(MPICH2_INCLUDE) -DVENDOR_MPI_SO=\"libmpich.so\" \
         $(MAP_SRCDIR)/iscmpi_mapping.c -o $(ABIDIR)/mapper/MPICH/isc_mapping.so
@@ -74,7 +74,7 @@ sgi_ice_map:
 #
 openmpi_map: 
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(OMPI_INCLUDE) -DOPENMPI -DVENDOR_MPI_SO=\"libmpi.so\" \
-        $(MAP_SRCDIR)/iscmpi_mapping.c -L/home/riwarren/openmpi-install/lib -lmpi -o $(ABIDIR)/mapper/OpenMPI/isc_mapping.so 
+        $(MAP_SRCDIR)/iscmpi_mapping.c -L$(HOME)/openmpi-install/lib -lmpi -o $(ABIDIR)/mapper/OpenMPI/isc_mapping.so
 
 openmpi_ia32_map: 
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(OMPI_INCLUDE) -DOPENMPI -DVENDOR_MPI_SO=\"libmpi.so\" \
@@ -82,11 +82,11 @@ openmpi_ia32_map:
 
 openmpi4_map: 
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(OMPI4_INCLUDE) -DOPENMPI -DVENDOR_MPI_SO=\"libmpi.so\" \
-        $(MAP_SRCDIR)/iscmpi_mapping.c -L/home/riwarren/openmpi-install-4.0.0/lib -lmpi -o $(ABIDIR)/mapper/OpenMPI4/isc_mapping.so 
+        $(MAP_SRCDIR)/iscmpi_mapping.c -L$(HOME)/openmpi-install-4.0.0/lib -lmpi -o $(ABIDIR)/mapper/OpenMPI4/isc_mapping.so
 
 openmpi401_map: 
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(OMPI401_INCLUDE) -DOPENMPI -DVENDOR_MPI_SO=\"libmpi.so\" \
-        $(MAP_SRCDIR)/iscmpi_mapping.c -L/home/riwarren/openmpi-install-4.0.1/lib -lmpi -o $(ABIDIR)/mapper/OpenMPI401/isc_mapping.so 
+        $(MAP_SRCDIR)/iscmpi_mapping.c -L$(HOME)/openmpi-install-4.0.1/lib -lmpi -o $(ABIDIR)/mapper/OpenMPI401/isc_mapping.so
 
 maplibs: intel_map hpmpi_map openmpi_map
 
