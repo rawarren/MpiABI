@@ -723,6 +723,7 @@ typedef struct {
 #define MPI_Ialltoallv ISC_Ialltoallv
 #define MPI_Ibarrier ISC_Ibarrier
 #define MPI_Ibcast ISC_Ibcast
+#define MPI_Iexscan ISC_Iexscan
 #define MPI_Igather ISC_Igather
 #define MPI_Igatherv ISC_Igatherv
 #define MPI_Info_create ISC_Info_create
@@ -730,7 +731,9 @@ typedef struct {
 #define MPI_Info_dup ISC_Info_dup
 #define MPI_Info_get ISC_Info_get
 #define MPI_Ireduce ISC_Ireduce
+#define MPI_Ireduce_scatter_block ISC_Ireduce_scatter_block
 #define MPI_Ireduce_scatter ISC_Ireduce_scatter
+#define MPI_Iscan ISC_Iscan
 #define MPI_Iscatter ISC_Iscatter
 #define MPI_Iscatterv ISC_Iscatterv
 #define MPI_Pack_external ISC_Pack_external
