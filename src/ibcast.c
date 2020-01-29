@@ -14,8 +14,8 @@ MPI_Ibcast (void *buffer, int count, MPI_Datatype datatype, int root, MPI_Comm c
   int mpi_return;
 
   if (!address) {
-    if ((address = dlsym(MPI_libhandle,"MPI_Bcast")) == NULL) {
-      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Bcast",SYM_MISSING_TRAILER);
+    if ((address = dlsym(MPI_libhandle,"MPI_Ibcast")) == NULL) {
+      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Ibcast",SYM_MISSING_TRAILER);
       return -1;
     }
   }

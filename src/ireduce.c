@@ -14,8 +14,8 @@ MPI_Ireduce (void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI
   int mpi_return;
 
   if (!address) {
-    if ((address = dlsym(MPI_libhandle,"MPI_Reduce")) == NULL) {
-      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Reduce",SYM_MISSING_TRAILER);
+    if ((address = dlsym(MPI_libhandle,"MPI_Ireduce")) == NULL) {
+      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Ireduce",SYM_MISSING_TRAILER);
       return -1;
     }
   }

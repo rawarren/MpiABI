@@ -11,6 +11,7 @@ int
 MPI_Win_free_keyval (int *win_keyval)
 {
     static void *address=0;
+    int native_keyval;
     int mpi_return;
 
     if (!address) {
@@ -22,5 +23,8 @@ MPI_Win_free_keyval (int *win_keyval)
 
     int (*VendorMPI_Win_free_keyval) (int *win_keyval) = address;
     mpi_return = (*VendorMPI_Win_free_keyval)(win_keyval);
-return mpi_return;
+    if (mpi_return == 0) {
+	*win_keyval = MPI_KEYVAL_INVALID;
+    }
+    return mpi_return;
 }

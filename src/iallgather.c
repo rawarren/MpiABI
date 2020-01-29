@@ -41,6 +41,7 @@ MPI_Iallgather (void *sendbuf, int sendcount, MPI_Datatype sendtype, void *recvb
     }
     else { api_use_ints *local_a3=active_requests->api_declared;
       int (*VendorMPI_Iallgather)(void *sendbuf,int sendcount,int,void *recvbuf,int recvcount,int,int,int *) = address;
+      mpi_return = (*VendorMPI_Iallgather)(INPLACE(sendbuf),sendcount,local_a0[sendtype].mpi_const,recvbuf,recvcount,local_a1[recvtype].mpi_const,local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
     }
   }
   return mpi_return;
