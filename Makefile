@@ -55,9 +55,9 @@ hpmpi_map:
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(HPMPI_INCLUDE) -DHPMPI -DVENDOR_MPI_SO=\"libmpi.so,libmpio.so\" \
         $(MAP_SRCDIR)/iscmpi_mapping.c -o isc_mapping_hpmpi.so
 
-MPICH2_INCLUDE = -I$(HOME)/mpich-install/include
+MPICH_INCLUDE = -I$(MPICH_DIR)/include
 mpich2_map: 
-	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(MPICH2_INCLUDE) -DVENDOR_MPI_SO=\"libmpich.so\" \
+	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(MPICH_INCLUDE) -DVENDOR_MPI_SO=\"libmpich.so\" \
         $(MAP_SRCDIR)/iscmpi_mapping.c -o $(ABIDIR)/mapper/MPICH/isc_mapping.so
 
 altix_map: 

@@ -134,6 +134,8 @@ DLLDEF int MPI_Comm_dup_with_info(MPI_Comm, MPI_Info, MPI_Comm *);
 DLLDEF int MPI_Comm_set_info(MPI_Comm, MPI_Info);
 DLLDEF int MPI_Comm_get_info(MPI_Comm, MPI_Info *);  
 DLLDEF int MPI_Comm_create(MPI_Comm, MPI_Group, MPI_Comm *);
+DLLDEF int MPI_Comm_create_group(MPI_Comm, MPI_Group, int, MPI_Comm *);
+DLLDEF int MPI_Comm_split_type(MPI_Comm, int, int, int, MPI_Comm *);
 DLLDEF int MPI_Comm_split(MPI_Comm, int, int, MPI_Comm *);
 DLLDEF int MPI_Comm_free(MPI_Comm *);
 DLLDEF int MPI_Comm_test_inter(MPI_Comm, int *);
@@ -467,7 +469,8 @@ DLLDEF int MPI_Iallreduce(void *, void *, int , MPI_Datatype, MPI_Op, MPI_Comm, 
 DLLDEF int MPI_Ireduce_scatter(void *, void *, int *, MPI_Datatype, MPI_Op, MPI_Comm , MPI_Request *);
 DLLDEF int MPI_Ireduce_scatter_block(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
 DLLDEF int MPI_Iscan(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
-  
+DLLDEF int MPI_Comm_idup(MPI_Comm, MPI_Comm *, MPI_Request *);  
+
 #if defined(__cplusplus)
 }
 #endif

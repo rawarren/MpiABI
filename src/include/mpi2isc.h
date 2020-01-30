@@ -305,6 +305,7 @@ typedef struct {
 #define MPI_SEEK_SET             ISC_SEEK_SET
 #define MPI_SEEK_CUR             ISC_SEEK_CUR
 #define MPI_SEEK_END             ISC_SEEK_END
+#define MPI_COMM_TYPE_SHARED     ISC_COMM_TYPE_SHARED
 #define	MPI_ORDER_C              ISC_ORDER_C
 #define	MPI_ORDER_FORTRAN        ISC_ORDER_FORTRAN
 #define	MPI_DISTRIBUTE_BLOCK     ISC_DISTRIBUTE_BLOCK
@@ -465,7 +466,10 @@ typedef struct {
 #define MPI_Comm_compare ISC_Comm_compare
 #define MPI_Comm_dup ISC_Comm_dup
 #define MPI_Comm_dup_with_info ISC_Comm_dup_with_info
+#define MPI_Comm_create_group ISC_Comm_create_group
 #define MPI_Comm_create ISC_Comm_create
+#define MPI_Comm_idup ISC_Comm_idup
+#define MPI_Comm_split_type ISC_Comm_split_type
 #define MPI_Comm_split ISC_Comm_split
 #define MPI_Comm_free ISC_Comm_free
 #define MPI_Comm_test_inter ISC_Comm_test_inter
@@ -771,6 +775,7 @@ extern int ISC_Dup_fn(ISC_Comm oldcomm, int keyval, void *extra, void *attr_in, 
 #define UNCOLOR(c) (((c) != ISC_UNDEFINED) ? (c) : ((api_use_ints *)(active_miscs->api_declared))[ISC_UNDEFINED_].mpi_const)
 #define MSGNOPROC(m) (((m) != ISC_MESSAGE_NO_PROC) ? (m) : ((api_use_ints *)(active_miscs->api_declared))[ISC_MESSAGE_NO_PROC_].mpi_const)
 #define PROCNULL(p) (((p) != ISC_PROC_NULL) ? (p) : ((api_use_ints *)(active_miscs->api_declared))[ISC_PROC_NULL_].mpi_const)
+#define ISROOT(p) (((p) != ISC_ROOT) ? (p) : ((api_use_ints *)(active_miscs->api_declared))[ISC_ROOT_].mpi_const)
 #define ANYSRC(s) (((s) == ISC_ANY_SOURCE) ? ((api_use_ints *)(active_miscs->api_declared))[ISC_ANY_SOURCE_].mpi_const : PROCNULL(s))
 #define ANYTAG(t) (((t) != ISC_ANY_TAG) ? (t) : ((api_use_ints *)(active_miscs->api_declared))[ISC_ANY_TAG_].mpi_const)
 #define SIGNORE(s) (((s) != (MPI_Status *)ISC_STATUS_IGNORE) ? (MPI_Status *)natstat : ((api_use_ptrs *)(active_addrs->api_declared))[ISC_STATUS_IGNORE].mpi_const)
