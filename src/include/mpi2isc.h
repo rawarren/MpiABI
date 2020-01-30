@@ -772,6 +772,8 @@ typedef struct {
 
 extern int ISC_Dup_fn(ISC_Comm oldcomm, int keyval, void *extra, void *attr_in, void *attr_out, int *flag);
 
+#define TYPESHARED(t) (((t) != ISC_COMM_TYPE_SHARED) ? (t) : ((api_use_ints *)(active_miscs->api_declared))[ISC_COMM_TYPE_SHARED].mpi_const)
+#define UNDEFINED(t) (((t) != ISC_UNDEFINED) ? (t) : ((api_use_ints *)(active_miscs->api_declared))[ISC_UNDEFINED_].mpi_const)
 #define UNCOLOR(c) (((c) != ISC_UNDEFINED) ? (c) : ((api_use_ints *)(active_miscs->api_declared))[ISC_UNDEFINED_].mpi_const)
 #define MSGNOPROC(m) (((m) != ISC_MESSAGE_NO_PROC) ? (m) : ((api_use_ints *)(active_miscs->api_declared))[ISC_MESSAGE_NO_PROC_].mpi_const)
 #define PROCNULL(p) (((p) != ISC_PROC_NULL) ? (p) : ((api_use_ints *)(active_miscs->api_declared))[ISC_PROC_NULL_].mpi_const)
