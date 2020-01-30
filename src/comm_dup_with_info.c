@@ -23,7 +23,7 @@ MPI_Comm_dup_with_info (MPI_Comm comm, MPI_Info info, MPI_Comm *newcomm)
   if (active_comms->use_ptrs) { api_use_ptrs *local_a0= active_comms->api_declared;
     if (active_infos->use_ptrs) { api_use_ptrs *local_a1=active_infos->api_declared;
       int (*VendorMPI_Comm_dup_with_info)(void *,void *,void **) = address;
-      mpi_return = (*VendorMPI_Comm_dup_with_info)(local_a1[comm].mpi_const,local_a1[info].mpi_const,&local_a0[*newcomm].mpi_const);
+      mpi_return = (*VendorMPI_Comm_dup_with_info)(local_a0[comm].mpi_const,local_a1[info].mpi_const,&local_a0[*newcomm].mpi_const);
     } else { api_use_ints *local_a1= active_infos->api_declared;
       int (*VendorMPI_Comm_dup_with_info)(void *, int ,void **) = address;
       mpi_return = (*VendorMPI_Comm_dup_with_info)(local_a0[comm].mpi_const,local_a1[info].mpi_const,&local_a0[*newcomm].mpi_const);      
