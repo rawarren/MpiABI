@@ -13,6 +13,8 @@ MPI_Type_get_contents (MPI_Datatype mtype, int max_integers, int max_addresses, 
 {
   static void *address=0;
   int mpi_return;
+  /* Not always used... */
+  api_use_ints *local_a2= active_miscs->api_declared;
 
   if (!address) {
     if ((address = dlsym(MPI_libhandle,"MPI_Type_get_contents")) == NULL) {
@@ -44,8 +46,28 @@ MPI_Type_get_contents (MPI_Datatype mtype, int max_integers, int max_addresses, 
 	  local_a1[newtype].mpi_const = dfill[i];
 	  break;
 	} else if (local_a1[j].mpi_const == dfill[i]) {
-	  array_of_datatypes[i] = j; 
-	  break;
+	    int num_i, num_addr, num_data, combiner;
+	    array_of_datatypes[i] = j; 
+	    if (ISC_Type_get_envelope( mtype, &num_i, &num_addr, &num_data, &combiner) == 0) {
+		int vendor_order;
+		if (combiner == MPI_COMBINER_SUBARRAY) {
+		    int c_index = 3*array_of_integers[0]+1;
+		    vendor_order = array_of_integers[c_index];
+		    if (local_a2[ISC_ORDER_C].mpi_const == vendor_order)
+			array_of_integers[c_index] = ISC_ORDER_C;
+		    else if (local_a2[ISC_ORDER_FORTRAN].mpi_const == vendor_order)
+			array_of_integers[c_index] = ISC_ORDER_FORTRAN;
+		}
+		else if (combiner == MPI_COMBINER_DARRAY) {
+		    int c_index = 4*array_of_integers[2]+3;
+		    vendor_order = array_of_integers[c_index];
+		    if (local_a2[ISC_ORDER_C].mpi_const == vendor_order)
+			array_of_integers[c_index] = ISC_ORDER_C;
+		    else if (local_a2[ISC_ORDER_FORTRAN].mpi_const == vendor_order)
+			array_of_integers[c_index] = ISC_ORDER_FORTRAN;
+		}
+	    }
+	    break;
 	}
       }
     }
@@ -54,6 +76,7 @@ MPI_Type_get_contents (MPI_Datatype mtype, int max_integers, int max_addresses, 
 
   } else { api_use_ints *local_a0 = active_datatypes->api_declared;
     api_use_ints *local_a1= active_datatypes->api_declared;
+
     int i,j;
     int (*VendorMPI_Type_get_contents)(int,int max_integers,int max_addresses,int max_datatypes,int array_of_integers[],MPI_Aint array_of_addresses[],int *) = address;
     int temp[64],*dtemp=0, *dfill;
@@ -70,7 +93,27 @@ MPI_Type_get_contents (MPI_Datatype mtype, int max_integers, int max_addresses, 
 	  local_a1[newtype].mpi_const = dfill[i];
 	  break;
 	} else if (local_a1[j].mpi_const == dfill[i]) {
-	  array_of_datatypes[i] = j; 
+	    int num_i, num_addr, num_data, combiner;
+	    array_of_datatypes[i] = j; 
+	    if (ISC_Type_get_envelope( mtype, &num_i, &num_addr, &num_data, &combiner) == 0) {
+		int vendor_order;
+		if (combiner == MPI_COMBINER_SUBARRAY) {
+		    int c_index = 3*array_of_integers[0]+1;
+		    vendor_order = array_of_integers[c_index];
+		    if (local_a2[ISC_ORDER_C].mpi_const == vendor_order)
+			array_of_integers[c_index] = ISC_ORDER_C;
+		    else if (local_a2[ISC_ORDER_FORTRAN].mpi_const == vendor_order)
+			array_of_integers[c_index] = ISC_ORDER_FORTRAN;
+		}
+		else if (combiner == MPI_COMBINER_DARRAY) {
+		    int c_index = 4*array_of_integers[2]+3;
+		    vendor_order = array_of_integers[c_index];
+		    if (local_a2[ISC_ORDER_C].mpi_const == vendor_order)
+			array_of_integers[c_index] = ISC_ORDER_C;
+		    else if (local_a2[ISC_ORDER_FORTRAN].mpi_const == vendor_order)
+			array_of_integers[c_index] = ISC_ORDER_FORTRAN;
+		}
+	    }
 	  break;
 	}
       }
