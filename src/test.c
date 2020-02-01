@@ -32,6 +32,7 @@ MPI_Test (MPI_Request *request, int *flag, MPI_Status *status)
 	}
       } else {
 	int natstat[MAX_MPI_STATUS_SIZE] = {0,};
+	isc_status_to_native(1,(int *)status,natstat);
 	mpi_return = (*VendorMPI_Test)(&local_a0[*request].mpi_const,flag,natstat);
 	if (*flag) {
 	  native_status_to_isc(1,natstat,(int *)status);
@@ -54,6 +55,7 @@ MPI_Test (MPI_Request *request, int *flag, MPI_Status *status)
 	}
       } else {
 	int natstat[MAX_MPI_STATUS_SIZE] = {0,};
+	isc_status_to_native(1,(int *)status,natstat);
 	mpi_return = (*VendorMPI_Test)(&local_a0[*request].mpi_const,flag,natstat);
 	if (*flag) {
 	  native_status_to_isc(1,natstat,(int *)status);

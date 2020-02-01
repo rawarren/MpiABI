@@ -401,6 +401,7 @@ extern void expand_store(isc_const *, int);
 extern void free_index(isc_const *, int);
 extern int get_index(isc_const *, void *);
 extern int (*native_status_to_isc)(int count, int *native_stat, int *isc_stat);
+extern int (*isc_status_to_native)(int count, int *isc_stat, int *native_stat);
 
 /* Cache these interesting values */
 extern int isc_mpi_rank;

@@ -1215,6 +1215,34 @@ int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscS
   return count;
 }
 
+int isc_mpi_status_to_native(int count, ISC_Status *iscStat, MPI_Status *nativeStat)
+{
+    int i,err_status;
+    api_use_ints *local_defs = active_errcodes->api_declared;
+    for(i=0; i<count; i++) {
+	/* Set the ISC values so that user codes have access to valid information
+	 * We really only count on the fact that the following fields
+	 * MUST BE DEFINED: MPI_SOURCE, MPI_TAG, and MPI_ERROR.
+	 * Element count is something that ONLY the native
+	 * library knows.
+	 */
+	/* MPI_SOURCE */
+	if (iscStat[i].MPI_SOURCE == ISC_PROC_NULL)
+	    nativeStat[i].MPI_SOURCE = MPI_PROC_NULL;
+	else
+	    nativeStat[i].MPI_SOURCE = iscStat[i].MPI_SOURCE;
+	/* MPI_TAG */
+	if (iscStat[i].MPI_TAG == ISC_ANY_TAG)
+	    nativeStat[i].MPI_TAG == MPI_ANY_TAG;
+	else
+	    nativeStat[i].MPI_TAG = iscStat[i].MPI_TAG;
+	/* MPI_ERROR (simple copy) */
+	nativeStat[i].MPI_ERROR = iscStat[i].MPI_ERROR;
+  }
+  return count;
+}
+
+
 void (*get_fortran_dtype)(int isc_index, int ftnvalue);
 void (*get_mpi_constant)(int isc_index, char *symbol);
 

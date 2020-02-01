@@ -11,7 +11,7 @@ int
 MPI_Errhandler_free (MPI_Errhandler *errhandler)
 {
   static void *address=0;
-  int mpi_return;
+  int mpi_return = 0;
 
   if (!address) {
     if ((address = dlsym(MPI_libhandle,"MPI_Errhandler_free")) == NULL) {
@@ -21,19 +21,23 @@ MPI_Errhandler_free (MPI_Errhandler *errhandler)
   }
   if (active_errhandlers->use_ptrs) { api_use_ptrs *local_a0=active_errhandlers->api_declared;
     int (*VendorMPI_Errhandler_free)(void **) = address;
-    mpi_return = (*VendorMPI_Errhandler_free)(&local_a0[*errhandler].mpi_const);
-    if (local_a0[*errhandler].mpi_const == local_a0[MPI_ERRHANDLER_NULL].mpi_const) {
-      free_index(active_errhandlers,*errhandler);
-      *errhandler = MPI_ERRHANDLER_NULL;
+    if ((*errhandler >= active_errhandlers->permlimit) || (*errhandler == ISC_ERRHANDLER_NULL)) {
+	mpi_return = (*VendorMPI_Errhandler_free)(&local_a0[*errhandler].mpi_const);
+	if ((*errhandler >= active_errhandlers->permlimit) && (local_a0[*errhandler].mpi_const == local_a0[MPI_ERRHANDLER_NULL].mpi_const)) {
+	    free_index(active_errhandlers,*errhandler);
+	}
     }
-
+    *errhandler = MPI_ERRHANDLER_NULL;
   } else { api_use_ints *local_a0=active_errhandlers->api_declared;
     int (*VendorMPI_Errhandler_free)(int *) = address;
-    mpi_return = (*VendorMPI_Errhandler_free)(&local_a0[*errhandler].mpi_const);
-    if (local_a0[*errhandler].mpi_const == local_a0[MPI_ERRHANDLER_NULL].mpi_const) {
-      free_index(active_errhandlers,*errhandler);
-      *errhandler = MPI_ERRHANDLER_NULL;
+    /* Don't try to free a predefined error handler... */
+    if ((*errhandler >= active_errhandlers->permlimit) || (*errhandler == ISC_ERRHANDLER_NULL)) {
+	mpi_return = (*VendorMPI_Errhandler_free)(&local_a0[*errhandler].mpi_const);
+	if ((*errhandler >= active_errhandlers->permlimit) && (local_a0[*errhandler].mpi_const == local_a0[MPI_ERRHANDLER_NULL].mpi_const)) {
+	    free_index(active_errhandlers,*errhandler);
+	}
     }
+    *errhandler = MPI_ERRHANDLER_NULL;
   }
   return mpi_return;
 }

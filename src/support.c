@@ -64,6 +64,7 @@ static struct {
 
 int true_mpi_status_size=0;
 int (*native_status_to_isc)(int count, int *native_stat, int *isc_stat) = 0;
+int (*isc_status_to_native)(int count, int *native_stat, int *isc_stat) = 0;
 
 int (*map_errcode_to_isc)(int native_err) = 0;
 
@@ -455,6 +456,12 @@ resolve_mpi_constants(void)
     printf("No support for native_status_to_isc!\n");
   }
   else native_status_to_isc = address;
+
+  address = dlsym(libhandle,"isc_mpi_status_to_native");
+  if (address == 0) {
+    printf("No support for isc_status_to_native!\n");
+  }
+  else isc_status_to_native = address;
 
   address = dlsym(libhandle,"maybe_do_lazy_evaluations");
   if (address) {
