@@ -27,7 +27,7 @@ MPI_Waitsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
       void *temp[64],**rtemp=0,**rfill;
 
       if (count > 64) 
-	rfill = rtemp = (void *)calloc(count,sizeof(void *));
+	  rfill = rtemp = (void *)calloc((size_t)count,sizeof(void *));
       else rfill = temp;
 
       for(i=0; i<count; i++) 
@@ -45,8 +45,9 @@ MPI_Waitsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
 	}
 
       } else {
+        size_t statsize= (size_t)true_mpi_status_size;
 	int elems = true_mpi_status_size/sizeof(int);
-	int *natstat = (int *) calloc(count,true_mpi_status_size);
+	int *natstat = (int *) calloc((size_t)count,statsize);
 	mpi_return = (*VendorMPI_Waitsome)(count,rfill,outcount,array_of_indices,natstat);
 	for(i=0; active_count && i< *outcount; i++) {
 	  native_status_to_isc(1,&natstat[array_of_indices[i]*elems],(int *)&array_of_statuses[array_of_indices[i]]);
@@ -87,8 +88,9 @@ MPI_Waitsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
 	}
 
       } else {
+        size_t statsize= (size_t)true_mpi_status_size;
 	int elems = true_mpi_status_size/sizeof(int);
-	int *natstat = (int *) calloc(count,true_mpi_status_size);
+	int *natstat = (int *) calloc((size_t)count,statsize);
 	mpi_return = (*VendorMPI_Waitsome)(count,rfill,outcount,array_of_indices,natstat);
 	for(i=0; active_count && i< *outcount; i++) {
 	  native_status_to_isc(1,&natstat[array_of_indices[i]*elems],(int *)&array_of_statuses[array_of_indices[i]]);

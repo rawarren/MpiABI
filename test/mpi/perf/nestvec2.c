@@ -69,7 +69,7 @@ int main(int argc, char **argv)
     if (verbose) {
         printf("%p = %p?\n", vsource, (void *) displacements[1]);
     }
-#if MPI_VERSION > 2
+#if 0 // MPI_VERSION > 2
     typesArray[0] = MPI_INT32_T;
 #else
     typesArray[0] = MPI_INT;
@@ -119,7 +119,7 @@ int main(int argc, char **argv)
     for (ntry = 0; ntry < 5; ntry++) {
         position = 0;
         t0 = MPI_Wtime();
-#if MPI_VERSION > 2
+#if 0 // MPI_VERSION > 2
         MPI_Pack(counts, 2, MPI_INT32_T, outbuf, packsize, &position, MPI_COMM_WORLD);
 #else
         MPI_Pack(counts, 2, MPI_INT, outbuf, packsize, &position, MPI_COMM_WORLD);

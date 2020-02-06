@@ -1185,6 +1185,11 @@ int map_errcode_to_isc(int native_err)
 }
       
 int native_mpi_status_size = sizeof(MPI_Status);
+int get_native_mpi_status_size(void)
+{
+    return native_mpi_status_size;
+}
+
 int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscStat)
 {
   int i,err_status;

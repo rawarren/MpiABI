@@ -480,10 +480,10 @@ resolve_mpi_constants(void)
     }
   }
 
-  address = dlsym(libhandle,"native_mpi_status_size");
+  address = dlsym(libhandle,"get_native_mpi_status_size");
   if (address) {
-    int *get_value = address;
-    true_mpi_status_size = *get_value;
+      int (*get_value)(void) = address;
+      true_mpi_status_size = get_value();
   }
 
   address = dlsym(libhandle,"api_native_comms_are_integers");
