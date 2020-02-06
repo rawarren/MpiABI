@@ -77,9 +77,12 @@
 #include "mpi.h"		/* IMPORTANT!!!
 				 * This needs to be the vendor MPI.H */
 
+
 #ifndef NULL
 #define NULL (void *)0
 #endif
+
+
 
 /* Suggested improvement by Alan Billing is to embed the vendor
  * library name in the mapping library.  This puts the burden
@@ -89,6 +92,8 @@
 #ifndef VENDOR_MPI_SO
 #define VENDOR_MPI_SO "libmpi.so"
 #endif
+
+
 
 #if defined(MPICH_NAME)
 #  if MPICH_NAME > 1
@@ -1034,12 +1039,16 @@ isc_const isc_builtin_addr = { 1, /* Use pointers */
  */
 #include <string.h>
 
+#ifndef MAX_MPI_STATUS_SIZE
+/* Hopefully this is large enough. See notes above */
+#define MAX_MPI_STATUS_SIZE 8
 typedef struct { 
 	int MPI_SOURCE;
 	int MPI_TAG;
 	int MPI_ERROR;
-        int reserved[8];
+        int reserved[MAX_MPI_STATUS_SIZE];
 } ISC_Status;
+#endif
 
 
 char *
@@ -1179,6 +1188,7 @@ int native_mpi_status_size = sizeof(MPI_Status);
 int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscStat)
 {
   int i,err_status;
+  int source, tag;
   api_use_ints *local_defs = active_errcodes->api_declared;
   for(i=0; i<count; i++) {
     /* Set the ISC values so that user codes have access to valid information
@@ -1189,13 +1199,14 @@ int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscS
      */
    
     if (nativeStat[i].MPI_SOURCE == MPI_PROC_NULL)
-      iscStat[i].MPI_SOURCE = ISC_PROC_NULL;
-    else 
-      iscStat[i].MPI_SOURCE = nativeStat[i].MPI_SOURCE; 
+	source = ISC_PROC_NULL;
+    else source = nativeStat[i].MPI_SOURCE;
+    memcpy(&iscStat[i].MPI_SOURCE, &source, sizeof(int));
+
     if (nativeStat[i].MPI_TAG == MPI_ANY_TAG)
-      iscStat[i].MPI_TAG = ISC_ANY_TAG;
-    else
-      iscStat[i].MPI_TAG = nativeStat[i].MPI_TAG;
+	tag = ISC_ANY_TAG;
+    else tag = nativeStat[i].MPI_TAG;
+    memcpy(&iscStat[i].MPI_TAG, &tag, sizeof(int));
 
     err_status = nativeStat[i].MPI_ERROR;
     if (err_status > 0) {
@@ -1205,11 +1216,6 @@ int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscS
       printf("MPI error: %s\n", ErrorMsg);
       iscStat[i].MPI_ERROR = map_errcode_to_isc(err_status);
     } 
-#if 0
-    else {
-      iscStat[i].MPI_ERROR = ISC_SUCCESS;
-    }
-#endif
     memcpy(iscStat[i].reserved,&nativeStat[i], sizeof(MPI_Status));
   }
   return count;
@@ -1218,6 +1224,7 @@ int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscS
 int isc_mpi_status_to_native(int count, ISC_Status *iscStat, MPI_Status *nativeStat)
 {
     int i,err_status;
+    int source=0, tag=0;
     api_use_ints *local_defs = active_errcodes->api_declared;
     for(i=0; i<count; i++) {
 	/* Set the ISC values so that user codes have access to valid information
@@ -1226,16 +1233,18 @@ int isc_mpi_status_to_native(int count, ISC_Status *iscStat, MPI_Status *nativeS
 	 * Element count is something that ONLY the native
 	 * library knows.
 	 */
+
 	/* MPI_SOURCE */
 	if (iscStat[i].MPI_SOURCE == ISC_PROC_NULL)
-	    nativeStat[i].MPI_SOURCE = MPI_PROC_NULL;
-	else
-	    nativeStat[i].MPI_SOURCE = iscStat[i].MPI_SOURCE;
+	    source = MPI_PROC_NULL;
+	else source = iscStat[i].MPI_SOURCE;
+	memcpy(&nativeStat[i].MPI_SOURCE, &source, sizeof(int));
+
 	/* MPI_TAG */
 	if (iscStat[i].MPI_TAG == ISC_ANY_TAG)
-	    nativeStat[i].MPI_TAG == MPI_ANY_TAG;
-	else
-	    nativeStat[i].MPI_TAG = iscStat[i].MPI_TAG;
+	    tag = MPI_ANY_TAG;
+	else tag = iscStat[i].MPI_TAG;
+	memcpy(&nativeStat[i].MPI_TAG, &tag, sizeof(int));
 	/* MPI_ERROR (simple copy) */
 	nativeStat[i].MPI_ERROR = iscStat[i].MPI_ERROR;
   }

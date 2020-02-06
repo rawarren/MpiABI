@@ -19,7 +19,7 @@ MPI_File_iread_shared (MPI_File fh, void *buf, int count, MPI_Datatype datatype,
       return -1;
     }
   }
-  *request = new_index(active_files);
+  *request = new_index(active_requests);
   if (active_files->use_ptrs) { api_use_ptrs *local_a0=active_files->api_declared;
     api_use_ptrs *local_a1= active_datatypes->api_declared;
     if (active_requests->use_ptrs) { api_use_ptrs *local_a2=active_requests->api_declared;

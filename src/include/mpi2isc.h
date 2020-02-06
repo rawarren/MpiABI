@@ -214,6 +214,10 @@ typedef struct {
 #define MPI_C_COMPLEX            MPI_C_FLOAT_COMPLEX
 #define MPI_C_DOUBLE_COMPLEX     ISC_C_DOUBLE_COMPLEX
 #define MPI_C_LONG_DOUBLE_COMPLEX ISC_C_LONG_DOUBLE_COMPLEX
+/* Old MPI usage (lb and ub, maybe deprecated? */
+#define MPI_LB                   ISC_LB
+#define MPI_UB                   ISC_UB
+
 /* Error values */
 #define MPI_SUCCESS              ISC_SUCCESS             
 #define MPI_ERR_BUFFER           ISC_ERR_BUFFER          
@@ -443,6 +447,7 @@ typedef struct {
 #define MPI_Alltoall ISC_Alltoall
 #define MPI_Alltoallv ISC_Alltoallv
 #define MPI_Reduce ISC_Reduce
+#define MPI_Reduce_local ISC_Reduce_local
 #define MPI_Op_create ISC_Op_create
 #define MPI_Op_free ISC_Op_free
 #define MPI_Allreduce ISC_Allreduce
@@ -725,6 +730,7 @@ typedef struct {
 #define MPI_Iallreduce ISC_Iallreduce
 #define MPI_Ialltoall ISC_Ialltoall
 #define MPI_Ialltoallv ISC_Ialltoallv
+#define MPI_Ialltoallw ISC_Ialltoallw
 #define MPI_Ibarrier ISC_Ibarrier
 #define MPI_Ibcast ISC_Ibcast
 #define MPI_Iexscan ISC_Iexscan

@@ -108,6 +108,7 @@ DLLDEF int MPI_Allgatherv(void* , int, MPI_Datatype, void*, int *, int *, MPI_Da
 DLLDEF int MPI_Alltoall(void* , int, MPI_Datatype, void*, int, MPI_Datatype, MPI_Comm);
 DLLDEF int MPI_Alltoallv(void* , int *, int *, MPI_Datatype, void*, int *, int *, MPI_Datatype, MPI_Comm);
 DLLDEF int MPI_Reduce(void* , void*, int, MPI_Datatype, MPI_Op, int, MPI_Comm);
+DLLDEF int MPI_Reduce_local(void* , void*, int, MPI_Datatype, MPI_Op);
 DLLDEF int MPI_Op_create(MPI_User_function *, int, MPI_Op *);
 DLLDEF int MPI_Op_free( MPI_Op *);
 DLLDEF int MPI_Allreduce(void* , void*, int, MPI_Datatype, MPI_Op, MPI_Comm);
@@ -240,6 +241,27 @@ DLLDEF int MPI_Alltoallw(void *, int [], int [], MPI_Datatype [], void *, int []
 		  int [], MPI_Datatype [], MPI_Comm);
 DLLDEF int MPI_Exscan(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm) ;
  
+/* Nonblocking Collectives */
+DLLDEF int MPI_Ibarrier(MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Ibcast(void*, int, MPI_Datatype, int, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Igather(void* , int, MPI_Datatype, void*, int, MPI_Datatype, int, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Iscatter(void* , int, MPI_Datatype, void*, int, MPI_Datatype, int, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Igatherv(void *, int, MPI_Datatype, void *,int [], int[], MPI_Datatype, int, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Iscatter(void* , int, MPI_Datatype, void*, int, MPI_Datatype, int, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Iscatterv(void* , int *, int *,  MPI_Datatype, void*, int, MPI_Datatype, int, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Iallgather(void* , int, MPI_Datatype, void*, int, MPI_Datatype, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Iallgatherv(void* , int, MPI_Datatype, void*, int *, int *, MPI_Datatype, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Ialltoall(void* , int, MPI_Datatype, void*, int, MPI_Datatype, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Ialltoallv(void* , int *, int *, MPI_Datatype, void*, int *, int *, MPI_Datatype, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Ireduce(void* , void*, int, MPI_Datatype, MPI_Op, int, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Ialltoallw(void *, int [], int [], MPI_Datatype [], void *, int [], int [], MPI_Datatype [], MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Iexscan(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *) ;
+DLLDEF int MPI_Iallreduce(void* , void*, int, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Ireduce_scatter(void* , void*, int *, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
+DLLDEF int MPI_Iscan(void* , void*, int, MPI_Datatype, MPI_Op, MPI_Comm , MPI_Request *);
+DLLDEF int MPI_Ireduce_scatter_block(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
+
+
 /* External Interfaces */
 DLLDEF int MPI_Add_error_class(int *);
 DLLDEF int MPI_Add_error_code(int, int *);
@@ -451,25 +473,6 @@ DLLDEF int MPI_Improbe(int source, int tag, MPI_Comm comm, int *flag, MPI_Messag
 DLLDEF int MPI_Imrecv(void* buf, int count, MPI_Datatype datatype, MPI_Message *message, MPI_Request *request);
 DLLDEF int MPI_Mrecv(void *buf, int count, MPI_Datatype type, MPI_Message *message, MPI_Status *status);
 
-/* Non-blocking collectives */
-DLLDEF int MPI_Ibarrier(MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Ibcast(void *, int , MPI_Datatype, int, MPI_Comm, MPI_Request *);
-DLLDEF int MPI_Iexscan(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
-DLLDEF int MPI_Igather(void *, int, MPI_Datatype, void *, int , MPI_Datatype, int, MPI_Comm, MPI_Request *);
-DLLDEF int MPI_Igatherv(void *, int , MPI_Datatype , void *,int *, int *, MPI_Datatype, int, MPI_Comm, MPI_Request *);
-DLLDEF int MPI_Iscatter(void *, int , MPI_Datatype , void *, int , MPI_Datatype , int , MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Iscatterv(void *, int *, int *, MPI_Datatype , void *, int , MPI_Datatype , int , MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Iallgather(void *, int , MPI_Datatype , void *, int , MPI_Datatype , MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Iallgatherv(void *, int , MPI_Datatype , void *, int *, int *, MPI_Datatype ,   MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Ialltoall(void *, int , MPI_Datatype , void *, int , MPI_Datatype , MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Ialltoallv(void *, int *, int *, MPI_Datatype, void *, int *, int *, MPI_Datatype , MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Ialltoallw(void *, int *, int *, MPI_Datatype *, void *, int *, int *, MPI_Datatype *, MPI_Comm, MPI_Request *);
-DLLDEF int MPI_Ireduce(void *, void *, int , MPI_Datatype , MPI_Op, int , MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Iallreduce(void *, void *, int , MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
-DLLDEF int MPI_Ireduce_scatter(void *, void *, int *, MPI_Datatype, MPI_Op, MPI_Comm , MPI_Request *);
-DLLDEF int MPI_Ireduce_scatter_block(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
-DLLDEF int MPI_Iscan(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm, MPI_Request *);
-DLLDEF int MPI_Comm_idup(MPI_Comm, MPI_Comm *, MPI_Request *);  
 
 #if defined(__cplusplus)
 }

@@ -19,9 +19,9 @@ CFLAGS = -g -pthread -fPIC -shared
 INTEL_INCLUDE=/opt/intel/parallel_studio_xe_2019.5.075/compilers_and_libraries_2019/linux/mpi/intel64/include
 INTELMPI_INCLUDE = -I$(INTEL_INCLUDE)
 # -------------------------------------------------------
-# MPICH2
+# MPICH
 # 
-MPICH2_INCLUDE = -I$(MPICH_INCLUDE)
+MPICH_INCLUDE = -I$(HOME)/mpich-install-3.3/include
 # -------------------------------------------------------
 # HPMPI
 # 
@@ -55,9 +55,8 @@ hpmpi_map:
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(HPMPI_INCLUDE) -DHPMPI -DVENDOR_MPI_SO=\"libmpi.so,libmpio.so\" \
         $(MAP_SRCDIR)/iscmpi_mapping.c -o isc_mapping_hpmpi.so
 
-MPICH_INCLUDE = -I$(MPICH_DIR)/include
-mpich2_map: 
-	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(MPICH_INCLUDE) -DVENDOR_MPI_SO=\"libmpich.so\" \
+mpich_map: 
+	$(CC) $(CFLAGS) $(MPICH_INCLUDE) -I$(ISCMPI_INCLUDE) -DVENDOR_MPI_SO=\"libmpich.so\" \
         $(MAP_SRCDIR)/iscmpi_mapping.c -o $(ABIDIR)/mapper/MPICH/isc_mapping.so
 
 altix_map: 
