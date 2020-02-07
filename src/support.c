@@ -15,6 +15,7 @@
 
 #include "iscmpi_constants.h"
 
+void  __attribute__((destructor)) close_lib_handles();
 
 void *MPI_libhandle=0;
 void *MPIO_libhandle=0;
@@ -1314,6 +1315,21 @@ void isc_init_thread_f(int *required, int *provided, int *ierr)
   *ierr = MPI_Init_thread(&_Argc ,(char ***) &_Argv,*required,provided);
 }
 
+void close_lib_handles()
+{
+    if(MPI_libhandle != 0)
+	dlclose(MPI_libhandle);
+
+    if(ISC_maphandle != 0)
+	dlclose(ISC_maphandle);
+
+    if (MPIO_libhandle != MPI_libhandle)
+	dlclose(MPIO_libhandle);
+
+    MPI_libhandle=0;
+    MPIO_libhandle=0;
+    ISC_maphandle=0;
+}
 
 int
 MPI_Finalize(void)
@@ -1326,16 +1342,11 @@ MPI_Finalize(void)
     VendorMPI_Finalize = address;
     status = (*VendorMPI_Finalize)();
   }
-  dlclose(MPI_libhandle);
-  dlclose(ISC_maphandle);
-  if (MPIO_libhandle != MPI_libhandle) {
-    dlclose(MPIO_libhandle);
-  }
 
-  MPI_libhandle=0;
-  MPIO_libhandle=0;
-  ISC_maphandle=0;
-
+  /* Moved all of the library handle closings into a __fini function!
+   * This enables MPI_Finalized() to work correctly since we still need
+   * to make a calls into the underlying MPI library for that functionality!
+   */
   return status;
 }
 
