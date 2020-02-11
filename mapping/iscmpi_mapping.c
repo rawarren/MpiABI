@@ -1190,6 +1190,50 @@ int get_native_mpi_status_size(void)
     return native_mpi_status_size;
 }
 
+int set_native_status_source(ISC_Status *iscStat, int source) {
+    MPI_Status *nativeStat = (MPI_Status *)&iscStat->reserved;
+    iscStat->MPI_SOURCE = source;
+    nativeStat->MPI_SOURCE = source;
+    return 0;
+}
+
+int get_native_status_source(ISC_Status *iscStat, int *source) {
+    MPI_Status *nativeStat = (MPI_Status *)&iscStat->reserved;
+    *source = nativeStat->MPI_SOURCE;
+    iscStat->MPI_SOURCE = *source;
+    return 0;
+}
+
+int set_native_status_tag(ISC_Status *iscStat, int tag) {
+    MPI_Status *nativeStat = (MPI_Status *)&iscStat->reserved;
+    iscStat->MPI_TAG = tag;
+    nativeStat->MPI_TAG = tag;
+    return 0;
+}
+
+int get_native_status_tag(ISC_Status *iscStat, int *tag) {
+    MPI_Status *nativeStat = (MPI_Status *)&iscStat->reserved;
+    *tag = nativeStat->MPI_TAG;
+    iscStat->MPI_TAG = *tag;
+    return 0;
+}
+
+int set_native_status_error(ISC_Status *iscStat, int error) {
+    MPI_Status *nativeStat = (MPI_Status *)&iscStat->reserved;
+    iscStat->MPI_ERROR = error;
+    nativeStat->MPI_ERROR = error;
+    return 0;
+}
+
+int get_native_status_error(ISC_Status *iscStat, int *error) {
+    MPI_Status *nativeStat = (MPI_Status *)&iscStat->reserved;
+    *error = nativeStat->MPI_ERROR;
+    iscStat->MPI_ERROR = *error;
+    return 0;
+}
+
+
+
 int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscStat)
 {
   int i,err_status;

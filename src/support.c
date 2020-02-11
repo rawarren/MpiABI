@@ -66,6 +66,13 @@ static struct {
 int true_mpi_status_size=0;
 int (*native_status_to_isc)(int count, int *native_stat, int *isc_stat) = 0;
 int (*isc_status_to_native)(int count, int *native_stat, int *isc_stat) = 0;
+int (*status_source_setter)(int *isc_stat, int source) = 0;
+int (*status_source_getter)(int *isc_stat, int *source) = 0;
+int (*status_tag_setter)(int *isc_stat, int tag) = 0;
+int (*status_tag_getter)(int *isc_stat, int *tag) = 0;
+int (*status_error_setter)(int *isc_stat, int error) = 0;
+int (*status_error_getter)(int *isc_stat, int *error) = 0;
+
 
 int (*map_errcode_to_isc)(int native_err) = 0;
 
@@ -463,6 +470,42 @@ resolve_mpi_constants(void)
     printf("No support for isc_status_to_native!\n");
   }
   else isc_status_to_native = address;
+
+  address = dlsym(libhandle,"set_native_status_source");
+  if (address == 0) {
+    printf("No support for set_native_status_source!\n");
+  }
+  else status_source_setter = address;
+
+  address = dlsym(libhandle,"get_native_status_source");
+  if (address == 0) {
+    printf("No support for get_native_status_source!\n");
+  }
+  else status_source_getter = address;
+
+  address = dlsym(libhandle,"set_native_status_tag");
+  if (address == 0) {
+    printf("No support for set_native_status_tag!\n");
+  }
+  else status_tag_setter = address;
+
+  address = dlsym(libhandle,"get_native_status_tag");
+  if (address == 0) {
+    printf("No support for get_native_status_tag!\n");
+  }
+  else status_tag_getter = address;
+
+  address = dlsym(libhandle,"set_native_status_error");
+  if (address == 0) {
+    printf("No support for set_native_status_error!\n");
+  }
+  else status_error_setter = address;
+
+  address = dlsym(libhandle,"get_native_status_error");
+  if (address == 0) {
+    printf("No support for get_native_status_error!\n");
+  }
+  else status_error_getter = address;
 
   address = dlsym(libhandle,"maybe_do_lazy_evaluations");
   if (address) {
@@ -1348,6 +1391,49 @@ MPI_Finalize(void)
    * to make a calls into the underlying MPI library for that functionality!
    */
   return status;
+}
+
+int MPIX_Status_set_source(MPI_Status *status, int source)
+{
+    int ret = -1;
+    if (status_source_setter)
+	ret = status_source_setter((int *)status, source);
+    return ret;
+}
+
+int MPIX_Status_get_source(MPI_Status *status, int *source) {
+    int ret = -1;
+    if (status_source_getter)
+	ret = status_source_getter((int *)status, source);
+    return ret;
+}
+
+int MPIX_Status_set_tag(MPI_Status *status, int tag) {
+    int ret = -1;
+    if (status_tag_setter)
+	ret = status_tag_setter((int *)status, tag);
+    return ret;
+}
+
+int MPIX_Status_get_tag(MPI_Status *status, int *tag) {
+    int ret = -1;
+    if (status_tag_getter)
+	ret = status_tag_getter((int *)status, tag);
+    return ret;
+}
+
+int MPIX_Status_set_error(MPI_Status *status, int error) {
+    int ret = -1;
+    if (status_error_setter)
+	ret = status_error_setter((int *)status, error);
+    return ret;
+}
+
+int MPIX_Status_get_error(MPI_Status *status, int *error) {
+    int ret = -1;
+    if (status_error_getter)
+	ret = status_error_getter((int *)status, error);
+    return ret;
 }
 
 #ifdef __GNUC__

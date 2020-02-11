@@ -775,6 +775,14 @@ typedef struct {
 #define	MPI_THREAD_SERIALIZED ISC_THREAD_SERIALIZED
 #define	MPI_THREAD_MULTIPLE ISC_THREAD_MULTIPLE
 
+#if 0
+#define MPIX_Status_set_source ISCX_Status_set_source
+#define MPIX_Status_get_source ISCX_Status_get_source
+#define MPIX_Status_set_tag ISCX_Status_set_tag
+#define MPIX_Status_get_tag ISCX_Status_get_tag
+#define MPIX_Status_set_error ISCX_Status_set_error
+#define MPIX_Status_get_error ISCX_Status_get_error
+#endif
 
 extern int ISC_Dup_fn(ISC_Comm oldcomm, int keyval, void *extra, void *attr_in, void *attr_out, int *flag);
 

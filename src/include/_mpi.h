@@ -33,9 +33,24 @@ extern "C" {
 
 #define MPI_VERSION 3
 #define MPI_SUBVERSION 0
+#define MPIX_HAVE_MPI_STATUS_GETSET 1
 
 /* We redefine all MPI constants to be ISC constants */
 #include "mpi2isc.h"
+
+/* The following MPIX_Status_{get,set} functions
+ * allow libraries such as mpi4py to utilize these
+ * to access, i.e. read or write the known MPI Status
+ * struture elements without having to understand the
+ * actual structure size and layout of each native
+ * MPI implementation.
+ */
+DLLDEF int MPIX_Status_set_source(MPI_Status *, int);
+DLLDEF int MPIX_Status_get_source(MPI_Status *, int *);
+DLLDEF int MPIX_Status_set_tag(MPI_Status *, int);
+DLLDEF int MPIX_Status_get_tag(MPI_Status *, int *);
+DLLDEF int MPIX_Status_set_error(MPI_Status *, int);
+DLLDEF int MPIX_Status_get_error(MPI_Status *, int *);
 
 DLLDEF int MPI_Send(void*, int, MPI_Datatype, int, int, MPI_Comm);
 DLLDEF int MPI_Recv(void*, int, MPI_Datatype, int, int, MPI_Comm, MPI_Status *);
