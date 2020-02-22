@@ -511,7 +511,6 @@ resolve_mpi_constants(void)
   if (address) {
     void (*register_callback)(void *);
     post_MPI_processing = address;
-    (*post_MPI_processing)();
 
     address = dlsym(libhandle,"register_callback_1");
     if (address) {
@@ -1338,6 +1337,9 @@ MPI_Init_thread (int *argc, char ***argv, int required, int *provided)
   if ((mpi_return == MPI_SUCCESS) && (provided != NULL) && (*provided != ISC_THREAD_SINGLE)) {
     pthread_mutex_init(&funnel_new_index,NULL);
     use_mutex = 1;
+  }
+  if (post_MPI_processing) {
+      post_MPI_processing();
   }
   return mpi_return;
 }
