@@ -96,6 +96,7 @@
 
 
 #if defined(MPICH_NAME)
+void __resolve_ptr_builtin(int isc_index, char *symbol);
 #  if MPICH_NAME > 1
 /* I guess MPICH2 is pretty complete... */
 
@@ -997,7 +998,16 @@ api_use_ptrs ptr_builtins[] = {
     {ISC_ERRCODES_IGNORE,"MPI_ERRCODES_IGNORE",MPI_ERRCODES_IGNORE},
     {ISC_STATUS_IGNORE,"MPI_STATUS_IGNORE",MPI_STATUS_IGNORE},
     {ISC_NULL_COPY_FN,"MPI_NULL_COPY_FN",MPI_COMM_NULL_COPY_FN},
-    {ISC_NULL_DELETE_FN,"MPI_NULL_DELETE_FN",MPI_COMM_NULL_DELETE_FN}
+    {ISC_NULL_DELETE_FN,"MPI_NULL_DELETE_FN",MPI_COMM_NULL_DELETE_FN},
+#if defined(MPICH)
+    {ISC_UNWEIGHTED,"MPI_UNWEIGHTED", 0},
+    {ISC_WEIGHTS_EMPTY,"MPI_WEIGHTS_EMPTY", 0}
+#   define LAZY_RESOLVE_1 __resolve_ptr_builtin(ISC_UNWEIGHTED,"MPI_UNWEIGHTED")
+#   define LAZY_RESOLVE_2 __resolve_ptr_builtin(ISC_WEIGHTS_EMPTY,"MPI_WEIGHTS_EMPTY")
+#else
+    {ISC_UNWEIGHTED,"MPI_UNWEIGHTED", MPI_UNWEIGHTED},
+    {ISC_WEIGHTS_EMPTY,"MPI_WEIGHTS_EMPTY", MPI_WEIGHTS_EMPTY}
+#endif
 };
 
 isc_const isc_builtin_addr = { 1, /* Use pointers */
@@ -1315,7 +1325,6 @@ register_callback_2(void *address)
 {
   get_mpi_constant = (void (*)(int, char *))address;
 }
-
 
 
 #if defined(LAZY_RESOLVE_1)

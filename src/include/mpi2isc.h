@@ -359,6 +359,8 @@ typedef struct {
 #define	MPI_ARGV_NULL            ((char **)ISC_ARGV_NULL)
 #define	MPI_ARGVS_NULL           ((char ***)ISC_ARGVS_NULL)
 #define	MPI_ERRCODES_IGNORE      ((int *)ISC_ERRCODES_IGNORE)
+#define MPI_UNWEIGHTED           ((int *)ISC_UNWEIGHTED)
+#define MPI_WEIGHTS_EMPTY        ((int *)ISC_WEIGHTS_EMPTY)
 
 #define MPI_TYPECLASS_REAL       ISC_TYPECLASS_REAL
 #define MPI_TYPECLASS_INTEGER    ISC_TYPECLASS_INTEGER
@@ -762,6 +764,8 @@ typedef struct {
 #define MPI_Graph_neighbors ISC_Graph_neighbors
 #define MPI_Dist_graph_neighbors_count ISC_Dist_graph_neighbors_count
 #define MPI_Dist_graph_neighbors ISC_Dist_graph_neighbors
+#define MPI_Dist_graph_create_adjacent ISC_Dist_graph_create_adjacent
+#define MPI_Dist_graph_create ISC_Dist_graph_create
 
 #define MPI_NULL_COPY_FN ((ISC_Copy_function *)ISC_NULL_COPY_FN)
 #define MPI_NULL_DELETE_FN ((ISC_Delete_function *)ISC_NULL_DELETE_FN)
@@ -799,6 +803,7 @@ extern int ISC_Dup_fn(ISC_Comm oldcomm, int keyval, void *extra, void *attr_in, 
 #define ANYTAG(t) (((t) != ISC_ANY_TAG) ? (t) : ((api_use_ints *)(active_miscs->api_declared))[ISC_ANY_TAG_].mpi_const)
 #define SIGNORE(s) (((s) != (MPI_Status *)ISC_STATUS_IGNORE) ? (MPI_Status *)natstat : ((api_use_ptrs *)(active_addrs->api_declared))[ISC_STATUS_IGNORE].mpi_const)
 #define BOTTOM(buf) (((buf) != (void *)ISC_BOTTOM) ? (buf) : ((api_use_ptrs *)(active_addrs->api_declared))[ISC_BOTTOM].mpi_const)
+#define UNWEIGHTED(w) (((w) != (void *)ISC_UNWEIGHTED) ? (w) : ((api_use_ptrs *)(active_addrs->api_declared))[ISC_UNWEIGHTED].mpi_const)
 #define INPLACE(buf) (((buf) != (void *)ISC_IN_PLACE) ? BOTTOM(buf) : ((api_use_ptrs *)(active_addrs->api_declared))[ISC_IN_PLACE].mpi_const)
 #define ARGVNULL(arg) (((arg) != (char **)ISC_ARGV_NULL) ? (arg) : ((api_use_ptrs *)(active_addrs->api_declared))[ISC_ARGV_NULL].mpi_const)
 #define NULLCOPYFN(f) (((f) != (void *)ISC_NULL_COPY_FN) ? ((callbacks_use_integers > 0) ? \

@@ -21,10 +21,10 @@ MPI_Dist_graph_neighbors(MPI_Comm comm, int maxindegree, int *sources, int *sour
   }
   if (active_comms->use_ptrs) { api_use_ptrs *local_a0= active_comms->api_declared;
       int (*VendorMPI_Dist_graph_neighbors)(void *,int,int *,int *,int,int *,int *) = address;
-      mpi_return = (*VendorMPI_Dist_graph_neighbors)(local_a0[comm].mpi_const,maxindegree,sources,sourceweights,maxoutdegree,destinations,destweights);
+      mpi_return = (*VendorMPI_Dist_graph_neighbors)(local_a0[comm].mpi_const,maxindegree,sources,UNWEIGHTED(sourceweights),maxoutdegree,destinations,UNWEIGHTED(destweights));
   } else { api_use_ints *local_a0= active_comms->api_declared;
       int (*VendorMPI_Dist_graph_neighbors)(int,int,int *,int *,int,int *,int *) = address;  
-      mpi_return = (*VendorMPI_Dist_graph_neighbors)(local_a0[comm].mpi_const,maxindegree,sources,sourceweights,maxoutdegree,destinations,destweights);
+      mpi_return = (*VendorMPI_Dist_graph_neighbors)(local_a0[comm].mpi_const,maxindegree,sources,UNWEIGHTED(sourceweights),maxoutdegree,destinations,UNWEIGHTED(destweights));
   }
   return mpi_return;
 }

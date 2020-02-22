@@ -511,6 +511,7 @@ resolve_mpi_constants(void)
   if (address) {
     void (*register_callback)(void *);
     post_MPI_processing = address;
+    (*post_MPI_processing)();
 
     address = dlsym(libhandle,"register_callback_1");
     if (address) {

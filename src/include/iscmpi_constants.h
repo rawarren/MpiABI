@@ -316,6 +316,8 @@ typedef enum {
 	ISC_STATUS_IGNORE,
 	ISC_NULL_COPY_FN,
 	ISC_NULL_DELETE_FN,
+	ISC_UNWEIGHTED,
+	ISC_WEIGHTS_EMPTY,
 	predefined_ptr_count
 } _isc_addr;
 

@@ -2,7 +2,7 @@
 /*
  * This text was generated automatically
  * It provides the ISC implementation of
- * MPI_Graph_create
+ * MPI_Dist_graph_create_adjacent
  */
 
 #include <_mpi.h>
@@ -27,27 +27,27 @@ MPI_Dist_graph_create_adjacent(MPI_Comm comm_old, int indegree, int sources[],
 	api_use_ptrs *local_a1= active_comms->api_declared;
 	if (active_infos->use_ptrs) { api_use_ptrs *local_a2=active_infos->api_declared;
 	    int (*VendorMPI_Dist_graph_create_adjacent)(void *, int, int *, int *, int, int *, int *, void *, int, void **) = address;
-	    mpi_return = (*VendorMPI_Dist_graph_create_adjacent)(local_a0[comm_old].mpi_const,indegree,sources,sourceweights,outdegree,
-				       destinations,destweights,local_a2[info].mpi_const,reorder,&local_a1[*comm_dist_graph].mpi_const);
+	    mpi_return = (*VendorMPI_Dist_graph_create_adjacent)(local_a0[comm_old].mpi_const,indegree,sources,UNWEIGHTED(sourceweights),outdegree,
+				 destinations,UNWEIGHTED(destweights),local_a2[info].mpi_const,reorder,&local_a1[*comm_dist_graph].mpi_const);
 	}
 	else {
 	    api_use_ints *local_a2=active_infos->api_declared;
 	    int (*VendorMPI_Dist_graph_create_adjacent)(void *, int, int *, int *, int, int *, int *, int, int, void **) = address;
-	    mpi_return = (*VendorMPI_Dist_graph_create_adjacent)(local_a0[comm_old].mpi_const,indegree,sources,sourceweights,outdegree,
-				       destinations,destweights,local_a2[info].mpi_const,reorder,&local_a1[*comm_dist_graph].mpi_const);
+	    mpi_return = (*VendorMPI_Dist_graph_create_adjacent)(local_a0[comm_old].mpi_const,indegree,sources,UNWEIGHTED(sourceweights),outdegree,
+				 destinations,UNWEIGHTED(destweights),local_a2[info].mpi_const,reorder,&local_a1[*comm_dist_graph].mpi_const);
 	}
     } else { api_use_ints *local_a0= active_comms->api_declared;
 	api_use_ints *local_a1= active_comms->api_declared;
 	if (active_infos->use_ptrs) { api_use_ptrs *local_a2=active_infos->api_declared;
 	    int (*VendorMPI_Dist_graph_create_adjacent)(int, int, int *, int *, int, int *, int *, void *, int, int *) = address;
-	    mpi_return = (*VendorMPI_Dist_graph_create_adjacent)(local_a0[comm_old].mpi_const,indegree,sources,sourceweights,outdegree,
-				       destinations,destweights,local_a2[info].mpi_const,reorder,&local_a1[*comm_dist_graph].mpi_const);
+	    mpi_return = (*VendorMPI_Dist_graph_create_adjacent)(local_a0[comm_old].mpi_const,indegree,sources,UNWEIGHTED(sourceweights),outdegree,
+				 destinations,UNWEIGHTED(destweights),local_a2[info].mpi_const,reorder,&local_a1[*comm_dist_graph].mpi_const);
 	}
 	else {
 	    api_use_ints *local_a2=active_infos->api_declared;
 	    int (*VendorMPI_Dist_graph_create_adjacent)(int, int, int *, int *, int, int *, int *, int, int, int*) = address;
-	    mpi_return = (*VendorMPI_Dist_graph_create_adjacent)(local_a0[comm_old].mpi_const,indegree,sources,sourceweights,outdegree,
-				       destinations,destweights,local_a2[info].mpi_const,reorder,&local_a1[*comm_dist_graph].mpi_const);
+	    mpi_return = (*VendorMPI_Dist_graph_create_adjacent)(local_a0[comm_old].mpi_const,indegree,sources,UNWEIGHTED(sourceweights),outdegree,
+				 destinations,UNWEIGHTED(destweights),local_a2[info].mpi_const,reorder,&local_a1[*comm_dist_graph].mpi_const);
 	}
     }
     return mpi_return;
