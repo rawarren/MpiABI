@@ -488,6 +488,12 @@ DLLDEF int MPI_Improbe(int source, int tag, MPI_Comm comm, int *flag, MPI_Messag
 DLLDEF int MPI_Imrecv(void* buf, int count, MPI_Datatype datatype, MPI_Message *message, MPI_Request *request);
 DLLDEF int MPI_Mrecv(void *buf, int count, MPI_Datatype type, MPI_Message *message, MPI_Status *status);
 
+/* Graph Neighbors */
+DLLDEF int MPI_Graph_neighbors_count(MPI_Comm comm, int rank, int *nneighbors);
+DLLDEF int MPI_Graph_neighbors(MPI_Comm comm, int rank, int maxneighbors, int *neighbors);
+DLLDEF int MPI_Dist_graph_neighbors_count(MPI_Comm comm, int *indegree, int *outdegree, int *weighted);
+DLLDEF int MPI_Dist_graph_neighbors(MPI_Comm comm, int maxindegree, int *sources, int *sourceweights,
+                             int maxoutdegree, int *destinations, int *destweights);
 
 #if defined(__cplusplus)
 }
