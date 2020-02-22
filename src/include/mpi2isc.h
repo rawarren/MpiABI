@@ -758,7 +758,10 @@ typedef struct {
 #define MPI_Win_lock_all ISC_Win_lock_all
 #define MPI_Win_unlock_all ISC_Win_unlock_all
 
-
+#define MPI_Graph_neighbors_count ISC_Graph_neighbors_count
+#define MPI_Graph_neighbors ISC_Graph_neighbors
+#define MPI_Dist_graph_neighbors_count ISC_Dist_graph_neighbors_count
+#define MPI_Dist_graph_neighbors ISC_Dist_graph_neighbors
 
 #define MPI_NULL_COPY_FN ((ISC_Copy_function *)ISC_NULL_COPY_FN)
 #define MPI_NULL_DELETE_FN ((ISC_Delete_function *)ISC_NULL_DELETE_FN)
