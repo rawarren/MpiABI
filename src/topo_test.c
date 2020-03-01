@@ -31,6 +31,7 @@ MPI_Topo_test (MPI_Comm comm, int *status)
 
     if (vendor_status == local_a1[MPI_CART].mpi_const) *status = MPI_CART;
     else if (vendor_status == local_a1[MPI_GRAPH].mpi_const) *status = MPI_GRAPH;
+    else if (vendor_status == local_a1[MPI_DIST_GRAPH].mpi_const) *status = MPI_DIST_GRAPH;
     else *status = MPI_UNDEFINED;
 
     return mpi_return;

@@ -310,6 +310,7 @@ typedef struct {
 #define MPI_SEEK_CUR             ISC_SEEK_CUR
 #define MPI_SEEK_END             ISC_SEEK_END
 #define MPI_COMM_TYPE_SHARED     ISC_COMM_TYPE_SHARED
+#define MPI_DIST_GRAPH           ISC_DIST_GRAPH
 #define	MPI_ORDER_C              ISC_ORDER_C
 #define	MPI_ORDER_FORTRAN        ISC_ORDER_FORTRAN
 #define	MPI_DISTRIBUTE_BLOCK     ISC_DISTRIBUTE_BLOCK

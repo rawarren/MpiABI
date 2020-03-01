@@ -244,6 +244,7 @@ typedef enum {
 	ISC_SEEK_CUR,             /* 46 */
 	ISC_SEEK_END,             /* 47 */
 	ISC_COMM_TYPE_SHARED,	  /* 48 */
+	ISC_DIST_GRAPH,		  /* 49 */
 	predefined_misc_count
 } _isc_misc;
 

@@ -151,7 +151,7 @@ DLLDEF int MPI_Comm_set_info(MPI_Comm, MPI_Info);
 DLLDEF int MPI_Comm_get_info(MPI_Comm, MPI_Info *);  
 DLLDEF int MPI_Comm_create(MPI_Comm, MPI_Group, MPI_Comm *);
 DLLDEF int MPI_Comm_create_group(MPI_Comm, MPI_Group, int, MPI_Comm *);
-DLLDEF int MPI_Comm_split_type(MPI_Comm, int, int, int, MPI_Comm *);
+DLLDEF int MPI_Comm_split_type(MPI_Comm, int, int, int, MPI_Info, MPI_Comm *);
 DLLDEF int MPI_Comm_split(MPI_Comm, int, int, MPI_Comm *);
 DLLDEF int MPI_Comm_free(MPI_Comm *);
 DLLDEF int MPI_Comm_test_inter(MPI_Comm, int *);
@@ -494,6 +494,16 @@ DLLDEF int MPI_Graph_neighbors(MPI_Comm comm, int rank, int maxneighbors, int *n
 DLLDEF int MPI_Dist_graph_neighbors_count(MPI_Comm comm, int *indegree, int *outdegree, int *weighted);
 DLLDEF int MPI_Dist_graph_neighbors(MPI_Comm comm, int maxindegree, int *sources, int *sourceweights,
                              int maxoutdegree, int *destinations, int *destweights);
+
+/* Dist Graph */
+DLLDEF int MPI_Dist_graph_create(MPI_Comm comm_old, int n, int sources[], int degrees[],
+			int destinations[], int weights[], MPI_Info info,
+			int reorder, MPI_Comm *comm_dist_graph);
+
+DLLDEF int MPI_Dist_graph_create_adjacent(MPI_Comm comm_old, int indegree, int sources[],
+			int sourceweights[], int outdegree,
+			int destinations[], int destweights[],
+			MPI_Info info, int reorder, MPI_Comm *comm_dist_graph);
 
 #if defined(__cplusplus)
 }
