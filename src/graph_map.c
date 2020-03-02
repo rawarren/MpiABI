@@ -12,6 +12,7 @@ MPI_Graph_map (MPI_Comm comm, int nnodes, int *index, int *edges, int *newrank)
 {
   static void *address=0;
   int mpi_return;
+  api_use_ints *local_a1= active_miscs->api_declared;
 
   if (!address) {
     if ((address = dlsym(MPI_libhandle,"MPI_Graph_map")) == NULL) {
@@ -26,5 +27,9 @@ MPI_Graph_map (MPI_Comm comm, int nnodes, int *index, int *edges, int *newrank)
     int (*VendorMPI_Graph_map)(int,int nnodes,int *index,int *edges, int *newrank) = address;
     mpi_return = (*VendorMPI_Graph_map)(local_a0[comm].mpi_const,nnodes,index,edges,newrank);
   }
+
+  if (*newrank == local_a1[ISC_UNDEFINED_].mpi_const)
+      *newrank = MPI_UNDEFINED;
+
   return mpi_return;
 }

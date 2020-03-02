@@ -14,8 +14,8 @@ MPI_Dist_graph_neighbors_count(MPI_Comm comm, int *indegree, int *outdegree, int
   int mpi_return;
 
   if (!address) {
-    if ((address = dlsym(MPI_libhandle,"MPI_Graph_neighbors_count")) == NULL) {
-      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Graph_neighbors_count",SYM_MISSING_TRAILER);
+    if ((address = dlsym(MPI_libhandle,"MPI_Dist_graph_neighbors_count")) == NULL) {
+      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Dist_graph_neighbors_count",SYM_MISSING_TRAILER);
       return -1;
     }
   }

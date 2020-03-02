@@ -12,6 +12,7 @@ MPI_Cart_map (MPI_Comm comm, int ndims, int dims[], int periods[], int *newrank)
 {
   static void *address=0;
   int mpi_return;
+  api_use_ints *local_a1=active_miscs->api_declared;
 
   if (!address) {
     if ((address = dlsym(MPI_libhandle,"MPI_Cart_map")) == NULL) {
@@ -26,5 +27,7 @@ MPI_Cart_map (MPI_Comm comm, int ndims, int dims[], int periods[], int *newrank)
     int (*VendorMPI_Cart_map)(int,int ndims,int dims[],int periods[], int *newrank) = address;
     mpi_return = (*VendorMPI_Cart_map)(local_a0[comm].mpi_const,ndims,dims,periods,newrank);
   }
+  if (*newrank == local_a1[ISC_UNDEFINED_].mpi_const)
+      *newrank = MPI_UNDEFINED;
   return mpi_return;
 }
