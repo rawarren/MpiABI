@@ -252,8 +252,7 @@ DLLDEF int MPI_Alloc_mem(MPI_Aint, MPI_Info, void *);
 DLLDEF int MPI_Free_mem(void *);
  
 /* Extended Collective Operations */
-DLLDEF int MPI_Alltoallw(void *, int [], int [], MPI_Datatype [], void *, int [],
-		  int [], MPI_Datatype [], MPI_Comm);
+DLLDEF int MPI_Alltoallw(void *, int [], int [], MPI_Datatype [], void *, int [], int [], MPI_Datatype [], MPI_Comm);
 DLLDEF int MPI_Exscan(void *, void *, int, MPI_Datatype, MPI_Op, MPI_Comm) ;
  
 /* Nonblocking Collectives */
@@ -504,6 +503,41 @@ DLLDEF int MPI_Dist_graph_create_adjacent(MPI_Comm comm_old, int indegree, int s
 			int sourceweights[], int outdegree,
 			int destinations[], int destweights[],
 			MPI_Info info, int reorder, MPI_Comm *comm_dist_graph);
+
+/* Neighborhood collectives */
+DLLDEF int MPI_Ineighbor_allgather( void *sendbuf, int sendcount, MPI_Datatype sendtype,
+                            void *recvbuf, int recvcount, MPI_Datatype recvtype,
+				   MPI_Comm comm, MPI_Request *request);
+DLLDEF int MPI_Ineighbor_allgatherv( void *sendbuf, int sendcount, MPI_Datatype sendtype,
+                             void *recvbuf,  int recvcounts[],  int displs[],
+				    MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
+DLLDEF int MPI_Ineighbor_alltoall( void *sendbuf, int sendcount, MPI_Datatype sendtype,
+                           void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm,
+				  MPI_Request *request);
+DLLDEF int MPI_Ineighbor_alltoallv( void *sendbuf,  int sendcounts[],  int sdispls[],
+                            MPI_Datatype sendtype, void *recvbuf,  int recvcounts[],
+                             int rdispls[], MPI_Datatype recvtype, MPI_Comm comm,
+				   MPI_Request *request);
+DLLDEF int MPI_Ineighbor_alltoallw( void *sendbuf,  int sendcounts[],
+				    MPI_Aint sdispls[],  MPI_Datatype sendtypes[],
+				    void *recvbuf,  int recvcounts[],  MPI_Aint rdispls[],
+				    MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request);
+DLLDEF int MPI_Neighbor_allgather( void *sendbuf, int sendcount, MPI_Datatype sendtype,
+				  void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
+DLLDEF int MPI_Neighbor_allgatherv( void *sendbuf, int sendcount, MPI_Datatype sendtype,
+                            void *recvbuf,  int recvcounts[],  int displs[],
+				   MPI_Datatype recvtype, MPI_Comm comm);
+DLLDEF int MPI_Neighbor_alltoall( void *sendbuf, int sendcount, MPI_Datatype sendtype,
+				 void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
+DLLDEF int MPI_Neighbor_alltoallv( void *sendbuf,  int sendcounts[],  int sdispls[],
+                           MPI_Datatype sendtype, void *recvbuf,  int recvcounts[],
+				   int rdispls[], MPI_Datatype recvtype, MPI_Comm comm);
+DLLDEF int MPI_Neighbor_alltoallw( void *sendbuf,  int sendcounts[],  MPI_Aint sdispls[],
+                            MPI_Datatype sendtypes[], void *recvbuf,  int recvcounts[],
+				   MPI_Aint rdispls[],  MPI_Datatype recvtypes[], MPI_Comm comm);
+
+
+
 
 #if defined(__cplusplus)
 }

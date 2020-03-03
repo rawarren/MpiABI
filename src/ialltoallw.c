@@ -2,65 +2,11 @@
 /*
  * This text was generated automatically
  * It provides the ISC implementation of
- * MPI_Alltoallw
+ * MPI_Ialltoallw
  */
 
 #include <_mpi.h>
 #include <stdlib.h>
-
-static int
-__ISC_Alltoallw (void *sendbuf, int sendcounts[], int sdispls[], MPI_Datatype sendtypes[], void *recvbuf, int recvcounts[], int rdispls[], MPI_Datatype recvtypes[], MPI_Comm comm)
-{
-    int i, rank, size;
-    int status, nreqs;
-    char *sbuf,*rbuf;
-    MPI_Request rcache[128],*reqs,*rnext,*rtemp=0;
-
-    MPI_Comm_size(comm,&size);
-    MPI_Comm_rank(comm,&rank);
-
-    sbuf = ((char *) sendbuf) + sdispls[rank];
-    rbuf = ((char *) recvbuf) + rdispls[rank];
-
-    /* Send to self */
-    status = MPI_Sendrecv(sbuf,sendcounts[rank], sendtypes[rank], rank, 0x0abba,
-			  rbuf,recvcounts[rank], recvtypes[rank], rank, 0x0abba,comm, MPI_STATUS_IGNORE);
-
-    if (status || size == 1)
-      return status;
-
-    if (size > 64) {
-      reqs = rtemp = (MPI_Request *)calloc(size*2,sizeof(MPI_Request));
-    } else {
-      reqs = rcache;
-    }
-    
-    rnext = reqs;
-    for(i=0; i< size; i++) {
-      if (i == rank) continue;
-      rbuf = ((char *) recvbuf) + rdispls[i];
-      status = MPI_Irecv(rbuf,recvcounts[i],recvtypes[i],i,0x0abba, comm, rnext++);
-      if (status) {
-	/* What now?*/
-      }
-    }
-    for(i=0; i< size; i++) {
-      if (i == rank) continue;
-      sbuf = ((char *) sendbuf) + sdispls[i];
-      status = MPI_Isend(sbuf,sendcounts[i],sendtypes[i],i,0x0abba, comm, rnext++);
-      if (status) {
-	/* What now?*/
-      }
-    }
-    
-    nreqs = (size-1)*2;
-    status = MPI_Waitall(nreqs, reqs, MPI_STATUSES_IGNORE);
-
-    if (rtemp) free(rtemp);
-
-    return status;
-}
-
 
 int
 MPI_Ialltoallw (void *sendbuf, int sendcounts[], int sdispls[], MPI_Datatype sendtypes[], void *recvbuf, int recvcounts[], int rdispls[], MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request)

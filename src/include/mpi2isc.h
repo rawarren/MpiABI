@@ -768,6 +768,17 @@ typedef struct {
 #define MPI_Dist_graph_create_adjacent ISC_Dist_graph_create_adjacent
 #define MPI_Dist_graph_create ISC_Dist_graph_create
 
+#define MPI_Ineighbor_allgather ISC_Ineighbor_allgather
+#define MPI_Ineighbor_allgatherv ISC_Ineighbor_allgatherv
+#define MPI_Ineighbor_alltoall ISC_Ineighbor_alltoall
+#define MPI_Ineighbor_alltoallv ISC_Ineighbor_alltoallv
+#define MPI_Ineighbor_alltoallw ISC_Ineighbor_alltoallw
+#define MPI_Neighbor_allgather ISC_Neighbor_allgather
+#define MPI_Neighbor_allgatherv ISC_Neighbor_allgatherv
+#define MPI_Neighbor_alltoall ISC_Neighbor_alltoall
+#define MPI_Neighbor_alltoallv ISC_Neighbor_alltoallv
+#define MPI_Neighbor_alltoallw ISC_Neighbor_alltoallw
+
 #define MPI_NULL_COPY_FN ((ISC_Copy_function *)ISC_NULL_COPY_FN)
 #define MPI_NULL_DELETE_FN ((ISC_Delete_function *)ISC_NULL_DELETE_FN)
 #define MPI_COMM_NULL_COPY_FN ((ISC_Copy_function *)ISC_NULL_COPY_FN)
@@ -777,6 +788,7 @@ typedef struct {
 #define MPI_TYPE_NULL_COPY_FN MPI_NULL_COPY_FN
 #define MPI_TYPE_NULL_DELETE_FN MPI_NULL_DELETE_FN
 #define MPI_DUP_FN ISC_Dup_fn
+
 
 #define MPI_THREAD_SINGLE ISC_THREAD_SINGLE
 #define	MPI_THREAD_FUNNELED ISC_THREAD_FUNNELED
