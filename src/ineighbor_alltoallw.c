@@ -14,6 +14,7 @@ MPI_Ineighbor_alltoallw (void *sendbuf, int sendcounts[], MPI_Aint sdispls[], MP
     static void *address=0;
     int mpi_return;
     int i, size;
+    int neighbor_size;
 
     if (!address) {
 	if ((address = dlsym(MPI_libhandle,"MPI_Ineighbor_alltoallw")) == NULL) {
@@ -21,53 +22,90 @@ MPI_Ineighbor_alltoallw (void *sendbuf, int sendcounts[], MPI_Aint sdispls[], MP
 	    return -1;
 	}
     }
+    /* FIXME:
+     * I need to find a way to determine how many senttypes and recvtypes
+     * to process.  My current approach attepts to something rational with
+     * sendcounts and checking for valid send/recv types.  This is obviously
+     * not the best way to work...
+     */
+
     MPI_Comm_size(comm,&size);
+    neighbor_size = 2;
+    while((sendcounts[neighbor_size+1] > 0) && (sendtypes[neighbor_size+1] < active_datatypes->how_many))
+	neighbor_size++;
 
     *request = new_index(active_requests);
     if (active_datatypes->use_ptrs) { api_use_ptrs *local_a0 = active_datatypes->api_declared;
+       void *stemp[64],*rtemp[64];
+       void **sfill, **rfill;
        api_use_ptrs *local_a1= active_datatypes->api_declared;
        api_use_ptrs *local_a2= active_comms->api_declared;
-       void *temp[128],**dtemp=0, **dfill;
-       if (size > 64) {
-	 dfill = dtemp = (void *)calloc(size*2,sizeof(void *));
-       } else dfill = temp;
-       for(i=0; i<size; i++) {
-	 dfill[i] = local_a0[sendtypes[i]].mpi_const;
+       if (neighbor_size > 64) {
+	   sfill = (void **)calloc(neighbor_size,sizeof(void *));
+	   rfill = (void **)calloc(neighbor_size,sizeof(void *));
        }
-       for(i=0; i<size; i++) {
-	 dfill[size + i] = local_a1[recvtypes[i]].mpi_const;
+       else {
+	   sfill = stemp;
+	   rfill = rtemp;
+       }
+       for(i=0; i<neighbor_size; i++) {
+	 sfill[i] = local_a0[sendtypes[i]].mpi_const;
+       }
+
+       neighbor_size = 2;
+       while((recvcounts[neighbor_size+1] > 0) && (recvtypes[neighbor_size+1] < active_datatypes->how_many))
+	   neighbor_size++;
+       for(i=0; i<neighbor_size; i++) {
+	 rfill[i] = local_a1[recvtypes[i]].mpi_const;
        }
 
        if (active_requests->use_ptrs) { api_use_ptrs *local_a3=active_requests->api_declared;
 	   int (*VendorMPI_Ineighbor_alltoallw)(void *sendbuf,int sendcounts[],MPI_Aint sdispls[],void *,void *recvbuf,int recvcounts[],MPI_Aint rdispls[],void *,void *, void **) = address;
-	   mpi_return = (*VendorMPI_Ineighbor_alltoallw)(INPLACE(sendbuf),sendcounts,sdispls,dfill,INPLACE(recvbuf),recvcounts,rdispls,&dfill[size],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
+	   mpi_return = (*VendorMPI_Ineighbor_alltoallw)(INPLACE(sendbuf),sendcounts,sdispls,&sfill[0],INPLACE(recvbuf),recvcounts,rdispls,&rfill[0],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
        }
        else { api_use_ints *local_a3=active_requests->api_declared;
 	   int (*VendorMPI_Ineighbor_alltoallw)(void *sendbuf,int sendcounts[],MPI_Aint sdispls[],void *,void *recvbuf,int recvcounts[],MPI_Aint rdispls[],void *,void *, int *) = address;
-	   mpi_return = (*VendorMPI_Ineighbor_alltoallw)(INPLACE(sendbuf),sendcounts,sdispls,dfill,INPLACE(recvbuf),recvcounts,rdispls,&dfill[size],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
+	   mpi_return = (*VendorMPI_Ineighbor_alltoallw)(INPLACE(sendbuf),sendcounts,sdispls,&sfill[0],INPLACE(recvbuf),recvcounts,rdispls,&rfill[0],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
        }
-       if (dtemp) free(dtemp);
+       if (sfill != stemp) {
+	   free(sfill);
+	   free(rfill);
+       }
     } else { api_use_ints *local_a0 = active_datatypes->api_declared;
+       int stemp[64], rtemp[64];
+       int *sfill, *rfill;
        api_use_ints *local_a1= active_datatypes->api_declared;
        api_use_ints *local_a2= active_comms->api_declared;
-       int temp[128],*dtemp=0, *dfill;
-       if (size > 64)
-	 dfill = dtemp = (int *)calloc(size*2,sizeof(int));
-       else dfill = temp;
-       for(i=0; i<size; i++) {
-	 dfill[i] = local_a0[sendtypes[i]].mpi_const;
+       if (neighbor_size > 64) {
+	   sfill = (int *)calloc(neighbor_size,sizeof(int));
+	   rfill = (int *)calloc(neighbor_size,sizeof(int));
        }
-       for(i=0; i<size; i++) {
-	 dfill[size + i] = local_a1[recvtypes[i]].mpi_const;
+       else {
+	   sfill = stemp;
+	   rfill = rtemp;
        }
+       for(i=0; i<neighbor_size; i++) {
+	 sfill[i] = local_a0[sendtypes[i]].mpi_const;
+       }
+       neighbor_size = 2;
+       while((recvcounts[neighbor_size+1] > 0) && (recvtypes[neighbor_size+1] < active_datatypes->how_many))
+	   neighbor_size++;
+
+       for(i=0; i<neighbor_size; i++) {
+	 rfill[i] = local_a1[recvtypes[i]].mpi_const;
+       }
+
        if (active_requests->use_ptrs) { api_use_ptrs *local_a3=active_requests->api_declared;
 	   int (*VendorMPI_Ineighbor_alltoallw)(void *sendbuf,int sendcounts[],MPI_Aint sdispls[],int *,void *recvbuf,int recvcounts[],MPI_Aint rdispls[],int *,int, void **) = address;
-	   mpi_return = (*VendorMPI_Ineighbor_alltoallw)(INPLACE(sendbuf),sendcounts,sdispls,dfill,INPLACE(recvbuf),recvcounts,rdispls,&dfill[size],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
+	   mpi_return = (*VendorMPI_Ineighbor_alltoallw)(INPLACE(sendbuf),sendcounts,sdispls,&sfill[0],INPLACE(recvbuf),recvcounts,rdispls,&rfill[0],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
        } else { api_use_ints *local_a3=active_requests->api_declared;
 	   int (*VendorMPI_Ineighbor_alltoallw)(void *sendbuf,int sendcounts[],MPI_Aint sdispls[],int *,void *recvbuf,int recvcounts[],MPI_Aint rdispls[],int *,int, int *) = address;	   
-	   mpi_return = (*VendorMPI_Ineighbor_alltoallw)(INPLACE(sendbuf),sendcounts,sdispls,dfill,INPLACE(recvbuf),recvcounts,rdispls,&dfill[size],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
+	   mpi_return = (*VendorMPI_Ineighbor_alltoallw)(INPLACE(sendbuf),sendcounts,sdispls,&sfill[0],INPLACE(recvbuf),recvcounts,rdispls,&rfill[0],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
        }
-       if (dtemp) free(dtemp);
+       if (sfill != stemp) {
+	   free(sfill);
+	   free(rfill);
+       }
     }
     return mpi_return;
 }

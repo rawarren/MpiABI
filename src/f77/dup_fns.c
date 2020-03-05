@@ -27,7 +27,9 @@ void iscf_comm_dup_fn (int *comm, int *keyval,  void *extra , void *attr_in, voi
 }
 
 #ifdef __GNUC__
+#ifndef MPI_WIN_DUP_FN
 void MPI_WIN_DUP_FN() __attribute__ ((weak, alias("iscf_win_dup_fn")));
+#endif
 void mpi_win_dup_fn() __attribute__ ((weak, alias("iscf_win_dup_fn")));
 void mpi_win_dup_fn_() __attribute__ ((weak, alias("iscf_win_dup_fn")));
 void mpi_win_dup_fn__() __attribute__ ((weak, alias("iscf_win_dup_fn")));

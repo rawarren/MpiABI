@@ -38,6 +38,21 @@ extern "C" {
 /* We redefine all MPI constants to be ISC constants */
 #include "mpi2isc.h"
 
+typedef long			 MPI_Aint;
+typedef long long		 MPI_Offset;
+typedef unsigned long long       MPI_Count;
+typedef unsigned int		 MPI_Request;
+typedef unsigned int		 MPI_Group;
+typedef unsigned int		 MPI_Comm;
+typedef unsigned int		 MPI_Errhandler;
+typedef unsigned int		 MPI_Op;
+typedef unsigned int		 MPI_Datatype;
+typedef unsigned int 		 MPI_Win;
+typedef unsigned int             MPI_Message;
+typedef unsigned int 		 MPI_File;
+typedef unsigned int             MPI_Info;
+typedef int                      MPI_Fint;
+
 /* The following MPIX_Status_{get,set} functions
  * allow libraries such as mpi4py to utilize these
  * to access, i.e. read or write the known MPI Status
@@ -151,7 +166,7 @@ DLLDEF int MPI_Comm_set_info(MPI_Comm, MPI_Info);
 DLLDEF int MPI_Comm_get_info(MPI_Comm, MPI_Info *);  
 DLLDEF int MPI_Comm_create(MPI_Comm, MPI_Group, MPI_Comm *);
 DLLDEF int MPI_Comm_create_group(MPI_Comm, MPI_Group, int, MPI_Comm *);
-DLLDEF int MPI_Comm_split_type(MPI_Comm, int, int, int, MPI_Info, MPI_Comm *);
+DLLDEF int MPI_Comm_split_type(MPI_Comm, int, int, MPI_Info, MPI_Comm *);
 DLLDEF int MPI_Comm_split(MPI_Comm, int, int, MPI_Comm *);
 DLLDEF int MPI_Comm_free(MPI_Comm *);
 DLLDEF int MPI_Comm_test_inter(MPI_Comm, int *);

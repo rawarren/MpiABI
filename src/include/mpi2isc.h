@@ -70,6 +70,9 @@ typedef int (ISC_Grequest_query_function)(void *, ISC_Status *);
 typedef int (ISC_Datarep_conversion_function)(void *, ISC_Datatype, int, void *, ISC_Offset, void *);
 typedef int (ISC_Datarep_extent_function)(ISC_Datatype , ISC_Aint *, void *);
 
+#define MPI_CONVERSION_FN_NULL ISC_CONVERSION_FN_NULL
+#define ISC_CONVERSION_FN_NULL ((ISC_Datarep_conversion_function *)0)
+
 typedef int (ISC_Comm_copy_attr_function)(ISC_Comm, int, void *, void *, void *, int *);
 typedef int (ISC_Comm_delete_attr_function)(ISC_Comm, int, void *, void *);
 
@@ -78,6 +81,12 @@ typedef int (ISC_Type_delete_attr_function)(ISC_Datatype, int, void *, void *);
 
 typedef int (ISC_Win_copy_attr_function)(ISC_Win, int, void *, void *, void *, int *);
 typedef int (ISC_Win_delete_attr_function)(ISC_Win, int, void *, void *);
+
+typedef int (ISC_WIN_DUP_FN)(ISC_Win, int, void *, void *, void *, int *);
+extern int ISC_dup_function(int win, int key, void *extra, void *attrin, void *attrout, int *flat);
+#define MPI_WIN_DUP_FN ISC_dup_function
+
+
 
 /* The order of this structure needs to match the list of variables
  * defined int the fortran common block /mpi_fortran_bottom/
@@ -93,6 +102,9 @@ typedef struct {
   int statuses_ignore;
 } f_common_t;
 
+
+#define MPI_F_STATUS_IGNORE	 (int *)ISC_F_STATUS_IGNORE
+#define MPI_F_STATUSES_IGNORE	 (int *)ISC_F_STATUSES_IGNORE
 
 /* These are always identical */
 #define MPI_STATUS_IGNORE	 (ISC_Status *)ISC_STATUS_IGNORE
@@ -148,6 +160,7 @@ typedef struct {
 #define MPI_MINLOC               ISC_MINLOC 
 #define MPI_MAXLOC               ISC_MAXLOC 
 #define MPI_REPLACE              ISC_REPLACE
+#define MPI_NO_OP                ISC_NO_OP
 #define MPI_OP_NULL              ISC_OP_NULL              
 
 /* Datatypes */
@@ -201,7 +214,6 @@ typedef struct {
 #define MPI_INTEGER4             ISC_INTEGER4
 #define MPI_INTEGER8             ISC_INTEGER8
 #define MPI_INTEGER16            ISC_INTEGER16
-#define MPI_COUNT                ISC_COUNT
 #define MPI_UINT64_T             ISC_UNSIGNED_LONG_LONG
 /* No support yet for CXX types */
 #define MPI_CXX_BOOL             ISC_DATATYPE_NULL
@@ -214,6 +226,19 @@ typedef struct {
 #define MPI_C_COMPLEX            MPI_C_FLOAT_COMPLEX
 #define MPI_C_DOUBLE_COMPLEX     ISC_C_DOUBLE_COMPLEX
 #define MPI_C_LONG_DOUBLE_COMPLEX ISC_C_LONG_DOUBLE_COMPLEX
+/* Address/Offset types  */
+#define MPI_AINT                 ISC_AINT
+#define MPI_OFFSET               ISC_OFFSET
+#define MPI_COUNT                ISC_COUNT
+/* C99 style ints (with size) */
+#define MPI_INT8_T               ISC_INT8_T
+#define MPI_INT16_T              ISC_INT16_T
+#define MPI_INT32_T              ISC_INT32_T
+#define MPI_INT64_T              ISC_INT64_T
+#define MPI_UINT8_T              ISC_UINT8_T
+#define MPI_UINT16_T             ISC_UINT16_T
+#define MPI_UINT32_T             ISC_UINT32_T
+
 /* Old MPI usage (lb and ub, maybe deprecated? */
 #define MPI_LB                   ISC_LB
 #define MPI_UB                   ISC_UB
@@ -239,30 +264,44 @@ typedef struct {
 #define MPI_ERR_IN_STATUS        ISC_ERR_IN_STATUS       
 #define MPI_ERR_PENDING          ISC_ERR_PENDING         
 #define MPI_ERR_REQUEST          ISC_ERR_REQUEST         
-#define MPI_ERR_INFO             ISC_ERR_INFO            
-#define MPI_ERR_INFO_NOKEY       ISC_ERR_INFO_NOKEY      
-#define MPI_ERR_INFO_KEY         ISC_ERR_INFO_KEY        
-#define MPI_ERR_INFO_VALUE       ISC_ERR_INFO_VALUE      
+#define MPI_ERR_ACCESS           ISC_ERR_ACCESS
+#define MPI_ERR_AMODE            ISC_ERR_AMODE
+#define MPI_ERR_BAD_FILE         ISC_ERR_BAD_FILE
+#define MPI_ERR_CONVERSION       ISC_ERR_CONVERSION
+#define MPI_ERR_DUP_DATAREP      ISC_ERR_DUP_DATAREP
+#define MPI_ERR_FILE_EXISTS      ISC_ERR_FILE_EXISTS
+#define MPI_ERR_FILE_IN_USE      ISC_ERR_FILE_IN_USE
+#define MPI_ERR_FILE             ISC_ERR_FILE
+#define MPI_ERR_INFO             ISC_ERR_INFO
+#define MPI_ERR_INFO_KEY         ISC_ERR_INFO_KEY
+#define MPI_ERR_INFO_VALUE       ISC_ERR_INFO_VALUE
+#define MPI_ERR_INFO_NOKEY       ISC_ERR_INFO_NOKEY
+#define MPI_ERR_IO               ISC_ERR_IO
+#define MPI_ERR_NAME             ISC_ERR_NAME
+#define MPI_ERR_NO_MEM           ISC_ERR_NO_MEM
+#define MPI_ERR_NOT_SAME         ISC_ERR_NOT_SAME
+#define MPI_ERR_NO_SPACE         ISC_ERR_NO_SPACE
+#define MPI_ERR_NO_SUCH_FILE     ISC_ERR_NO_SUCH_FILE
+#define MPI_ERR_PORT             ISC_ERR_PORT
+#define MPI_ERR_QUOTA            ISC_ERR_QUOTA
+#define MPI_ERR_READ_ONLY        ISC_ERR_READ_ONLY
+#define MPI_ERR_SERVICE          ISC_ERR_SERVICE
+#define MPI_ERR_SPAWN            ISC_ERR_SPAWN
+#define MPI_ERR_UNSUPPORTED_DATAREP ISC_ERR_UNSUPPORTED_DATAREP
+#define MPI_ERR_UNSUPPORTED_OPERATION ISC_ERR_UNSUPPORTED_OPERATION
 #define MPI_ERR_WIN              ISC_ERR_WIN             
 #define MPI_ERR_BASE             ISC_ERR_BASE            
-#define MPI_ERR_SIZE             ISC_ERR_SIZE            
-#define MPI_ERR_DISP             ISC_ERR_DISP            
-#define MPI_ERR_LOCKTYPE         ISC_ERR_LOCKTYPE        
+#define MPI_ERR_LOCKTYPE         ISC_ERR_LOCKTYPE
+#define MPI_ERR_KEYVAL           ISC_ERR_KEYVAL
+#define MPI_ERR_RMA_CONFLICT     ISC_ERR_RMA_CONFLICT
+#define MPI_ERR_RMA_SYNC         ISC_ERR_RMA_SYNC
+#define MPI_ERR_SIZE             ISC_ERR_SIZE
+#define MPI_ERR_DISP             ISC_ERR_DISP
 #define MPI_ERR_ASSERT           ISC_ERR_ASSERT          
-#define MPI_ERR_RMA_CONFLICT     ISC_ERR_RMA_CONFLICT    
-#define MPI_ERR_RMA_SYNC         ISC_ERR_RMA_SYNC        
-#define MPI_ERR_NO_MEM           ISC_ERR_NO_MEM          
-#define MPI_ERR_KEYVAL           ISC_ERR_KEYVAL          
-#define MPI_ERR_SPAWN            ISC_ERR_SPAWN           
-#define MPI_ERR_PORT             ISC_ERR_PORT            
-#define MPI_ERR_SERVICE          ISC_ERR_SERVICE         
-#define MPI_ERR_NAME             ISC_ERR_NAME            
-#define MPI_ERR_EXITED           ISC_ERR_EXITED          
-#define MPI_ERR_NO_SUCH_FILE     ISC_ERR_NO_SUCH_FILE
-#define MPI_ERR_IO               ISC_ERR_IO
-#define MPI_ERR_READ_ONLY        ISC_ERR_READ_ONLY
-#define MPI_ERR_ACCESS           ISC_ERR_ACCESS
-#define MPI_ERR_FILE             ISC_ERR_FILE
+#define	MPI_ERR_RMA_RANGE        ISC_ERR_RMA_RANGE,
+#define	MPI_ERR_RMA_ATTACH       ISC_ERR_RMA_ATTACH
+#define	MPI_ERR_RMA_SHARED       ISC_ERR_RMA_SHARED
+#define	MPI_ERR_RMA_FLAVOR       ISC_ERR_RMA_FLAVOR
 #define MPI_ERR_LASTCODE         ISC_ERR_LASTCODE        
 
 /* Error handlers */
@@ -306,11 +345,22 @@ typedef struct {
 #define MPI_MODE_EXCL            ISC_MODE_EXCL
 #define MPI_MODE_APPEND          ISC_MODE_APPEND
 #define MPI_MODE_SEQUENTIAL      ISC_MODE_SEQUENTIAL
+#define MPI_MODE_NOCHECK         ISC_MODE_NOCHECK
+#define MPI_MODE_NOPRECEDE       ISC_MODE_NOPRECEDE
+#define MPI_MODE_NOPUT           ISC_MODE_NOPUT
+#define MPI_MODE_NOSTORE         ISC_MODE_NOSTORE
+#define MPI_MODE_NOSUCCEED       ISC_MODE_NOSUCCEED
 #define MPI_SEEK_SET             ISC_SEEK_SET
 #define MPI_SEEK_CUR             ISC_SEEK_CUR
 #define MPI_SEEK_END             ISC_SEEK_END
 #define MPI_COMM_TYPE_SHARED     ISC_COMM_TYPE_SHARED
 #define MPI_DIST_GRAPH           ISC_DIST_GRAPH
+#define MPI_WIN_FLAVOR_CREATE    ISC_WIN_FLAVOR_CREATE
+#define MPI_WIN_FLAVOR_ALLOCATE  ISC_WIN_FLAVOR_ALLOCATE
+#define MPI_WIN_FLAVOR_DYNAMIC   ISC_WIN_FLAVOR_DYNAMIC
+#define MPI_WIN_FLAVOR_SHARED    ISC_WIN_FLAVOR_SHARED
+#define MPI_WIN_SEPARATE         ISC_WIN_SEPARATE
+#define MPI_WIN_UNIFIED          ISC_WIN_UNIFIED
 #define	MPI_ORDER_C              ISC_ORDER_C
 #define	MPI_ORDER_FORTRAN        ISC_ORDER_FORTRAN
 #define	MPI_DISTRIBUTE_BLOCK     ISC_DISTRIBUTE_BLOCK
@@ -352,7 +402,10 @@ typedef struct {
 #define MPI_WIN_BASE             ISC_WIN_BASE
 #define MPI_WIN_SIZE             ISC_WIN_SIZE
 #define MPI_WIN_DISP_UNIT        ISC_WIN_DISP_UNIT
+#define MPI_WIN_CREATE_FLAVOR    ISC_WIN_CREATE_FLAVOR
+#define MPI_WIN_MODEL            ISC_WIN_MODEL
 #define MPI_DISPLACEMENT_CURRENT ISC_DISPLACEMENT_CURRENT
+
 
 /* Additional MISC */
 #define MPI_BOTTOM               ((void *)ISC_BOTTOM)

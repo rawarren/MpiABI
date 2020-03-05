@@ -17,6 +17,8 @@
 
 void  __attribute__((destructor)) close_lib_handles();
 
+int *ISC_F_STATUS_IGNORE=0;
+int *ISC_F_STATUSES_IGNORE=0;
 void *MPI_libhandle=0;
 void *MPIO_libhandle=0;
 void *ISC_maphandle=0;
@@ -953,7 +955,11 @@ int ISC_Pointer_datatype_delete_function (void * dtype, int type_keyval, void *a
   return 0;
 }
 
-
+int ISC_dup_function(int in, int key, void *extra, void *attrin, void *attrout, int *flat)
+{
+    puts("MPI_Xxx_dup is not functional!");
+    return 0;
+}
 
 /* --------------------------------------------------------
  * Here are the MPI functions invoked by our simple test

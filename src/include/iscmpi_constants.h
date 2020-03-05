@@ -42,6 +42,7 @@ typedef enum {
 	ISC_MAXLOC,
 	ISC_MINLOC,
 	ISC_REPLACE,
+	ISC_NO_OP,
 	predefined_op_count
 } _isc_ops;
 
@@ -92,12 +93,22 @@ typedef enum {
 	ISC_COMPLEX8,		/* 43 */
 	ISC_COMPLEX16,		/* 44 */
 	ISC_COMPLEX32,		/* 45 */
-        ISC_COUNT,		/* 46 */
-        ISC_WCHAR,		/* 47 */
-        ISC_C_BOOL,             /* 48 */
-        ISC_C_FLOAT_COMPLEX,	/* 49 */
-        ISC_C_DOUBLE_COMPLEX,	/* 50 */
-        ISC_C_LONG_DOUBLE_COMPLEX, /* 51 */
+        ISC_WCHAR,		/* 46 */
+        ISC_C_BOOL,             /* 47 */
+        ISC_C_FLOAT_COMPLEX,	/* 48 */
+        ISC_C_DOUBLE_COMPLEX,	/* 49 */
+        ISC_C_LONG_DOUBLE_COMPLEX, /* 50 */
+	ISC_AINT,		/* 51 */
+	ISC_OFFSET,		/* 52 */
+	ISC_COUNT,		/* 53 */
+	ISC_INT8_T,		/* 54 */
+	ISC_INT16_T,		/* 55 */
+	ISC_INT32_T,		/* 56 */
+	ISC_INT64_T,		/* 57 */
+	ISC_UINT8_T,		/* 58 */
+	ISC_UINT16_T,		/* 59 */
+	ISC_UINT32_T,		/* 60 */
+	ISC_UINT64_T,		/* 61 */
 	predefined_datatype_count
 } _isc_datatypes;
 
@@ -175,6 +186,7 @@ typedef enum {
 
 typedef enum {
         ISC_INFO_NULL = 0,
+	ISC_INFO_ENV,
 	predefined_info_count
 } _isc_infos;
 
@@ -245,6 +257,16 @@ typedef enum {
 	ISC_SEEK_END,             /* 47 */
 	ISC_COMM_TYPE_SHARED,	  /* 48 */
 	ISC_DIST_GRAPH,		  /* 49 */
+	/* FLAVORS */
+	ISC_WIN_FLAVOR_CREATE,	  /* 50 */
+	ISC_WIN_FLAVOR_ALLOCATE,  /* 51 */
+	ISC_WIN_FLAVOR_DYNAMIC,	  /* 52 */
+	ISC_WIN_FLAVOR_SHARED,	  /* 53 */
+	/* MODELS */
+	ISC_WIN_SEPARATE,	  /* 54 */
+	ISC_WIN_UNIFIED,	  /* 55 */
+        ISC_WIN_CREATE_FLAVOR,	  /* 56 */
+	ISC_WIN_MODEL,		  /* 57 */
 	predefined_misc_count
 } _isc_misc;
 
@@ -379,6 +401,8 @@ typedef struct _isc_freelist {
   void *element;
 } isc_freelist;
 
+extern int *ISC_F_STATUS_IGNORE;
+extern int *ISC_F_STATUSES_IGNORE;
 extern void *MPIO_libhandle;
 extern void *MPI_libhandle;
 extern void *ISC_maphandle;
