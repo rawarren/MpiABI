@@ -29,10 +29,10 @@ MPI_Topo_test (MPI_Comm comm, int *status)
      mpi_return = (*VendorMPI_Topo_test)(local_a0[comm].mpi_const,&vendor_status);
     }
 
-    if (vendor_status == local_a1[MPI_CART].mpi_const) *status = MPI_CART;
-    else if (vendor_status == local_a1[MPI_GRAPH].mpi_const) *status = MPI_GRAPH;
-    else if (vendor_status == local_a1[MPI_DIST_GRAPH].mpi_const) *status = MPI_DIST_GRAPH;
-    else *status = MPI_UNDEFINED;
+    if (vendor_status == local_a1[ISC_CART].mpi_const) *status = ISC_CART;
+    else if (vendor_status == local_a1[ISC_GRAPH].mpi_const) *status = ISC_GRAPH;
+    else if (vendor_status == local_a1[ISC_DIST_GRAPH].mpi_const) *status = ISC_DIST_GRAPH;
+    else *status = ISC_UNDEFINED;
 
     return mpi_return;
 }

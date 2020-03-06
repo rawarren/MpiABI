@@ -13,7 +13,7 @@ MPI_Ineighbor_alltoallw (void *sendbuf, int sendcounts[], MPI_Aint sdispls[], MP
 {
     static void *address=0;
     int mpi_return;
-    int i, size;
+    int i, nnodes, csize;
     int neighbor_size;
 
     if (!address) {
@@ -24,14 +24,13 @@ MPI_Ineighbor_alltoallw (void *sendbuf, int sendcounts[], MPI_Aint sdispls[], MP
     }
     /* FIXME:
      * I need to find a way to determine how many senttypes and recvtypes
-     * to process.  My current approach attepts to something rational with
-     * sendcounts and checking for valid send/recv types.  This is obviously
-     * not the best way to work...
+     * to process. The following appears to work...
      */
-
-    MPI_Comm_size(comm,&size);
-    neighbor_size = 2;
-    while((sendcounts[neighbor_size+1] > 0) && (sendtypes[neighbor_size+1] < active_datatypes->how_many))
+    MPI_Comm_size(comm,&csize);
+    MPI_Graphdims_get(comm, &nnodes, &neighbor_size);
+    while((sendcounts[neighbor_size+1] > 0) &&
+	  (sendtypes[neighbor_size+1] > 0) &&
+	  (sendtypes[neighbor_size+1] < active_datatypes->how_many))
 	neighbor_size++;
 
     *request = new_index(active_requests);
@@ -52,9 +51,11 @@ MPI_Ineighbor_alltoallw (void *sendbuf, int sendcounts[], MPI_Aint sdispls[], MP
 	 sfill[i] = local_a0[sendtypes[i]].mpi_const;
        }
 
-       neighbor_size = 2;
-       while((recvcounts[neighbor_size+1] > 0) && (recvtypes[neighbor_size+1] < active_datatypes->how_many))
+       while((recvcounts[neighbor_size+1] > 0) &&
+	     (recvtypes[neighbor_size+1] > 0) &&
+	     (recvtypes[neighbor_size+1] < active_datatypes->how_many))
 	   neighbor_size++;
+
        for(i=0; i<neighbor_size; i++) {
 	 rfill[i] = local_a1[recvtypes[i]].mpi_const;
        }
@@ -87,8 +88,10 @@ MPI_Ineighbor_alltoallw (void *sendbuf, int sendcounts[], MPI_Aint sdispls[], MP
        for(i=0; i<neighbor_size; i++) {
 	 sfill[i] = local_a0[sendtypes[i]].mpi_const;
        }
-       neighbor_size = 2;
-       while((recvcounts[neighbor_size+1] > 0) && (recvtypes[neighbor_size+1] < active_datatypes->how_many))
+       // neighbor_size = 2;
+       while((recvcounts[neighbor_size+1] > 0) &&
+	     (recvtypes[neighbor_size+1] > 0) &&
+	     (recvtypes[neighbor_size+1] < active_datatypes->how_many))
 	   neighbor_size++;
 
        for(i=0; i<neighbor_size; i++) {
