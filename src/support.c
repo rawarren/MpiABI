@@ -42,6 +42,17 @@ isc_const *active_winassertbitfield=0;
 
 int callbacks_use_integers = 1;	/* Most common mode, e.g. MPICH and others */
 
+int _next_history_index = 0;
+#define HISTORY_SIZE 10
+char *MPI_Call_ring[HISTORY_SIZE];
+
+void _record_ftn_entry(char *ftn)
+{
+    MPI_Call_ring[_next_history_index++] = ftn;
+    if (_next_history_index == HISTORY_SIZE)
+	_next_history_index = 0;
+}
+
 #define N_OBJ_TYPES 15
 static struct {
   char *obj_name;

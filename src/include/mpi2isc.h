@@ -10,6 +10,10 @@ extern "C" {
 #include <dlfcn.h>
 #include "iscmpi_constants.h"
 
+extern void _record_ftn_entry(char *ftn);
+extern int _next_history_index;
+#define FTN_ENTER() _record_ftn_entry(__FUNCTION__)
+
 /* Our own typedefs */
 typedef long			 ISC_Aint;
 typedef long long		 ISC_Offset;

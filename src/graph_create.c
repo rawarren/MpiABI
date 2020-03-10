@@ -19,6 +19,7 @@ MPI_Graph_create (MPI_Comm comm_old, int nnodes, int *index, int *edges, int reo
       return -1;
     }
   }
+
   *comm_graph = new_index(active_comms);
   if (active_comms->use_ptrs) { api_use_ptrs *local_a0= active_comms->api_declared;
     api_use_ptrs *local_a1= active_comms->api_declared;
