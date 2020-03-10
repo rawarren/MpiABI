@@ -442,8 +442,9 @@ __resolve_ptr_builtin(int isc_index, char *symbol)
 {
   void *address = dlsym(MPI_libhandle,symbol);
   if (address && active_addrs) {
-    api_use_ptrs *objstore = active_addrs->api_declared;
-    objstore[isc_index].mpi_const = address;
+      int **pointer_reference = (int **)address;
+      api_use_ptrs *objstore = active_addrs->api_declared;
+      objstore[isc_index].mpi_const = *pointer_reference;
   }
 }
 
