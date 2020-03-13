@@ -19,16 +19,17 @@ MPI_Comm_spawn (char *command, char **argv, int maxprocs, MPI_Info info, int roo
       return -1;
     }
   }
+  *intercomm = new_index(active_comms);
   if (active_infos->use_ptrs) { api_use_ptrs *local_a0=active_infos->api_declared;
     api_use_ptrs *local_a1= active_comms->api_declared;
     api_use_ptrs *local_a2= active_comms->api_declared;
     int (*VendorMPI_Comm_spawn)(char *command,char **argv,int maxprocs,void *,int root,void *,void **, int *array_of_errcodes) = address;
-    mpi_return = (*VendorMPI_Comm_spawn)(command,ARGVNULL(argv),maxprocs,local_a0[info].mpi_const,root,local_a1[comm].mpi_const,&local_a2[*intercomm].mpi_const,array_of_errcodes);
+    mpi_return = (*VendorMPI_Comm_spawn)(command,ARGVNULL(argv),maxprocs,local_a0[info].mpi_const,root,local_a1[comm].mpi_const,&local_a2[*intercomm].mpi_const,ERRIGNORE(array_of_errcodes));
   } else { api_use_ints *local_a0=active_infos->api_declared;
     api_use_ints *local_a1= active_comms->api_declared;
     api_use_ints *local_a2= active_comms->api_declared;
     int (*VendorMPI_Comm_spawn)(char *command,char **argv,int maxprocs,int,int root,int,int *, int *array_of_errcodes) = address;
-    mpi_return = (*VendorMPI_Comm_spawn)(command,argv,maxprocs,local_a0[info].mpi_const,root,local_a1[comm].mpi_const,&local_a2[*intercomm].mpi_const,array_of_errcodes);
+    mpi_return = (*VendorMPI_Comm_spawn)(command,ARGVNULL(argv),maxprocs,local_a0[info].mpi_const,root,local_a1[comm].mpi_const,&local_a2[*intercomm].mpi_const,ERRIGNORE(array_of_errcodes));
   }
   return mpi_return;
 }

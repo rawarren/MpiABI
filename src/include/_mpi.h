@@ -38,6 +38,7 @@ extern "C" {
 /* We redefine all MPI constants to be ISC constants */
 #include "mpi2isc.h"
 
+#if 0
 typedef long			 MPI_Aint;
 typedef long long		 MPI_Offset;
 typedef unsigned long long       MPI_Count;
@@ -52,6 +53,7 @@ typedef unsigned int             MPI_Message;
 typedef unsigned int 		 MPI_File;
 typedef unsigned int             MPI_Info;
 typedef int                      MPI_Fint;
+#endif
 
 /* The following MPIX_Status_{get,set} functions
  * allow libraries such as mpi4py to utilize these

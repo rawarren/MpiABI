@@ -1416,44 +1416,62 @@ MPI_Finalize(void)
 
 int MPIX_Status_set_source(MPI_Status *status, int source)
 {
-    int ret = -1;
+    int ret = 0;
+    status->MPI_SOURCE = source;
+#if 0
     if (status_source_setter)
 	ret = status_source_setter((int *)status, source);
+#endif
     return ret;
 }
 
 int MPIX_Status_get_source(MPI_Status *status, int *source) {
-    int ret = -1;
+    int ret = 0;
+    *source = status->MPI_SOURCE;
+#if 0
     if (status_source_getter)
 	ret = status_source_getter((int *)status, source);
+#endif
     return ret;
 }
 
 int MPIX_Status_set_tag(MPI_Status *status, int tag) {
-    int ret = -1;
+    int ret = 0;
+    status->MPI_TAG = tag;
+#if 0
     if (status_tag_setter)
 	ret = status_tag_setter((int *)status, tag);
+#endif
     return ret;
 }
 
 int MPIX_Status_get_tag(MPI_Status *status, int *tag) {
-    int ret = -1;
+    int ret = 0;
+    *tag = status->MPI_TAG;
+#if 0
     if (status_tag_getter)
 	ret = status_tag_getter((int *)status, tag);
+#endif
     return ret;
 }
 
 int MPIX_Status_set_error(MPI_Status *status, int error) {
-    int ret = -1;
+    int ret = 0;
+    status->MPI_ERROR = error;
+#if 0
     if (status_error_setter)
 	ret = status_error_setter((int *)status, error);
+#endif
     return ret;
 }
 
 int MPIX_Status_get_error(MPI_Status *status, int *error) {
-    int ret = -1;
+    int ret = 0;
+    *error = status->MPI_ERROR;
+#if 0
     if (status_error_getter)
 	ret = status_error_getter((int *)status, error);
+#endif
     return ret;
 }
 

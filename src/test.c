@@ -6,6 +6,7 @@
  */
 
 #include <_mpi.h>
+#include <string.h>
 
 int
 MPI_Test (MPI_Request *request, int *flag, MPI_Status *status)
@@ -31,11 +32,9 @@ MPI_Test (MPI_Request *request, int *flag, MPI_Status *status)
 	  }
 	}
       } else {
-	int natstat[MAX_MPI_STATUS_SIZE] = {0,};
-	isc_status_to_native(1,(int *)status,natstat);
-	mpi_return = (*VendorMPI_Test)(&local_a0[*request].mpi_const,flag,natstat);
+	mpi_return = (*VendorMPI_Test)(&local_a0[*request].mpi_const,flag,status->reserved);
 	if (*flag) {
-	  native_status_to_isc(1,natstat,(int *)status);
+	  native_status_to_isc(1,status->reserved,(int *)status);
 	  if (local_a0[*request].mpi_const == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,*request);
 	    *request = ISC_REQUEST_NULL;
@@ -54,11 +53,9 @@ MPI_Test (MPI_Request *request, int *flag, MPI_Status *status)
 	  }
 	}
       } else {
-	int natstat[MAX_MPI_STATUS_SIZE] = {0,};
-	isc_status_to_native(1,(int *)status,natstat);
-	mpi_return = (*VendorMPI_Test)(&local_a0[*request].mpi_const,flag,natstat);
+	mpi_return = (*VendorMPI_Test)(&local_a0[*request].mpi_const,flag,status->reserved);
 	if (*flag) {
-	  native_status_to_isc(1,natstat,(int *)status);
+	  native_status_to_isc(1,status->reserved,(int *)status);
 	  if (local_a0[*request].mpi_const == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,*request);
 	    *request = ISC_REQUEST_NULL;

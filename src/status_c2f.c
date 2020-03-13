@@ -19,8 +19,8 @@ MPI_Status_c2f (MPI_Status *c_status, MPI_Fint *f_status)
 	    return -1;
 	}
     }
-
-    int (*VendorMPI_Status_c2f) (MPI_Status *c_status, MPI_Fint *f_status) = address;
-    mpi_return = (*VendorMPI_Status_c2f)(c_status,f_status);
-return mpi_return;
+    int (*VendorMPI_Status_c2f) (void *c_status, int *f_status) = address;
+    isc_status_to_native(1, (int *)c_status, c_status->reserved);
+    mpi_return = (*VendorMPI_Status_c2f)(&c_status->reserved,f_status);
+    return mpi_return;
 }

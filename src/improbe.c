@@ -12,7 +12,6 @@ MPI_Improbe (int source, int tag, MPI_Comm comm, int *flag, MPI_Message *message
 {
   static void *address=0;
   int mpi_return = MPI_SUCCESS;
-  int natstat[MAX_MPI_STATUS_SIZE] = {0,};
 
   if (!address) {
     if ((address = dlsym(MPI_libhandle,"MPI_Improbe")) == NULL) {
@@ -40,7 +39,7 @@ MPI_Improbe (int source, int tag, MPI_Comm comm, int *flag, MPI_Message *message
 
       int (*VendorMPI_Improbe)(int source,int tag,void *, int *, void **, MPI_Status *) = address;
       mpi_return = (*VendorMPI_Improbe)(ANYSRC(source),ANYTAG(tag),local_a0[comm].mpi_const, flag, &native_ptr, SIGNORE(status));
-      if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,natstat,(int *)status);
+      if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,status->reserved,(int *)status);
       if (msgIndex > 0) local_a1[msgIndex].mpi_const = native_ptr;
     } else {
       api_use_ints *local_a0= active_comms->api_declared;
@@ -58,7 +57,7 @@ MPI_Improbe (int source, int tag, MPI_Comm comm, int *flag, MPI_Message *message
       }
       int (*VendorMPI_Improbe)(int source,int tag, int, int *, int *, MPI_Status *status) = address;
       mpi_return = (*VendorMPI_Improbe)(ANYSRC(source),ANYTAG(tag),local_a0[comm].mpi_const, flag, &native_int, SIGNORE(status));
-      if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,natstat,(int *)status);
+      if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,status->reserved,(int *)status);
       if (msgIndex > 0) local_a1[msgIndex].mpi_const = native_int;
     }
 

@@ -37,10 +37,10 @@ MPI_Testall (int count, MPI_Request array_of_requests[], int *flag, MPI_Status a
 	api_use_ptrs *local_a1=active_addrs->api_declared;
 	mpi_return = (*VendorMPI_Testall)(count,rfill,flag,local_a1[ISC_STATUS_IGNORE].mpi_const);
       } else {
-	int *natstat = (int *) calloc(count,true_mpi_status_size);
-	mpi_return = (*VendorMPI_Testall)(count,rfill,flag,natstat);
-	i = native_status_to_isc(count,natstat,(int *)array_of_statuses);
-	free(natstat);
+	  int *natstat = (int *) calloc(count,true_mpi_status_size);
+	  mpi_return = (*VendorMPI_Testall)(count,rfill,flag,natstat);
+	  i = native_status_to_isc(count,natstat,(int *)array_of_statuses);
+	  free(natstat);
       }
 
       for(i=0; i<count; i++) {
@@ -68,10 +68,10 @@ MPI_Testall (int count, MPI_Request array_of_requests[], int *flag, MPI_Status a
 	api_use_ptrs *local_a1=active_addrs->api_declared;
 	mpi_return = (*VendorMPI_Testall)(count,rfill,flag,local_a1[ISC_STATUS_IGNORE].mpi_const);
       } else {
-	int *natstat = (int *) calloc(count,true_mpi_status_size);
-	mpi_return = (*VendorMPI_Testall)(count,rfill,flag,natstat);
-	i = native_status_to_isc(count,natstat,(int *)array_of_statuses);
-	free(natstat);
+	  int *natstat = (int *) calloc(count,true_mpi_status_size);
+	  mpi_return = (*VendorMPI_Testall)(count,rfill,flag,natstat);
+	  i = native_status_to_isc(count,natstat,(int *)array_of_statuses);
+	  free(natstat);
       }
       for(i=0; i<count; i++) {
 	if (rfill[i] == local_a0[MPI_REQUEST_NULL].mpi_const) {

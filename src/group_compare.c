@@ -28,5 +28,6 @@ MPI_Group_compare (MPI_Group group1, MPI_Group group2, int *result)
     int (*VendorMPI_Group_compare)(int,int, int *result) = address;
     mpi_return = (*VendorMPI_Group_compare)(local_a0[group1].mpi_const,local_a1[group2].mpi_const,result);
   }
+  
   return mpi_return;
 }

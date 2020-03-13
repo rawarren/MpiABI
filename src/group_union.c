@@ -29,7 +29,6 @@ MPI_Group_union (MPI_Group group1, MPI_Group group2, MPI_Group *newgroup)
       free_index(active_groups,*newgroup);
       *newgroup = MPI_GROUP_NULL;
     }
-
   } else { api_use_ints *local_a0=active_groups->api_declared;
     api_use_ints *local_a1=active_groups->api_declared;
     api_use_ints *local_a2=active_groups->api_declared;
@@ -39,7 +38,6 @@ MPI_Group_union (MPI_Group group1, MPI_Group group2, MPI_Group *newgroup)
       free_index(active_groups,*newgroup);
       *newgroup = MPI_GROUP_NULL;
     }
-
   }
   return mpi_return;
 }

@@ -24,16 +24,16 @@ MPI_Comm_free (MPI_Comm *comm)
     void *native_comm = local_a0[*comm].mpi_const;
     mpi_return = (*VendorMPI_Comm_free)(&native_comm);
     if (native_comm == local_a0[ISC_COMM_NULL].mpi_const) {
-      free_index(active_comms,*comm);
-      *comm = MPI_COMM_NULL;
+	if(*comm >= active_comms->permlimit) free_index(active_comms,*comm);
+	*comm = MPI_COMM_NULL;
     }
   } else { api_use_ints *local_a0= active_comms->api_declared;
     int (*VendorMPI_Comm_free)(int *) = address;
     int native_comm = local_a0[*comm].mpi_const;
     mpi_return = (*VendorMPI_Comm_free)(&native_comm);
     if (native_comm == local_a0[ISC_COMM_NULL].mpi_const) {
-      free_index(active_comms,*comm);
-      *comm = MPI_COMM_NULL;
+	if(*comm >= active_comms->permlimit) free_index(active_comms,*comm);
+	*comm = MPI_COMM_NULL;
     }
   }
   return mpi_return;

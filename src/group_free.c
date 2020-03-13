@@ -21,6 +21,10 @@ MPI_Group_free (MPI_Group *group)
   }
   if (active_groups->use_ptrs) { api_use_ptrs *local_a0=active_groups->api_declared;
     int (*VendorMPI_Group_free)(void **) = address;
+    if (*group < active_groups->permlimit) {
+	*group = MPI_GROUP_NULL;
+	return MPI_SUCCESS;
+    }
     mpi_return = (*VendorMPI_Group_free)(&local_a0[*group].mpi_const);
     if (local_a0[*group].mpi_const == local_a0[MPI_GROUP_NULL].mpi_const) {
       free_index(active_groups,*group);
@@ -29,6 +33,10 @@ MPI_Group_free (MPI_Group *group)
 
   } else { api_use_ints *local_a0=active_groups->api_declared;
     int (*VendorMPI_Group_free)(int *) = address;
+    if (*group < active_groups->permlimit) {
+	*group = MPI_GROUP_NULL;
+	return MPI_SUCCESS;
+    }
     mpi_return = (*VendorMPI_Group_free)(&local_a0[*group].mpi_const);
     if (local_a0[*group].mpi_const == local_a0[MPI_GROUP_NULL].mpi_const) {
       free_index(active_groups,*group);

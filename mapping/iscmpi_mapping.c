@@ -1110,127 +1110,68 @@ get_vendor_mpilib(void)
 extern int ISC_Error_class(int, int *);
 extern int ISC_Error_string(int, char *, int *);
 
-int map_errcode_to_isc(int native_err)
+static inline int __map_errcode_to_isc(int native_err)
 {
-  switch(native_err)
-    {
-    case MPI_ERR_BUFFER      : return ISC_ERR_BUFFER;
-      break;
-    case MPI_ERR_COUNT       : return ISC_ERR_COUNT;
-      break;
-    case MPI_ERR_TYPE        : return ISC_ERR_TYPE;
-      break;
-    case MPI_ERR_TAG         : return ISC_ERR_TAG;
-      break;
-    case MPI_ERR_COMM        : return ISC_ERR_COMM;
-      break;
-    case MPI_ERR_RANK        : return ISC_ERR_RANK;
-      break;
-    case MPI_ERR_ROOT        : return ISC_ERR_ROOT;
-      break;
-    case MPI_ERR_GROUP       : return ISC_ERR_GROUP;
-      break;
-    case MPI_ERR_OP          : return ISC_ERR_OP;
-      break;
-    case MPI_ERR_TOPOLOGY   : return ISC_ERR_TOPOLOGY;
-      break;
-    case MPI_ERR_DIMS       : return ISC_ERR_DIMS;
-      break;
-    case MPI_ERR_ARG        : return ISC_ERR_ARG;
-      break;
-    case MPI_ERR_UNKNOWN    : return ISC_ERR_UNKNOWN;
-      break;
-    case MPI_ERR_TRUNCATE   : return ISC_ERR_TRUNCATE;
-      break;
-    case MPI_ERR_OTHER      : return ISC_ERR_OTHER;
-      break;
-    case MPI_ERR_INTERN     : return ISC_ERR_INTERN;
-      break;
-    case MPI_ERR_IN_STATUS  : return ISC_ERR_IN_STATUS;
-      break;
-    case MPI_ERR_PENDING    : return ISC_ERR_PENDING;
-      break;
-    case MPI_ERR_REQUEST    : return ISC_ERR_REQUEST;
-      break;
-    case MPI_ERR_ACCESS     : return ISC_ERR_ACCESS;
-      break;
-    case MPI_ERR_AMODE      : return ISC_ERR_AMODE;
-      break;
-    case MPI_ERR_BAD_FILE   : return ISC_ERR_BAD_FILE;
-      break;
-    case MPI_ERR_CONVERSION : return ISC_ERR_CONVERSION;
-      break;
-    case MPI_ERR_DUP_DATAREP: return ISC_ERR_DUP_DATAREP;
-      break;
-    case MPI_ERR_FILE_EXISTS: return ISC_ERR_FILE_EXISTS;
-      break;
-    case MPI_ERR_FILE_IN_USE: return ISC_ERR_FILE_IN_USE;
-      break;
-    case MPI_ERR_FILE       : return ISC_ERR_FILE;
-      break;
-    case MPI_ERR_INFO       : return ISC_ERR_INFO;
-      break;
-    case MPI_ERR_INFO_KEY   : return ISC_ERR_INFO_KEY;
-      break;
-    case MPI_ERR_INFO_VALUE : return ISC_ERR_INFO_VALUE;
-      break;
-    case MPI_ERR_INFO_NOKEY : return ISC_ERR_INFO_NOKEY;
-      break;
-    case MPI_ERR_IO         : return ISC_ERR_IO;
-      break;
-    case MPI_ERR_NAME       : return ISC_ERR_NAME;
-      break;
-    case MPI_ERR_NO_MEM     : return ISC_ERR_NO_MEM;
-      break;
-    case MPI_ERR_NOT_SAME   : return ISC_ERR_NOT_SAME;
-      break;
-    case MPI_ERR_NO_SPACE   : return ISC_ERR_NO_SPACE;
-      break;
-    case MPI_ERR_NO_SUCH_FILE: return ISC_ERR_NO_SUCH_FILE;
-      break;
-    case MPI_ERR_PORT       : return ISC_ERR_PORT;
-      break;
-    case MPI_ERR_QUOTA      : return ISC_ERR_QUOTA;
-      break;
-    case MPI_ERR_READ_ONLY  : return ISC_ERR_READ_ONLY;
-      break;
-    case MPI_ERR_SERVICE    : return ISC_ERR_SERVICE;
-      break;
-    case MPI_ERR_SPAWN      : return ISC_ERR_SPAWN;
-      break;
-    case MPI_ERR_UNSUPPORTED_DATAREP  : return ISC_ERR_UNSUPPORTED_DATAREP;
-      break;
-    case MPI_ERR_UNSUPPORTED_OPERATION: return ISC_ERR_UNSUPPORTED_OPERATION;
-      break;
-    case MPI_ERR_WIN        : return ISC_ERR_WIN;
-      break;
-    case MPI_ERR_BASE       : return ISC_ERR_BASE;
-      break;
-    case MPI_ERR_LOCKTYPE   : return ISC_ERR_LOCKTYPE;
-      break;
-    case MPI_ERR_KEYVAL     : return ISC_ERR_KEYVAL;
-      break;
-    case MPI_ERR_RMA_CONFLICT: return ISC_ERR_RMA_CONFLICT;
-      break;
-    case MPI_ERR_RMA_SYNC   : return ISC_ERR_RMA_SYNC;
-      break;
-    case MPI_ERR_SIZE       : return ISC_ERR_SIZE;
-      break;
-    case MPI_ERR_DISP       : return ISC_ERR_DISP;
-      break;
-    case MPI_ERR_ASSERT     : return ISC_ERR_ASSERT;
-      break;
-    case MPI_ERR_RMA_RANGE : return ISC_ERR_RMA_RANGE;
-      break;
-    case MPI_ERR_RMA_ATTACH: return ISC_ERR_RMA_ATTACH;
-      break;
-    case MPI_ERR_RMA_SHARED: return ISC_ERR_RMA_SHARED;
-      break;
-    case MPI_ERR_RMA_FLAVOR: return ISC_ERR_RMA_FLAVOR;
-    default:
-      break;
-    }
-    return ISC_ERR_INTERN;
+    static int last_error;
+    if (native_err == MPI_ERR_BUFFER)     return (last_error = ISC_ERR_BUFFER);
+    if (native_err == MPI_ERR_BUFFER)     return (last_error = ISC_ERR_BUFFER);
+    if (native_err == MPI_ERR_COUNT)      return (last_error = ISC_ERR_COUNT);
+    if (native_err == MPI_ERR_TYPE)       return (last_error = ISC_ERR_TYPE);
+    if (native_err == MPI_ERR_TAG)        return (last_error = ISC_ERR_TAG);
+    if (native_err == MPI_ERR_COMM)       return (last_error = ISC_ERR_COMM);
+    if (native_err == MPI_ERR_RANK)       return (last_error = ISC_ERR_RANK);
+    if (native_err == MPI_ERR_ROOT)       return (last_error = ISC_ERR_ROOT);
+    if (native_err == MPI_ERR_GROUP)      return (last_error = ISC_ERR_GROUP);
+    if (native_err == MPI_ERR_OP)         return (last_error = ISC_ERR_OP);
+    if (native_err == MPI_ERR_TOPOLOGY)   return (last_error = ISC_ERR_TOPOLOGY);
+    if (native_err == MPI_ERR_DIMS)       return (last_error = ISC_ERR_DIMS);
+    if (native_err == MPI_ERR_ARG)        return (last_error = ISC_ERR_ARG);
+    if (native_err == MPI_ERR_UNKNOWN)    return (last_error = ISC_ERR_UNKNOWN);
+    if (native_err == MPI_ERR_TRUNCATE)   return (last_error = ISC_ERR_TRUNCATE);
+    if (native_err == MPI_ERR_OTHER)      return (last_error = ISC_ERR_OTHER);
+    if (native_err == MPI_ERR_INTERN)     return (last_error = ISC_ERR_INTERN);
+    if (native_err == MPI_ERR_IN_STATUS)  return (last_error = ISC_ERR_IN_STATUS);
+    if (native_err == MPI_ERR_PENDING)    return (last_error = ISC_ERR_PENDING);
+    if (native_err == MPI_ERR_REQUEST)    return (last_error = ISC_ERR_REQUEST);
+    if (native_err == MPI_ERR_ACCESS)     return (last_error = ISC_ERR_ACCESS);
+    if (native_err == MPI_ERR_AMODE)      return (last_error = ISC_ERR_AMODE);
+    if (native_err == MPI_ERR_BAD_FILE)   return (last_error = ISC_ERR_BAD_FILE);
+    if (native_err == MPI_ERR_CONVERSION) return (last_error = ISC_ERR_CONVERSION);
+    if (native_err == MPI_ERR_DUP_DATAREP) return (last_error = ISC_ERR_DUP_DATAREP);
+    if (native_err == MPI_ERR_FILE_EXISTS) return (last_error = ISC_ERR_FILE_EXISTS);
+    if (native_err == MPI_ERR_FILE_IN_USE) return (last_error = ISC_ERR_FILE_IN_USE);
+    if (native_err == MPI_ERR_FILE)       return (last_error = ISC_ERR_FILE);
+    if (native_err == MPI_ERR_INFO)       return (last_error = ISC_ERR_INFO);
+    if (native_err == MPI_ERR_INFO_KEY)   return (last_error = ISC_ERR_INFO_KEY);
+    if (native_err == MPI_ERR_INFO_VALUE) return (last_error = ISC_ERR_INFO_VALUE);
+    if (native_err == MPI_ERR_INFO_NOKEY) return (last_error = ISC_ERR_INFO_NOKEY);
+    if (native_err == MPI_ERR_IO)         return (last_error = ISC_ERR_IO);
+    if (native_err == MPI_ERR_NAME)       return (last_error = ISC_ERR_NAME);
+    if (native_err == MPI_ERR_NO_MEM)     return (last_error = ISC_ERR_NO_MEM);
+    if (native_err == MPI_ERR_NOT_SAME)   return (last_error = ISC_ERR_NOT_SAME);
+    if (native_err ==  MPI_ERR_NO_SPACE)  return (last_error = ISC_ERR_NO_SPACE);
+    if (native_err == MPI_ERR_NO_SUCH_FILE) return (last_error = ISC_ERR_NO_SUCH_FILE);
+    if (native_err == MPI_ERR_PORT)       return (last_error = ISC_ERR_PORT);
+    if (native_err == MPI_ERR_QUOTA)      return (last_error = ISC_ERR_QUOTA);
+    if (native_err == MPI_ERR_READ_ONLY)  return (last_error = ISC_ERR_READ_ONLY);
+    if (native_err == MPI_ERR_SERVICE)    return (last_error = ISC_ERR_SERVICE);
+    if (native_err == MPI_ERR_SPAWN)      return (last_error = ISC_ERR_SPAWN);
+    if (native_err == MPI_ERR_UNSUPPORTED_DATAREP) return (last_error = ISC_ERR_UNSUPPORTED_DATAREP);
+    if (native_err == MPI_ERR_UNSUPPORTED_OPERATION) return (last_error = ISC_ERR_UNSUPPORTED_OPERATION);
+    if (native_err == MPI_ERR_WIN)        return (last_error = ISC_ERR_WIN);
+    if (native_err == MPI_ERR_BASE)       return (last_error = ISC_ERR_BASE);
+    if (native_err == MPI_ERR_LOCKTYPE)   return (last_error = ISC_ERR_LOCKTYPE);
+    if (native_err == MPI_ERR_KEYVAL)     return (last_error = ISC_ERR_KEYVAL);
+    if (native_err == MPI_ERR_RMA_CONFLICT) return (last_error = ISC_ERR_RMA_CONFLICT);
+    if (native_err == MPI_ERR_RMA_SYNC)   return (last_error = ISC_ERR_RMA_SYNC);
+    if (native_err == MPI_ERR_SIZE)       return (last_error = ISC_ERR_SIZE);
+    if (native_err == MPI_ERR_DISP)       return (last_error = ISC_ERR_DISP);
+    if (native_err == MPI_ERR_ASSERT)     return (last_error = ISC_ERR_ASSERT);
+    if (native_err == MPI_ERR_RMA_RANGE)  return (last_error = ISC_ERR_RMA_RANGE);
+    if (native_err == MPI_ERR_RMA_ATTACH) return (last_error = ISC_ERR_RMA_ATTACH);
+    if (native_err == MPI_ERR_RMA_SHARED) return (last_error = ISC_ERR_RMA_SHARED);
+    if (native_err == MPI_ERR_RMA_FLAVOR) return (last_error = ISC_ERR_RMA_FLAVOR);
+    return (last_error = ISC_ERR_INTERN);
 }
       
 int native_mpi_status_size = sizeof(MPI_Status);
@@ -1239,6 +1180,7 @@ int get_native_mpi_status_size(void)
     return native_mpi_status_size;
 }
 
+#if 1
 int set_native_status_source(ISC_Status *iscStat, int source) {
     MPI_Status *nativeStat = (MPI_Status *)&iscStat->reserved;
     iscStat->MPI_SOURCE = source;
@@ -1280,8 +1222,37 @@ int get_native_status_error(ISC_Status *iscStat, int *error) {
     iscStat->MPI_ERROR = *error;
     return 0;
 }
+#else
+int set_native_status_source(MPI_Status *nativeStat, int source) {
+    nativeStat->MPI_SOURCE = source;
+    return 0;
+}
 
+int get_native_status_source(MPI_Status *nativeStat, int *source) {
+    *source = nativeStat->MPI_SOURCE;
+    return 0;
+}
 
+int set_native_status_tag(MPI_Status *nativeStat, int tag) {
+    nativeStat->MPI_TAG = tag;
+    return 0;
+}
+
+int get_native_status_tag(MPI_Status *nativeStat, int *tag) {
+    *tag = nativeStat->MPI_TAG;
+    return 0;
+}
+
+int set_native_status_error(MPI_Status *nativeStat, int error) {
+    nativeStat->MPI_ERROR = error;
+    return 0;
+}
+
+int get_native_status_error(MPI_Status *nativeStat, int *error) {
+    *error = nativeStat->MPI_ERROR;
+    return 0;
+}
+#endif
 
 int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscStat)
 {
@@ -1298,6 +1269,8 @@ int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscS
    
     if (nativeStat[i].MPI_SOURCE == MPI_PROC_NULL)
 	source = ISC_PROC_NULL;
+    else if (nativeStat[i].MPI_SOURCE == MPI_ANY_SOURCE)
+	source = ISC_ANY_SOURCE;
     else source = nativeStat[i].MPI_SOURCE;
     memcpy(&iscStat[i].MPI_SOURCE, &source, sizeof(int));
 
@@ -1308,11 +1281,15 @@ int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscS
 
     err_status = nativeStat[i].MPI_ERROR;
     if (err_status > 0) {
+      int iscError;
+#if 0
       int errlen;
       char ErrorMsg[MPI_MAX_ERROR_STRING];
       int rc = ISC_Error_string(err_status, ErrorMsg, &errlen);
       printf("MPI error: %s\n", ErrorMsg);
-      iscStat[i].MPI_ERROR = map_errcode_to_isc(err_status);
+#endif
+      iscError = __map_errcode_to_isc(err_status);
+      memcpy(&iscStat[i].MPI_ERROR,&iscError, sizeof(int));
     } 
     memcpy(iscStat[i].reserved,&nativeStat[i], sizeof(MPI_Status));
   }
@@ -1335,6 +1312,8 @@ int isc_mpi_status_to_native(int count, ISC_Status *iscStat, MPI_Status *nativeS
 	/* MPI_SOURCE */
 	if (iscStat[i].MPI_SOURCE == ISC_PROC_NULL)
 	    source = MPI_PROC_NULL;
+	else if (iscStat[i].MPI_SOURCE == ISC_ANY_SOURCE)
+	    source = MPI_ANY_SOURCE;
 	else source = iscStat[i].MPI_SOURCE;
 	memcpy(&nativeStat[i].MPI_SOURCE, &source, sizeof(int));
 

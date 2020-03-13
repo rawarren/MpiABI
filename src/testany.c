@@ -22,7 +22,7 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
     }
     if (active_requests->use_ptrs) { api_use_ptrs *local_a0=active_requests->api_declared;
       int i;
-      int (*VendorMPI_Testany)(int count,void **,int *index,int *, int *natstat) = address;
+      int (*VendorMPI_Testany)(int count,void **,int *index,int *, int *) = address;
       void *temp[64],**rtemp=0,**rfill;
 
       if (count > 64) 
@@ -43,10 +43,9 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
 	}
 
       } else {
-	int natstat[MAX_MPI_STATUS_SIZE] = {0,};
-	mpi_return = (*VendorMPI_Testany)(count,rfill,index,flag,natstat);
+	mpi_return = (*VendorMPI_Testany)(count,rfill,index,flag,status->reserved);
 	if (*flag) {
-	  i = native_status_to_isc(1,natstat,(int *)status);
+	  i = native_status_to_isc(1,status->reserved,(int *)status);
 	  if (rfill[*index] == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,array_of_requests[*index]);
 	    array_of_requests[*index] = MPI_REQUEST_NULL;
@@ -56,7 +55,7 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
       if (rtemp) free(rtemp);
     } else { api_use_ints *local_a0=active_requests->api_declared;
       int i;
-      int (*VendorMPI_Testany)(int count,int *,int *index,int *flag, int *natstat) = address;
+      int (*VendorMPI_Testany)(int count,int *,int *index,int *flag, int *) = address;
       int temp[64],*rtemp=0,*rfill;
 
       if (count > 64) 
@@ -76,10 +75,9 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
 	  }
 	}
       } else {
-	int natstat[MAX_MPI_STATUS_SIZE] = {0,};
-	mpi_return = (*VendorMPI_Testany)(count,rfill,index,flag,natstat);
+	mpi_return = (*VendorMPI_Testany)(count,rfill,index,flag,status->reserved);
 	if (*flag) {
-	  i = native_status_to_isc(1,natstat,(int *)status);
+	  i = native_status_to_isc(1,status->reserved,(int *)status);
 	  if (rfill[*index] == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,array_of_requests[*index]);
 	    array_of_requests[*index] = MPI_REQUEST_NULL;
