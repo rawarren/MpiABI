@@ -37,6 +37,7 @@ SGIICE_INCLUDE = -IVENDOR/SGI/include
 OMPI_INCLUDE = -I$(HOME)/openmpi-install/include
 OMPI4_INCLUDE = -I$(HOME)/openmpi-install-4.0.0/include
 OMPI401_INCLUDE = -I$(HOME)/openmpi-install-4.0.1/include
+OMPI403_INCLUDE = -I$(HOME)/openmpi-install-4.0.3/include
 
 default:	install
 
@@ -86,6 +87,10 @@ openmpi4_map:
 openmpi401_map: 
 	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(OMPI401_INCLUDE) -DOPENMPI -DVENDOR_MPI_SO=\"libmpi.so\" \
         $(MAP_SRCDIR)/iscmpi_mapping.c -L$(HOME)/openmpi-install-4.0.1/lib -lmpi -o $(ABIDIR)/mapper/OpenMPI401/isc_mapping.so
+
+openmpi403_map:
+	$(CC) $(CFLAGS) -I$(ISCMPI_INCLUDE) $(OMPI401_INCLUDE) -DOPENMPI -DVENDOR_MPI_SO=\"libmpi.so\" \
+        $(MAP_SRCDIR)/iscmpi_mapping.c -L$(HOME)/openmpi-install-4.0.3/lib -lmpi -o $(ABIDIR)/mapper/OpenMPI403/isc_mapping.so
 
 maplibs: intel_map hpmpi_map openmpi_map
 

@@ -143,8 +143,10 @@ DLLDEF int MPI_Reduce(void* , void*, int, MPI_Datatype, MPI_Op, int, MPI_Comm);
 DLLDEF int MPI_Reduce_local(void* , void*, int, MPI_Datatype, MPI_Op);
 DLLDEF int MPI_Op_create(MPI_User_function *, int, MPI_Op *);
 DLLDEF int MPI_Op_free( MPI_Op *);
+DLLDEF int MPI_Op_commutative( MPI_Op , int *);
 DLLDEF int MPI_Allreduce(void* , void*, int, MPI_Datatype, MPI_Op, MPI_Comm);
 DLLDEF int MPI_Reduce_scatter(void* , void*, int *, MPI_Datatype, MPI_Op, MPI_Comm);
+DLLDEF int MPI_Reduce_scatter_block(void* , void*, int, MPI_Datatype, MPI_Op, MPI_Comm);
 DLLDEF int MPI_Scan(void* , void*, int, MPI_Datatype, MPI_Op, MPI_Comm );
 DLLDEF int MPI_Group_size(MPI_Group, int *);
 DLLDEF int MPI_Group_rank(MPI_Group, int *);
@@ -249,6 +251,8 @@ DLLDEF int MPI_Put(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
 	    MPI_Win);
 DLLDEF int MPI_Win_complete(MPI_Win);
 DLLDEF int MPI_Win_create(void *, MPI_Aint, int, MPI_Info, MPI_Comm, MPI_Win *);
+DLLDEF int MPI_Win_allocate(MPI_Aint, int, MPI_Info, MPI_Comm, void *, MPI_Win *);
+DLLDEF int MPI_Win_allocate_shared(MPI_Aint, int, MPI_Info, MPI_Comm, void *, MPI_Win *);
 DLLDEF int MPI_Win_fence(int, MPI_Win);
 DLLDEF int MPI_Win_free(MPI_Win *);
 DLLDEF int MPI_Win_get_group(MPI_Win, MPI_Group *);
@@ -430,7 +434,11 @@ DLLDEF int MPI_File_write_at_all(MPI_File, MPI_Offset, void *,
 	      int, MPI_Datatype, MPI_Status *);
 DLLDEF int MPI_File_iread_at(MPI_File, MPI_Offset, void *,
 	      int, MPI_Datatype, MPIO_Request *);
+DLLDEF int MPI_File_iread_at_all(MPI_File, MPI_Offset, void *,
+	      int, MPI_Datatype, MPIO_Request *);
 DLLDEF int MPI_File_iwrite_at(MPI_File, MPI_Offset, void *,
+	      int, MPI_Datatype, MPIO_Request *);
+DLLDEF int MPI_File_iwrite_at_all(MPI_File, MPI_Offset, void *,
 	      int, MPI_Datatype, MPIO_Request *);
 
 /* Section 9.4.3 */

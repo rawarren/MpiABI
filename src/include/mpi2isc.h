@@ -315,6 +315,7 @@ typedef struct {
 
 /* Info objects */
 #define MPI_INFO_NULL            ISC_INFO_NULL
+#define MPI_INFO_ENV             ISC_INFO_ENV
 
 /* Window objects */
 #define MPI_WIN_NULL             ISC_WIN_NULL
@@ -510,8 +511,10 @@ typedef struct {
 #define MPI_Reduce_local ISC_Reduce_local
 #define MPI_Op_create ISC_Op_create
 #define MPI_Op_free ISC_Op_free
+#define MPI_Op_commutative ISC_Op_commutative
 #define MPI_Allreduce ISC_Allreduce
 #define MPI_Reduce_scatter ISC_Reduce_scatter
+#define MPI_Reduce_scatter_block ISC_Reduce_scatter_block
 #define MPI_Scan ISC_Scan
 #define MPI_Group_size ISC_Group_size
 #define MPI_Group_rank ISC_Group_rank
@@ -596,6 +599,8 @@ typedef struct {
 #define MPI_Put ISC_Put
 #define MPI_Win_complete ISC_Win_complete
 #define MPI_Win_create ISC_Win_create
+#define MPI_Win_allocate ISC_Win_allocate
+#define MPI_Win_allocate_shared ISC_Win_allocate_shared
 #define MPI_Win_fence ISC_Win_fence
 #define MPI_Win_free ISC_Win_free
 #define MPI_Win_get_group ISC_Win_get_group
@@ -605,6 +610,8 @@ typedef struct {
 #define MPI_Win_test ISC_Win_test
 #define MPI_Win_unlock ISC_Win_unlock
 #define MPI_Win_wait ISC_Win_wait
+#define MPI_Win_allocate ISC_Win_allocate
+#define MPI_Win_allocate_shared ISC_Win_allocate_shared
 #define MPI_Alloc_mem ISC_Alloc_mem
 #define MPI_Free_mem ISC_Free_mem   
 #define MPI_Alltoallw ISC_Alltoallw
@@ -709,13 +716,17 @@ typedef struct {
 #define MPI_File_write_at ISC_File_write_at
 #define MPI_File_write_at_all ISC_File_write_at_all
 #define MPI_File_iread_at ISC_File_iread_at
+#define MPI_File_iread_at_all ISC_File_iread_at_all
 #define MPI_File_iwrite_at ISC_File_iwrite_at
+#define MPI_File_iwrite_at_all ISC_File_iwrite_at_all
 #define MPI_File_read ISC_File_read
 #define MPI_File_read_all ISC_File_read_all
 #define MPI_File_write ISC_File_write
 #define MPI_File_write_all ISC_File_write_all
 #define MPI_File_iread ISC_File_iread
 #define MPI_File_iwrite ISC_File_iwrite
+#define MPI_File_iread_all ISC_File_iread_all
+#define MPI_File_iwrite_all ISC_File_iwrite_all
 #define MPI_File_seek ISC_File_seek
 #define MPI_File_get_position ISC_File_get_position
 #define MPI_File_get_byte_offset ISC_File_get_byte_offset
