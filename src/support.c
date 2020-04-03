@@ -77,8 +77,9 @@ static struct {
 
 
 int true_mpi_status_size=0;
+int (*native_status_to_isc_no_error)(int count, int *native_stat, int *isc_stat) = 0;
 int (*native_status_to_isc)(int count, int *native_stat, int *isc_stat) = 0;
-int (*isc_status_to_native)(int count, int *native_stat, int *isc_stat) = 0;
+int (*isc_status_to_native)(int count, int *isc_stat, int *native_stat) = 0;
 int (*status_source_setter)(int *isc_stat, int source) = 0;
 int (*status_source_getter)(int *isc_stat, int *source) = 0;
 int (*status_tag_setter)(int *isc_stat, int tag) = 0;
@@ -473,12 +474,18 @@ resolve_mpi_constants(void)
 		      128);	/* Initial bucket size */
   }
 
+  address = dlsym(libhandle,"native_mpi_status_to_isc_no_error");
+  if (address == 0) {
+    printf("No support for native_status_to_isc!\n");
+  }
+  else native_status_to_isc_no_error = address;
+
   address = dlsym(libhandle,"native_mpi_status_to_isc");
   if (address == 0) {
     printf("No support for native_status_to_isc!\n");
   }
   else native_status_to_isc = address;
-
+  
   address = dlsym(libhandle,"isc_mpi_status_to_native");
   if (address == 0) {
     printf("No support for isc_status_to_native!\n");
@@ -573,6 +580,8 @@ static keyvalpair_t *comm_attr_copy_callbacks = NULL;
 static keyvalpair_t *comm_attr_delete_callbacks = NULL;
 static keyvalpair_t *datatype_attr_copy_callbacks = NULL;
 static keyvalpair_t *datatype_attr_delete_callbacks = NULL;
+static keyvalpair_t *win_attr_copy_callbacks = NULL;
+static keyvalpair_t *win_attr_delete_callbacks = NULL;
 
 static pthread_mutex_t funnel_new_callback;
 
@@ -590,6 +599,10 @@ int save_user_copy_callback(void *copyfn, int keyval, callback_t this_callback_t
   else if (this_callback_type == DATATYPE_CALLBACK) {
     new_callback->next = datatype_attr_copy_callbacks;
     datatype_attr_copy_callbacks = new_callback;
+  }
+  else if (this_callback_type == 3) {
+    new_callback->next = win_attr_copy_callbacks;
+    win_attr_copy_callbacks = new_callback;
   }
   UNLOCK(funnel_new_callback,__LINE__);
   return 0;
@@ -609,6 +622,10 @@ int save_user_delete_callback(void *delfn, int keyval, callback_t this_callback_
   else if (this_callback_type == DATATYPE_CALLBACK) {
     new_callback->next = datatype_attr_delete_callbacks;
     datatype_attr_delete_callbacks = new_callback;
+  }
+  else if (this_callback_type == WIN_CALLBACK) {
+    new_callback->next = win_attr_delete_callbacks;
+    win_attr_delete_callbacks = new_callback;
   }
   UNLOCK(funnel_new_callback, __LINE__);
   return 0;
@@ -780,6 +797,10 @@ int attr_reference_exists(int keyval, callback_t callback_type)
     references = count_references(keyval, datatype_attr_copy_callbacks);
     references += count_references(keyval, datatype_attr_delete_callbacks);
   }
+  else if (callback_type == WIN_CALLBACK) {
+    references = count_references(keyval, win_attr_copy_callbacks);
+    references += count_references(keyval, win_attr_delete_callbacks);
+  }
   return references;
 }
 #else
@@ -810,6 +831,10 @@ int attr_reference_exists(int isc_object, int keyval, callback_t callback_type)
   else if (callback_type == DATATYPE_CALLBACK) {
     references = count_references(isc_object, keyval, datatype_attr_copy_callbacks);
     references += count_references(isc_object, keyval, datatype_attr_delete_callbacks);
+  }
+  else if (callback_type == WIN_CALLBACK) {
+    references = count_references(isc_object, keyval, win_attr_copy_callbacks);
+    references += count_references(isc_object, keyval, win_attr_delete_callbacks);
   }
   return references;
 }
@@ -966,6 +991,79 @@ int ISC_Pointer_datatype_delete_function (void * dtype, int type_keyval, void *a
   }
   return 0;
 }
+
+int ISC_Integer_win_copy_function (int win, int win_keyval, void *extra_state, void *attribute_val_in, void *attribute_val_out, int *flag) {
+  keyvalpair_t *callback = win_attr_copy_callbacks;
+  api_use_ints *mpiabi_win = active_wins->api_declared;
+  api_use_ints *mpiabi_attr = active_miscs->api_declared;
+  while(callback != NULL) {
+    int native_keyval = mpiabi_attr[callback->keyval].mpi_const;
+    if ((native_keyval == win_keyval) &&
+	(callback->ftn_pointer != NULL)) {
+      int (*user_copy_fn)(int,int,void *,void *,void *,int *) = callback->ftn_pointer;
+      return user_copy_fn(callback->isc_object, callback->keyval, extra_state, attribute_val_in, attribute_val_out, flag);
+    }
+    callback = callback->next;
+  }
+  return 0;
+}
+
+int ISC_Integer_win_delete_function (int win, int win_keyval, void *attribute_val, void *extra_state) {
+  keyvalpair_t *callback = win_attr_delete_callbacks;
+  api_use_ints *mpiabi_win = active_wins->api_declared;
+  api_use_ints *mpiabi_attr = active_miscs->api_declared;
+  while(callback != NULL) {
+    int native_keyval = mpiabi_attr[callback->keyval].mpi_const;
+    int isc_object, keyval, result;
+    if ((native_keyval == win_keyval) &&
+	(callback->ftn_pointer != NULL)) {
+      int (*user_delete_fn)(int,int,void *,void *) = callback->ftn_pointer;
+      isc_object = callback->isc_object;
+      keyval = callback->keyval;
+      return user_delete_fn(isc_object, keyval, attribute_val, extra_state);
+    }
+    callback = callback->next;
+  }
+  return 0;
+}
+
+int ISC_Pointer_win_copy_function (void * oldwin, int win_keyval, void *extra_state, void *attribute_val_in, void *attribute_val_out, int *flag) {
+  keyvalpair_t *callback = win_attr_copy_callbacks;
+  api_use_ptrs *mpiabi_win = active_wins->api_declared;
+  api_use_ints *mpiabi_attr = active_miscs->api_declared;
+  while(callback != NULL) {
+    int native_keyval = mpiabi_attr[callback->keyval].mpi_const;
+    if ((native_keyval == win_keyval) &&
+	(callback->ftn_pointer != NULL)) {
+      int (*user_copy_fn)(int,int,void *,void *,void *,int *) = callback->ftn_pointer;
+      return user_copy_fn(callback->isc_object, callback->keyval, extra_state, attribute_val_in, attribute_val_out, flag);
+    }
+    callback = callback->next;
+  }
+  return 0;
+}
+
+int ISC_Pointer_win_delete_function (void * win, int win_keyval, void *attribute_val, void *extra_state) {
+  keyvalpair_t *callback = win_attr_delete_callbacks;
+  api_use_ptrs *mpiabi_win = active_wins->api_declared;
+  api_use_ints *mpiabi_attr = active_miscs->api_declared;
+  while(callback != NULL) {
+    int native_keyval = mpiabi_attr[callback->keyval].mpi_const;
+    int isc_object, keyval, result;
+    if ((native_keyval == win_keyval) &&
+	(callback->ftn_pointer != NULL)) {
+      int (*user_delete_fn)(int,int,void *,void *) = callback->ftn_pointer;
+      isc_object = callback->isc_object;
+      keyval = callback->keyval;
+      return user_delete_fn(isc_object, keyval, attribute_val, extra_state);
+    }
+    callback = callback->next;
+  }
+  return 0;
+}
+
+
+
 
 int ISC_dup_function(int in, int key, void *extra, void *attrin, void *attrout, int *flat)
 {

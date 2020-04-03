@@ -453,7 +453,8 @@ noinst_HEADERS = connectstuff.h
 testconnectserial_SOURCES = testconnectserial.c tchandlers.c tcutil.c 
 testconnectserial_LDADD = $(LDADD) -lm -lpthread
 singjoin_LDADD = $(LDADD)  
-all: all-recursive
+# all: all-recursive
+all:
 
 .SUFFIXES:
 .SUFFIXES: .c .o .obj

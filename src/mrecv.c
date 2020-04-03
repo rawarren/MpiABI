@@ -38,7 +38,11 @@ MPI_Mrecv (void *buf, int count, MPI_Datatype datatype, MPI_Message *message, MP
     
       int (*VendorMPI_Mrecv)(void *buf,int count,void *, void **, MPI_Status *status) = address;
       mpi_return = (*VendorMPI_Mrecv)(BOTTOM(buf),count,local_a0[datatype].mpi_const, &native_msg,SIGNORE(status));
-      if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,status->reserved,(int *)status);
+      if (status != MPI_STATUS_IGNORE) {
+	  if (mpi_return == 0)
+	      native_status_to_isc_no_error(1,status->reserved, (int *)status);
+	  else native_status_to_isc(1,status->reserved,(int *)status);
+      }
     } else {
       api_use_ints *local_a0= active_datatypes->api_declared;
       api_use_ints *local_a1= active_msgs->api_declared;
@@ -46,9 +50,12 @@ MPI_Mrecv (void *buf, int count, MPI_Datatype datatype, MPI_Message *message, MP
 
       int (*VendorMPI_Mrecv)(void *buf,int count, int, int *, MPI_Status *status) = address;
       mpi_return = (*VendorMPI_Mrecv)(BOTTOM(buf),count,local_a0[datatype].mpi_const,&native_msg,SIGNORE(status));
-      if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,status->reserved,(int *)status);
+      if (status != MPI_STATUS_IGNORE) {
+	  if (mpi_return == 0)
+	      native_status_to_isc_no_error(1,status->reserved, (int *)status);
+	  else native_status_to_isc(1,status->reserved,(int *)status);
+      }
     }
-
     /* On success, release the message handle */
     if (mpi_return == 0) {
       if (msgIndex > 0) 

@@ -33,10 +33,10 @@ MPI_Testsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
 	rfill = rtemp = (void *)calloc(count,sizeof(void *));
       else rfill = temp;
 
-      for(i=0; i<count; i++) 
+      for(i=0; i<count; i++) {
 	if ((rfill[i] = local_a0[ array_of_requests[i] ].mpi_const) != local_a0[MPI_REQUEST_NULL].mpi_const)
 	  active_count++;
-
+      }
       /* When dealing with native MPI_Status objects, we handle two conditions:
        *
        * 1) the user doesn't care about status and has passed in MPI_STATUSES_IGNORE
@@ -56,7 +56,7 @@ MPI_Testsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
       if (array_of_statuses == MPI_STATUS_IGNORE) {
 	api_use_ptrs *local_a1=active_addrs->api_declared;
 	mpi_return = (*VendorMPI_Testsome)(count,rfill,outcount,array_of_indices,local_a1[ISC_STATUS_IGNORE].mpi_const);
-	for(i=0; active_count && i< *outcount; i++) {
+	for(i=0; i< *outcount; i++) {
 	  if (rfill[array_of_indices[i]] == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,array_of_requests[array_of_indices[i]]);
 	    array_of_requests[array_of_indices[i]] = MPI_REQUEST_NULL;
@@ -67,8 +67,12 @@ MPI_Testsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
 	int elems = true_mpi_status_size/sizeof(int);
 	int *natstat = (int *) calloc(count,true_mpi_status_size);
 	mpi_return = (*VendorMPI_Testsome)(count,rfill,outcount,array_of_indices,natstat);
-	for(i=0; active_count && i< *outcount; i++) {
-	  native_status_to_isc(1,&natstat[array_of_indices[i]*elems],(int *)&array_of_statuses[array_of_indices[i]]);
+	for(i=0; i< *outcount; i++) {
+	  if (array_of_statuses != MPI_STATUS_IGNORE) {
+	      if (mpi_return == 0)
+		  native_status_to_isc_no_error(1,&natstat[array_of_indices[i]*elems],(int *)&array_of_statuses[array_of_indices[i]]);
+	      else native_status_to_isc(1,&natstat[array_of_indices[i]*elems],(int *)&array_of_statuses[array_of_indices[i]]);
+	  }
 	  if (rfill[array_of_indices[i]] == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,array_of_requests[array_of_indices[i]]);
 	    array_of_requests[array_of_indices[i]] = MPI_REQUEST_NULL;
@@ -83,7 +87,7 @@ MPI_Testsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
      * The else clause is exactly as above, but references integer valued native request objects
      ***************************************************************************************/
     else { api_use_ints *local_a0=active_requests->api_declared;
-      int i;
+      int i, completed;
       int (*VendorMPI_Testsome)(int count,int *,int *,int *, int *natstat) = address;
       int temp[64],*rtemp=0,*rfill;
 
@@ -91,17 +95,20 @@ MPI_Testsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
 	rfill = rtemp = (void *)calloc(count,sizeof(int));
       else rfill = temp;
 
-      for(i=0; i<count; i++) 
+      for(i=0; i<count; i++) {
 	if ((rfill[i] = local_a0[ array_of_requests[i] ].mpi_const) != local_a0[MPI_REQUEST_NULL].mpi_const)
 	  active_count++;
+      }
 
       if (array_of_statuses == MPI_STATUS_IGNORE) {
 	api_use_ptrs *local_a1=active_addrs->api_declared;
 	mpi_return = (*VendorMPI_Testsome)(count,rfill,outcount,array_of_indices,local_a1[ISC_STATUS_IGNORE].mpi_const);
-	for(i=0; active_count && i< *outcount; i++) {
+	completed = *outcount;
+	for(i=0; completed > 0; i++) {
 	  if (rfill[array_of_indices[i]] == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,array_of_requests[array_of_indices[i]]);
 	    array_of_requests[array_of_indices[i]] = MPI_REQUEST_NULL;
+	    completed--;
 	  }
 	}
 
@@ -109,11 +116,17 @@ MPI_Testsome (int count, MPI_Request array_of_requests[], int *outcount, int arr
 	int elems = true_mpi_status_size/sizeof(int);
 	int *natstat = (int *) calloc(count,true_mpi_status_size);
 	mpi_return = (*VendorMPI_Testsome)(count,rfill,outcount,array_of_indices,natstat);
-	for(i=0; active_count && i< *outcount; i++) {
-	  native_status_to_isc(1,&natstat[array_of_indices[i]*elems],(int *)&array_of_statuses[array_of_indices[i]]);
+	completed = *outcount;
+	for(i=0; completed > 0; i++) {
+	  if (array_of_statuses != MPI_STATUS_IGNORE) {
+	      if (mpi_return == 0)
+		  native_status_to_isc_no_error(1,&natstat[array_of_indices[i]*elems],(int *)&array_of_statuses[array_of_indices[i]]);
+	      else native_status_to_isc(1,&natstat[array_of_indices[i]*elems],(int *)&array_of_statuses[array_of_indices[i]]);
+	  }
 	  if (rfill[array_of_indices[i]] == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,array_of_requests[array_of_indices[i]]);
 	    array_of_requests[array_of_indices[i]] = MPI_REQUEST_NULL;
+	    completed--;
 	  }
 	}
 	free(natstat);

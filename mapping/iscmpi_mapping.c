@@ -415,7 +415,10 @@ api_use_ptrs dtype_builtins[] = {
     {ISC_UINT8_T,"MPI_UINT8_T",MPI_UINT8_T},
     {ISC_UINT16_T,"MPI_UINT16_T",MPI_UINT16_T},
     {ISC_UINT32_T,"MPI_UINT32_T",MPI_UINT32_T},
-    {ISC_UINT64_T,"MPI_UINT64_T",MPI_UINT64_T}
+    {ISC_UINT64_T,"MPI_UINT64_T",MPI_UINT64_T},
+#if defined(HAVE_MPI_INTEGER16)
+    {ISC_INTEGER16,"MPI_INTEGER16",MPI_INTEGER16}
+#endif
 };
 
 
@@ -1279,7 +1282,7 @@ int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscS
     else tag = nativeStat[i].MPI_TAG;
     memcpy(&iscStat[i].MPI_TAG, &tag, sizeof(int));
 
-    err_status = nativeStat[i].MPI_ERROR;
+    err_status = iscStat[i].MPI_ERROR = nativeStat[i].MPI_ERROR;
     if (err_status > 0) {
       int iscError;
 #if 0
@@ -1290,8 +1293,39 @@ int native_mpi_status_to_isc(int count, MPI_Status *nativeStat, ISC_Status *iscS
 #endif
       iscError = __map_errcode_to_isc(err_status);
       memcpy(&iscStat[i].MPI_ERROR,&iscError, sizeof(int));
-    } 
+    }
     memcpy(iscStat[i].reserved,&nativeStat[i], sizeof(MPI_Status));
+  }
+  return count;
+}
+
+
+int native_mpi_status_to_isc_no_error(int count, MPI_Status *nativeStat, ISC_Status *iscStat)
+{
+  int i,err_status;
+  int source, tag;
+  api_use_ints *local_defs = active_errcodes->api_declared;
+  for(i=0; i<count; i++) {
+    /* Set the ISC values so that user codes have access to valid information
+     * We really only count on the fact that the following fields
+     * MUST BE DEFINED: MPI_SOURCE, MPI_TAG, and MPI_ERROR.
+     * Element count is something that ONLY the native 
+     * library knows. 
+     */
+   
+    if (nativeStat[i].MPI_SOURCE == MPI_PROC_NULL)
+	source = ISC_PROC_NULL;
+    else if (nativeStat[i].MPI_SOURCE == MPI_ANY_SOURCE)
+	source = ISC_ANY_SOURCE;
+    else source = nativeStat[i].MPI_SOURCE;
+    memcpy(&iscStat[i].MPI_SOURCE, &source, sizeof(int));
+
+    if (nativeStat[i].MPI_TAG == MPI_ANY_TAG)
+	tag = ISC_ANY_TAG;
+    else tag = nativeStat[i].MPI_TAG;
+    memcpy(&iscStat[i].MPI_TAG, &tag, sizeof(int));
+    if ((int *)iscStat[i].reserved != (int *)&nativeStat[i])
+	memcpy(iscStat[i].reserved,&nativeStat[i], sizeof(MPI_Status));
   }
   return count;
 }

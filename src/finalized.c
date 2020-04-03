@@ -15,8 +15,9 @@ MPI_Finalized (int *flag)
 
   if (!address) {
     if ((address = dlsym(MPI_libhandle,"MPI_Finalized")) == NULL) {
-      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Finalized",SYM_MISSING_TRAILER);
-      return -1;
+	/* Must be that we were never initialized? */
+	*flag = 0;
+	return 0;
     }
   }
 

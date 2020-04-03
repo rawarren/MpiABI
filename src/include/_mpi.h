@@ -238,28 +238,47 @@ DLLDEF int MPI_Unpublish_name(char *, MPI_Info, char *);
 DLLDEF int MPI_Accumulate(void *, int, MPI_Datatype, int, MPI_Aint, int,
 		   MPI_Datatype,  MPI_Op, MPI_Win);
 
+DLLDEF int MPI_Raccumulate(void *, int, MPI_Datatype, int, MPI_Aint, int,
+			   MPI_Datatype,  MPI_Op, MPI_Win, MPI_Request *);
+
 DLLDEF int MPI_Get_accumulate (void *origin_addr, int origin_count, MPI_Datatype origin_datatype,
 	    void *result_addr, int result_count, MPI_Datatype result_datatype,
             int target_rank, MPI_Aint target_disp, int target_count, MPI_Datatype target_datatype, MPI_Op op, MPI_Win win);
+DLLDEF int MPI_Rget_accumulate (void *origin_addr, int origin_count, MPI_Datatype origin_datatype,
+	    void *result_addr, int result_count, MPI_Datatype result_datatype,
+            int target_rank, MPI_Aint target_disp, int target_count, MPI_Datatype target_datatype,
+	    MPI_Op op, MPI_Win win, MPI_Request *);
+
 DLLDEF int MPI_Fetch_and_op (void *origin_addr, void *result_addr, MPI_Datatype datatype,
             int target_rank, MPI_Aint target_disp, MPI_Op op, MPI_Win win);
 DLLDEF int MPI_Compare_and_swap (void *origin_addr, void *compare_addr, void *result_addr, MPI_Datatype datatype,
             int target_rank, MPI_Aint target_disp, MPI_Win win);
 DLLDEF int MPI_Get(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
 	    MPI_Win);
+DLLDEF int MPI_Rget(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
+	    MPI_Win, MPI_Request *);
 DLLDEF int MPI_Put(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
 	    MPI_Win);
+DLLDEF int MPI_Rput(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
+	    MPI_Win, MPI_Request *);
 DLLDEF int MPI_Win_complete(MPI_Win);
 DLLDEF int MPI_Win_create(void *, MPI_Aint, int, MPI_Info, MPI_Comm, MPI_Win *);
+DLLDEF int MPI_Win_create_dynamic(MPI_Info, MPI_Comm, MPI_Win *);
+DLLDEF int MPI_Win_attach(MPI_Win win, void *base, MPI_Aint size);
+DLLDEF int MPI_Win_detach(MPI_Win win, void *base);
+DLLDEF int MPI_Win_shared_query(MPI_Win win, int rank, MPI_Aint * size, int *disp_unit, void *baseptr);
 DLLDEF int MPI_Win_allocate(MPI_Aint, int, MPI_Info, MPI_Comm, void *, MPI_Win *);
 DLLDEF int MPI_Win_allocate_shared(MPI_Aint, int, MPI_Info, MPI_Comm, void *, MPI_Win *);
 DLLDEF int MPI_Win_fence(int, MPI_Win);
 DLLDEF int MPI_Win_free(MPI_Win *);
 DLLDEF int MPI_Win_get_group(MPI_Win, MPI_Group *);
+DLLDEF int MPI_Win_get_info(MPI_Win, MPI_Info *);
+DLLDEF int MPI_Win_set_info(MPI_Win, MPI_Info);
 DLLDEF int MPI_Win_lock(int, int, int, MPI_Win);
 DLLDEF int MPI_Win_lock_all(int, MPI_Win);
 DLLDEF int MPI_Win_post(MPI_Group, int, MPI_Win);
 DLLDEF int MPI_Win_start(MPI_Group, int, MPI_Win);
+DLLDEF int MPI_Win_sync(MPI_Win);
 DLLDEF int MPI_Win_test(MPI_Win, int *);
 DLLDEF int MPI_Win_unlock(int, MPI_Win);
 DLLDEF int MPI_Win_unlock_all(MPI_Win);
@@ -562,7 +581,8 @@ DLLDEF int MPI_Neighbor_alltoallw( void *sendbuf,  int sendcounts[],  MPI_Aint s
 				   MPI_Aint rdispls[],  MPI_Datatype recvtypes[], MPI_Comm comm);
 
 
-
+DLLDEF MPI_Aint MPI_Aint_add(MPI_Aint base, MPI_Aint disp);
+DLLDEF MPI_Aint MPI_Aint_diff(MPI_Aint addr1, MPI_Aint addr2);
 
 #if defined(__cplusplus)
 }

@@ -30,9 +30,9 @@ MPI_Testall (int count, MPI_Request array_of_requests[], int *flag, MPI_Status a
 	rfill = rtemp = (void *)calloc(count,sizeof(void *));
       else rfill = temp;
 
-      for(i=0; i<count; i++) 
+      for(i=0; i<count; i++) {
 	rfill[i] = local_a0[ array_of_requests[i] ].mpi_const;
-
+      }
       if (array_of_statuses == MPI_STATUSES_IGNORE) {
 	api_use_ptrs *local_a1=active_addrs->api_declared;
 	mpi_return = (*VendorMPI_Testall)(count,rfill,flag,local_a1[ISC_STATUS_IGNORE].mpi_const);
@@ -61,9 +61,9 @@ MPI_Testall (int count, MPI_Request array_of_requests[], int *flag, MPI_Status a
 	rfill = rtemp = (void *)calloc(count,sizeof(int));
       else rfill = temp;
 
-      for(i=0; i<count; i++) 
+      for(i=0; i<count; i++) {
 	rfill[i] = local_a0[ array_of_requests[i] ].mpi_const;
-
+      }
       if (array_of_statuses == MPI_STATUSES_IGNORE) {
 	api_use_ptrs *local_a1=active_addrs->api_declared;
 	mpi_return = (*VendorMPI_Testall)(count,rfill,flag,local_a1[ISC_STATUS_IGNORE].mpi_const);

@@ -25,14 +25,22 @@ MPI_Recv (void *buf, int count, MPI_Datatype datatype, int source, int tag, MPI_
 
     int (*VendorMPI_Recv)(void *buf,int count,void *,int source,int tag,void *, MPI_Status *status) = address;
     mpi_return = (*VendorMPI_Recv)(BOTTOM(buf),count,local_a0[datatype].mpi_const,ANYSRC(source),ANYTAG(tag),local_a1[comm].mpi_const,SIGNORE(status));
-    if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,status->reserved,(int *)status);
+    if (status != MPI_STATUS_IGNORE) {
+	if (mpi_return == 0)
+	    native_status_to_isc_no_error(1,status->reserved, (int *)status);
+	else native_status_to_isc(1,status->reserved,(int *)status);
+    }
   } else {
     api_use_ints *local_a0= active_datatypes->api_declared;
     api_use_ints *local_a1= active_comms->api_declared;
 
     int (*VendorMPI_Recv)(void *buf,int count,int,int source,int tag,int, MPI_Status *status) = address;
     mpi_return = (*VendorMPI_Recv)(BOTTOM(buf),count,local_a0[datatype].mpi_const,ANYSRC(source),ANYTAG(tag),local_a1[comm].mpi_const,SIGNORE(status));
-    if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,status->reserved,(int *)status);
+    if (status != MPI_STATUS_IGNORE) {
+	if (mpi_return == 0)
+	    native_status_to_isc_no_error(1,status->reserved, (int *)status);
+	else native_status_to_isc(1,status->reserved,(int *)status);
+    }
   }
   return mpi_return;
 }

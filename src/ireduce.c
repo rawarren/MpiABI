@@ -11,6 +11,7 @@ int
 MPI_Ireduce (void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI_Op op, int root, MPI_Comm comm, MPI_Request *request)
 {
   static void *address=0;
+  int vendor_root;
   int mpi_return;
 
   if (!address) {
@@ -20,28 +21,31 @@ MPI_Ireduce (void *sendbuf, void *recvbuf, int count, MPI_Datatype datatype, MPI
     }
   }
   *request = new_index(active_requests);
+  vendor_root = PROCNULL(root);
+  if (vendor_root == root) 
+      vendor_root = ISROOT(root);
 
   if (active_datatypes->use_ptrs) { api_use_ptrs *local_a0 = active_datatypes->api_declared;
     api_use_ptrs *local_a1=active_ops->api_declared;
     api_use_ptrs *local_a2= active_comms->api_declared;
     if (active_requests->use_ptrs) { api_use_ptrs *local_a3=active_requests->api_declared;
       int (*VendorMPI_Ireduce)(void *sendbuf,void *recvbuf,int count,void *,void *,int, void *, void **) = address;
-      mpi_return = (*VendorMPI_Ireduce)(INPLACE(sendbuf),INPLACE(recvbuf),count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,root, local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
+      mpi_return = (*VendorMPI_Ireduce)(INPLACE(sendbuf),INPLACE(recvbuf),count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,vendor_root, local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
     }
     else { api_use_ints *local_a3=active_requests->api_declared;
       int (*VendorMPI_Ireduce)(void *sendbuf,void *recvbuf,int count,void *,void *,int, void *, int *) = address;
-      mpi_return = (*VendorMPI_Ireduce)(INPLACE(sendbuf),INPLACE(recvbuf),count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,root, local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
+      mpi_return = (*VendorMPI_Ireduce)(INPLACE(sendbuf),INPLACE(recvbuf),count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,vendor_root, local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
     }
   } else { api_use_ints *local_a0 = active_datatypes->api_declared;
     api_use_ints *local_a1=active_ops->api_declared;
     api_use_ints *local_a2= active_comms->api_declared;
     if (active_requests->use_ptrs) { api_use_ptrs *local_a3=active_requests->api_declared;
       int (*VendorMPI_Ireduce)(void *sendbuf,void *recvbuf, int, int ,int , int, int, void **) = address;
-      mpi_return = (*VendorMPI_Ireduce)(INPLACE(sendbuf),INPLACE(recvbuf),count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,root, local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
+      mpi_return = (*VendorMPI_Ireduce)(INPLACE(sendbuf),INPLACE(recvbuf),count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,vendor_root, local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
     }
     else { api_use_ints *local_a3=active_requests->api_declared;
       int (*VendorMPI_Ireduce)(void *sendbuf,void *recvbuf,int, int, int, int, int, int *) = address;
-      mpi_return = (*VendorMPI_Ireduce)(INPLACE(sendbuf),INPLACE(recvbuf),count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,root, local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
+      mpi_return = (*VendorMPI_Ireduce)(INPLACE(sendbuf),INPLACE(recvbuf),count,local_a0[datatype].mpi_const,local_a1[op].mpi_const,vendor_root, local_a2[comm].mpi_const,&local_a3[*request].mpi_const);
     }
   }
   return mpi_return;

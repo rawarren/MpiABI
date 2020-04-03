@@ -109,6 +109,9 @@ typedef enum {
 	ISC_UINT16_T,		/* 59 */
 	ISC_UINT32_T,		/* 60 */
 	ISC_UINT64_T,		/* 61 */
+#if defined(HAVE_MPI_INTEGER16)
+	ISC_INTEGER16,		/* 62 */
+#endif
 	predefined_datatype_count
 } _isc_datatypes;
 
@@ -387,6 +390,17 @@ typedef struct _api_use_ptrs {
 } api_use_ptrs;
 
 
+#ifndef CALLBACK_TYPES_DEFINED
+#define CALLBACK_TYPES_DEFINED 3
+
+typedef enum {
+  COMM_CALLBACK=1,
+  DATATYPE_CALLBACK=2,
+  WIN_CALLBACK=3
+} callback_t;
+
+#endif
+
 typedef struct _isc_const {
   int use_ptrs;
   int how_many;
@@ -428,6 +442,7 @@ extern void expand_store(isc_const *, int);
 extern void free_index(isc_const *, int);
 extern int get_index(isc_const *, void *);
 
+extern int (*native_status_to_isc_no_error)(int count, int *native_stat, int *isc_stat);
 extern int (*native_status_to_isc)(int count, int *native_stat, int *isc_stat);
 extern int (*isc_status_to_native)(int count, int *isc_stat, int *native_stat);
 

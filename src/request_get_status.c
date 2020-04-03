@@ -19,14 +19,19 @@ MPI_Request_get_status (MPI_Request request, int *flag, MPI_Status *status)
       return -1;
     }
   }
+
   if (active_requests->use_ptrs) { api_use_ptrs *local_a0=active_requests->api_declared;
     int (*VendorMPI_Request_get_status)(void *,int *flag, int *status) = address;
-    mpi_return = (*VendorMPI_Request_get_status)(local_a0[request].mpi_const,flag,status->reserved);
-    if (status != MPI_STATUS_IGNORE) native_status_to_isc(1,status->reserved,(int *)status);
-    
+    mpi_return = (*VendorMPI_Request_get_status)(local_a0[request].mpi_const,flag,SIGNORE(status));
+    if (status != MPI_STATUS_IGNORE) {
+	native_status_to_isc(1,status->reserved,(int *)status);
+    }
   } else { api_use_ints *local_a0=active_requests->api_declared;
     int (*VendorMPI_Request_get_status)(int,int *flag, int *status) = address;
-    mpi_return = (*VendorMPI_Request_get_status)(local_a0[request].mpi_const,flag,status->reserved);
+    mpi_return = (*VendorMPI_Request_get_status)(local_a0[request].mpi_const,flag,SIGNORE(status));
+    if (status != MPI_STATUS_IGNORE) {
+	native_status_to_isc(1,status->reserved,(int *)status);
+    }
   }
   return mpi_return;
 }

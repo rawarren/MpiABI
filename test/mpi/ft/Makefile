@@ -511,7 +511,8 @@ LDADD = $(top_builddir)/util/mtest.o \
 	$(top_builddir)/util/mtest_datatype_gen.o
 CLEANFILES = $(SUMMARY_BASENAME).xml $(SUMMARY_BASENAME).tap $(SUMMARY_BASENAME).junit.xml
 EXTRA_DIST = testlist
-all: all-am
+#all: all-am
+all: 
 
 .SUFFIXES:
 .SUFFIXES: .c .o .obj

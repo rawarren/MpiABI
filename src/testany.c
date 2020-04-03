@@ -21,6 +21,7 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
 	}
     }
     if (active_requests->use_ptrs) { api_use_ptrs *local_a0=active_requests->api_declared;
+      api_use_ints *local_a2=active_miscs->api_declared;
       int i;
       int (*VendorMPI_Testany)(int count,void **,int *index,int *, int *) = address;
       void *temp[64],**rtemp=0,**rfill;
@@ -29,18 +30,20 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
 	rfill = rtemp = (void *)calloc(count,sizeof(void *));
       else rfill = temp;
 
-      for(i=0; i<count; i++) 
+      for(i=0; i<count; i++) {
 	rfill[i] = local_a0[ array_of_requests[i] ].mpi_const;
-
+      }
       if (status == MPI_STATUS_IGNORE) {
 	api_use_ptrs *local_a1=active_addrs->api_declared;
 	mpi_return = (*VendorMPI_Testany)(count,rfill,index,flag,local_a1[ISC_STATUS_IGNORE].mpi_const);
 	if (*flag) {
-	  if (rfill[*index] == local_a0[MPI_REQUEST_NULL].mpi_const) {
+	  if (count && rfill[*index] == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,array_of_requests[*index]);
 	    array_of_requests[*index] = MPI_REQUEST_NULL;
 	  }
 	}
+	else if (*index == local_a2[ISC_UNDEFINED_].mpi_const)
+	    *index = ISC_UNDEFINED;
 
       } else {
 	mpi_return = (*VendorMPI_Testany)(count,rfill,index,flag,status->reserved);
@@ -51,9 +54,12 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
 	    array_of_requests[*index] = MPI_REQUEST_NULL;
 	  }
 	}
+	else if (*index == local_a2[ISC_UNDEFINED_].mpi_const)
+	    *index = ISC_UNDEFINED;
       }
       if (rtemp) free(rtemp);
     } else { api_use_ints *local_a0=active_requests->api_declared;
+      api_use_ints *local_a2=active_miscs->api_declared;
       int i;
       int (*VendorMPI_Testany)(int count,int *,int *index,int *flag, int *) = address;
       int temp[64],*rtemp=0,*rfill;
@@ -62,9 +68,9 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
 	rfill = rtemp = (void *)calloc(count,sizeof(int));
       else rfill = temp;
 
-      for(i=0; i<count; i++) 
+      for(i=0; i<count; i++) {
 	rfill[i] = local_a0[ array_of_requests[i] ].mpi_const;
-
+      }
       if (status == MPI_STATUS_IGNORE) {
 	api_use_ptrs *local_a1=active_addrs->api_declared;
 	mpi_return = (*VendorMPI_Testany)(count,rfill,index,flag,local_a1[ISC_STATUS_IGNORE].mpi_const);
@@ -74,15 +80,19 @@ MPI_Testany (int count, MPI_Request array_of_requests[], int *index, int *flag, 
 	    array_of_requests[*index] = MPI_REQUEST_NULL;
 	  }
 	}
+	else if (*index == local_a2[ISC_UNDEFINED_].mpi_const)
+	    *index = ISC_UNDEFINED;
       } else {
 	mpi_return = (*VendorMPI_Testany)(count,rfill,index,flag,status->reserved);
 	if (*flag) {
 	  i = native_status_to_isc(1,status->reserved,(int *)status);
-	  if (rfill[*index] == local_a0[MPI_REQUEST_NULL].mpi_const) {
+	  if (count && rfill[*index] == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	    free_index(active_requests,array_of_requests[*index]);
 	    array_of_requests[*index] = MPI_REQUEST_NULL;
 	  }
 	}
+	else if (*index == local_a2[ISC_UNDEFINED_].mpi_const)
+	    *index = ISC_UNDEFINED;
       }
       if (rtemp) free(rtemp);
     }

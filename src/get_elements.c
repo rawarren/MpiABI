@@ -27,9 +27,10 @@ MPI_Get_elements (MPI_Status *status, MPI_Datatype datatype, int *count)
     int (*VendorMPI_Get_elements)(int *status,int, int *count) = address;
     mpi_return = (*VendorMPI_Get_elements)(status->reserved,local_a0[datatype].mpi_const,count);
   }
-  if (native_status_to_isc != NULL) {
-    native_status_to_isc(1,status->reserved,(int *)status);
-  }
+  if (mpi_return == 0) {
+      native_status_to_isc_no_error(1,status->reserved, (int *)status);
+  } else native_status_to_isc(1,status->reserved,(int *)status);
+
   return mpi_return;
 }
 
@@ -53,9 +54,9 @@ MPI_Get_elements_x (MPI_Status *status, MPI_Datatype datatype, MPI_Count *count)
     int (*VendorMPI_Get_elements_x)(int *status,int, MPI_Count *count) = address;
     mpi_return = (*VendorMPI_Get_elements_x)(status->reserved,local_a0[datatype].mpi_const,count);
   }
-  if (native_status_to_isc != NULL) {
-    native_status_to_isc(1,status->reserved,(int *)status);
-  }
+  if (mpi_return == 0) {
+      native_status_to_isc_no_error(1,status->reserved, (int *)status);
+  } else native_status_to_isc(1,status->reserved,(int *)status);
 
   return mpi_return;
 }

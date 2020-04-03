@@ -217,8 +217,11 @@ typedef struct {
 #define MPI_INTEGER2             ISC_INTEGER2
 #define MPI_INTEGER4             ISC_INTEGER4
 #define MPI_INTEGER8             ISC_INTEGER8
+/* 
+ * No support yet for 16 byte ints
 #define MPI_INTEGER16            ISC_INTEGER16
-#define MPI_UINT64_T             ISC_UNSIGNED_LONG_LONG
+ */
+#define MPI_INTEGER16            ISC_DATATYPE_NULL
 /* No support yet for CXX types */
 #define MPI_CXX_BOOL             ISC_DATATYPE_NULL
 #define MPI_CXX_FLOAT_COMPLEX    ISC_DATATYPE_NULL
@@ -242,6 +245,7 @@ typedef struct {
 #define MPI_UINT8_T              ISC_UINT8_T
 #define MPI_UINT16_T             ISC_UINT16_T
 #define MPI_UINT32_T             ISC_UINT32_T
+#define MPI_UINT64_T             ISC_UINT64_T
 
 /* Old MPI usage (lb and ub, maybe deprecated? */
 #define MPI_LB                   ISC_LB
@@ -597,19 +601,31 @@ typedef struct {
 #define MPI_Accumulate ISC_Accumulate
 #define MPI_Get ISC_Get
 #define MPI_Put ISC_Put
+#define MPI_Get_accumulate ISC_Get_accumulate
+#define MPI_Raccumulate ISC_Raccumulate
+#define MPI_Rget ISC_Rget
+#define MPI_Rput ISC_Rput
+#define MPI_Rget_accumulate ISC_Rget_accumulate
 #define MPI_Win_complete ISC_Win_complete
 #define MPI_Win_create ISC_Win_create
+#define MPI_Win_create_dynamic ISC_Win_create_dynamic
+#define MPI_Win_detach ISC_Win_detach
+#define MPI_Win_attach ISC_Win_attach
+#define MPI_Win_shared_query ISC_Win_shared_query
 #define MPI_Win_allocate ISC_Win_allocate
 #define MPI_Win_allocate_shared ISC_Win_allocate_shared
 #define MPI_Win_fence ISC_Win_fence
 #define MPI_Win_free ISC_Win_free
 #define MPI_Win_get_group ISC_Win_get_group
+#define MPI_Win_get_info ISC_Win_get_info
+#define MPI_Win_set_info ISC_Win_set_info
 #define MPI_Win_lock ISC_Win_lock
 #define MPI_Win_post ISC_Win_post
 #define MPI_Win_start ISC_Win_start
 #define MPI_Win_test ISC_Win_test
 #define MPI_Win_unlock ISC_Win_unlock
 #define MPI_Win_wait ISC_Win_wait
+#define MPI_Win_sync ISC_Win_sync
 #define MPI_Win_allocate ISC_Win_allocate
 #define MPI_Win_allocate_shared ISC_Win_allocate_shared
 #define MPI_Alloc_mem ISC_Alloc_mem
@@ -857,6 +873,8 @@ typedef struct {
 #define MPI_TYPE_NULL_DELETE_FN MPI_NULL_DELETE_FN
 #define MPI_DUP_FN ISC_Dup_fn
 
+#define MPI_Aint_add ISC_Aint_add
+#define MPI_Aint_diff ISC_Aint_diff
 
 #define MPI_THREAD_SINGLE ISC_THREAD_SINGLE
 #define	MPI_THREAD_FUNNELED ISC_THREAD_FUNNELED
@@ -904,6 +922,14 @@ extern int ISC_Dup_fn(ISC_Comm oldcomm, int keyval, void *extra, void *attr_in, 
 								 (MPI_Type_delete_attr_function *)ISC_Integer_datatype_delete_function : \
 								 (MPI_Type_delete_attr_function *)ISC_Pointer_datatype_delete_function) : \
 			  ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_DELETE_FN].mpi_const)
+#define NULLWINCOPYFN(f) (((f) != (void *)ISC_NULL_COPY_FN) ? ((callbacks_use_integers > 0) ? \
+							       (MPI_Win_copy_attr_function *)ISC_Integer_win_copy_function : \
+							       (MPI_Win_copy_attr_function *)ISC_Pointer_win_copy_function) : \
+			  ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_COPY_FN].mpi_const)
+#define NULLWINDELFN(f)  (((f) != (void *)ISC_NULL_DELETE_FN) ? ((callbacks_use_integers > 0) ? \
+								 (MPI_Win_delete_attr_function *)ISC_Integer_win_delete_function : \
+								 (MPI_Win_delete_attr_function *)ISC_Pointer_win_delete_function) : \
+			  ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_DELETE_FN].mpi_const)
 
 /* Fortran versions of the above macros */
 #define FBOTTOM(buf) (((buf) != (void *)__true_fortran_bottom) ? (buf) : MPI_BOTTOM)
@@ -921,16 +947,6 @@ extern int *__true_fortran_errcodes_ignore;
 extern int *__true_fortran_status_ignore;
 extern int *__true_fortran_statuses_ignore;
 
-#ifndef CALLBACK_TYPES_DEFINED
-#define CALLBACK_TYPES_DEFINED 1
-
-typedef enum {
-  COMM_CALLBACK=1,
-  DATATYPE_CALLBACK
-} callback_t;
-
-#endif
-
 extern int save_user_copy_callback(void *, int, callback_t );
 extern int save_user_delete_callback(void *, int, callback_t);  
 extern int maybe_update_callbacks(int, int, callback_t);
@@ -947,6 +963,11 @@ extern int ISC_Integer_datatype_copy_function (int , int , void *, void *, void 
 extern int ISC_Integer_datatype_delete_function (int, int , void *, void *);
 extern int ISC_Pointer_datatype_copy_function (void * , int , void *, void *, void *, int *);
 extern int ISC_Pointer_datatype_delete_function (void *, int , void *, void *);
+
+extern int ISC_Integer_win_copy_function (int , int , void *, void *, void *, int *);
+extern int ISC_Integer_win_delete_function (int, int , void *, void *);
+extern int ISC_Pointer_win_copy_function (void * , int , void *, void *, void *, int *);
+extern int ISC_Pointer_win_delete_function (void *, int , void *, void *);
 
 
 #if defined(__cplusplus)

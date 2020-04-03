@@ -7,6 +7,9 @@
 
 #include <_mpi.h>
 
+int maybe_free_errhandler_intercept(MPI_Errhandler eh);
+
+
 int
 MPI_Errhandler_free (MPI_Errhandler *errhandler)
 {
@@ -23,6 +26,7 @@ MPI_Errhandler_free (MPI_Errhandler *errhandler)
     int (*VendorMPI_Errhandler_free)(void **) = address;
     if ((*errhandler >= active_errhandlers->permlimit) || (*errhandler == ISC_ERRHANDLER_NULL)) {
 	mpi_return = (*VendorMPI_Errhandler_free)(&local_a0[*errhandler].mpi_const);
+	maybe_free_errhandler_intercept(*errhandler);
 	if ((*errhandler >= active_errhandlers->permlimit) && (local_a0[*errhandler].mpi_const == local_a0[MPI_ERRHANDLER_NULL].mpi_const)) {
 	    free_index(active_errhandlers,*errhandler);
 	}
@@ -33,6 +37,7 @@ MPI_Errhandler_free (MPI_Errhandler *errhandler)
     /* Don't try to free a predefined error handler... */
     if ((*errhandler >= active_errhandlers->permlimit) || (*errhandler == ISC_ERRHANDLER_NULL)) {
 	mpi_return = (*VendorMPI_Errhandler_free)(&local_a0[*errhandler].mpi_const);
+	maybe_free_errhandler_intercept(*errhandler);
 	if ((*errhandler >= active_errhandlers->permlimit) && (local_a0[*errhandler].mpi_const == local_a0[MPI_ERRHANDLER_NULL].mpi_const)) {
 	    free_index(active_errhandlers,*errhandler);
 	}

@@ -14,8 +14,8 @@ MPI_Reduce_scatter_block (void *sendbuf, void *recvbuf, int recvcount, MPI_Datat
   int mpi_return;
 
   if (!address) {
-    if ((address = dlsym(MPI_libhandle,"MPI_Reduce_scatter")) == NULL) {
-      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Reduce_scatter",SYM_MISSING_TRAILER);
+    if ((address = dlsym(MPI_libhandle,"MPI_Reduce_scatter_block")) == NULL) {
+      printf("%s %s %s",SYM_MISSING_PREFIX,"MPI_Reduce_scatter_block",SYM_MISSING_TRAILER);
       return -1;
     }
   }

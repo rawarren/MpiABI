@@ -290,7 +290,7 @@ MPICH_ENABLE_F77 =
 MPICH_ENABLE_FC = 
 MPICH_THREAD_LEVEL = 
 MPICXX = 
-MPIEXEC = 
+MPIEXEC = mpiexec
 MPIF77 = /home/riwarren/mpiabi/bin/mpif77
 MPIFC = /home/riwarren/mpiabi/bin/mpifort
 MPILIBLOC = 
@@ -419,7 +419,7 @@ CLEANFILES = $(SUMMARY_BASENAME).xml $(SUMMARY_BASENAME).tap $(SUMMARY_BASENAME)
 # mix in the "make testing" rule and other boilerplate
 ACLOCAL_AMFLAGS = -I confdb
 static_subdirs = util attr basic datatype coll comm errhan group info init \
-                 pt2pt rma topo errors manual perf mpi_t impls ckpoint ft
+                 pt2pt rma topo errors manual perf impls ckpoint ft
 
 all_lang_subdirs = f77 cxx f90 f08
 

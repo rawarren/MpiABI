@@ -7,17 +7,15 @@
 
 #include <_mpi.h>
 #include <stdlib.h>
+#include <string.h>
 
 int
 MPI_Ialltoallw (void *sendbuf, int sendcounts[], int sdispls[], MPI_Datatype sendtypes[], void *recvbuf, int recvcounts[], int rdispls[], MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request)
 {
-#if 1
     static void *address=0;
-#else
-    static void *address= (void *)-1; /* Just for testing... */
-#endif
     int mpi_return;
-    int i, size;
+    int is_intercomm = 0;
+    int i, size, lsize, asize = 0;
 
     if (!address) {
 	if ((address = dlsym(MPI_libhandle,"MPI_Ialltoallw")) == NULL) {
@@ -26,6 +24,12 @@ MPI_Ialltoallw (void *sendbuf, int sendcounts[], int sdispls[], MPI_Datatype sen
 	}
     }
     MPI_Comm_size(comm,&size);
+    MPI_Comm_test_inter(comm,&is_intercomm);
+    if (is_intercomm) {
+	lsize = size;
+	MPI_Comm_remote_size(comm,&size);
+	// asize = (remote_size > size ? remote_size : size);
+    }
 
     *request = new_index(active_requests);
     if (active_datatypes->use_ptrs) { api_use_ptrs *local_a0 = active_datatypes->api_declared;
@@ -35,13 +39,20 @@ MPI_Ialltoallw (void *sendbuf, int sendcounts[], int sdispls[], MPI_Datatype sen
        if (size > 64) {
 	 dfill = dtemp = (void *)calloc(size*2,sizeof(void *));
        } else dfill = temp;
-       for(i=0; i<size; i++) {
-	 dfill[i] = local_a0[sendtypes[i]].mpi_const;
+       if (sendbuf == (void *)ISC_IN_PLACE) 
+	   memset(dfill,0, sizeof(void *) *size);
+       else {
+	   for(i=0; i<size; i++) {
+	       dfill[i] = local_a0[sendtypes[i]].mpi_const;
+	   }
        }
-       for(i=0; i<size; i++) {
-	 dfill[size + i] = local_a1[recvtypes[i]].mpi_const;
+       if (recvbuf == (void *)ISC_IN_PLACE)
+	   memset(&dfill[size],0, sizeof(void *) *size);
+       else {
+	   for(i=0; i<size; i++) {
+	       dfill[size + i] = local_a1[recvtypes[i]].mpi_const;
+	   }
        }
-
        if (active_requests->use_ptrs) { api_use_ptrs *local_a3=active_requests->api_declared;
 	   int (*VendorMPI_Ialltoallw)(void *sendbuf,int sendcounts[],int sdispls[],void *,void *recvbuf,int recvcounts[],int rdispls[],void *,void *, void **) = address;
 	   mpi_return = (*VendorMPI_Ialltoallw)(INPLACE(sendbuf),sendcounts,sdispls,dfill,INPLACE(recvbuf),recvcounts,rdispls,&dfill[size],local_a2[comm].mpi_const, &local_a3[*request].mpi_const);
@@ -58,11 +69,19 @@ MPI_Ialltoallw (void *sendbuf, int sendcounts[], int sdispls[], MPI_Datatype sen
        if (size > 64)
 	 dfill = dtemp = (int *)calloc(size*2,sizeof(int));
        else dfill = temp;
-       for(i=0; i<size; i++) {
-	 dfill[i] = local_a0[sendtypes[i]].mpi_const;
+       if (sendbuf == (void *)ISC_IN_PLACE) 
+	   memset(dfill,0, sizeof(int) *size);
+       else {
+	   for(i=0; i<size; i++) {
+	       dfill[i] = local_a0[sendtypes[i]].mpi_const;
+	   }
        }
-       for(i=0; i<size; i++) {
-	 dfill[size + i] = local_a1[recvtypes[i]].mpi_const;
+       if (recvbuf == (void *)ISC_IN_PLACE)
+	   memset(&dfill[size],0, sizeof(int) *size);	   
+       else {
+	   for(i=0; i<size; i++) {
+	       dfill[size + i] = local_a1[recvtypes[i]].mpi_const;
+	   }
        }
        if (active_requests->use_ptrs) { api_use_ptrs *local_a3=active_requests->api_declared;
 	   int (*VendorMPI_Ialltoallw)(void *sendbuf,int sendcounts[],int sdispls[],int *,void *recvbuf,int recvcounts[],int rdispls[],int *,int, void **) = address;

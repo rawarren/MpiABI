@@ -24,6 +24,7 @@
 #endif
 
 static int errs = 0;
+static int last_case_completed = 0;
 
 /* Constants that control the high level test harness behavior. */
 /* MAIN_ITERATIONS is how many NBC ops the test will attempt to issue. */
@@ -680,6 +681,7 @@ static void complete_something_somehow(unsigned int rndnum, int numreqs, MPI_Req
         for (i = 0; i < numreqs; ++i) {
             indices[i] = i;
         }
+        last_case_completed = 0;
         break;
 
     case 1:
@@ -687,6 +689,7 @@ static void complete_something_somehow(unsigned int rndnum, int numreqs, MPI_Req
         if (*outcount == MPI_UNDEFINED) {
             *outcount = 0;
         }
+        last_case_completed = 1;
         break;
 
     case 2:
@@ -694,6 +697,7 @@ static void complete_something_somehow(unsigned int rndnum, int numreqs, MPI_Req
         if (*outcount == MPI_UNDEFINED) {
             *outcount = 0;
         }
+        last_case_completed = 2;
         break;
 
     case 3:
@@ -705,6 +709,7 @@ static void complete_something_somehow(unsigned int rndnum, int numreqs, MPI_Req
             *outcount = 1;
             indices[0] = idx;
         }
+        last_case_completed = 3;
         break;
 
     case 4:
@@ -716,6 +721,7 @@ static void complete_something_somehow(unsigned int rndnum, int numreqs, MPI_Req
             *outcount = 1;
             indices[0] = idx;
         }
+        last_case_completed = 4;
         break;
 
     case 5:
@@ -729,6 +735,7 @@ static void complete_something_somehow(unsigned int rndnum, int numreqs, MPI_Req
         else {
             *outcount = 0;
         }
+        last_case_completed = 5;
         break;
 
     case 6:
@@ -738,6 +745,7 @@ static void complete_something_somehow(unsigned int rndnum, int numreqs, MPI_Req
         MPI_Wait(&reqs[idx], MPI_STATUS_IGNORE);
         *outcount = 1;
         indices[0] = idx;
+        last_case_completed = 6;
         break;
 
     case 7:
@@ -747,6 +755,7 @@ static void complete_something_somehow(unsigned int rndnum, int numreqs, MPI_Req
         MPI_Test(&reqs[idx], &flag, MPI_STATUS_IGNORE);
         *outcount = (flag ? 1 : 0);
         indices[0] = idx;
+        last_case_completed = 7;
         break;
 
     default:

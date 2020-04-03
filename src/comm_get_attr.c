@@ -7,6 +7,8 @@
 
 #include <_mpi.h>
 
+static int _isc_proc_null = MPI_PROC_NULL;
+
 int
 MPI_Comm_get_attr (MPI_Comm comm, int comm_keyval, void *attribute_val, int *flag)
 {
@@ -22,11 +24,19 @@ MPI_Comm_get_attr (MPI_Comm comm, int comm_keyval, void *attribute_val, int *fla
   }
 
   if (active_comms->use_ptrs) { api_use_ptrs *local_a0= active_comms->api_declared;
-    int (*VendorMPI_Comm_get_attr)(void *,int ,void *, int *) = address;
-    mpi_return = (*VendorMPI_Comm_get_attr)(local_a0[comm].mpi_const,local_a1[comm_keyval].mpi_const,attribute_val,flag);
+      int (*VendorMPI_Comm_get_attr)(void *,int ,void *, int *) = address;
+      mpi_return = (*VendorMPI_Comm_get_attr)(local_a0[comm].mpi_const,local_a1[comm_keyval].mpi_const,attribute_val,flag);
   } else { api_use_ints *local_a0= active_comms->api_declared;
-    int (*VendorMPI_Comm_get_attr)(int,int comm_keyval,void *attribute_val, int *flag) = address;
-    mpi_return = (*VendorMPI_Comm_get_attr)(local_a0[comm].mpi_const,local_a1[comm_keyval].mpi_const,attribute_val,flag);
+      int (*VendorMPI_Comm_get_attr)(int,int comm_keyval,void *attribute_val, int *flag) = address;
+      mpi_return = (*VendorMPI_Comm_get_attr)(local_a0[comm].mpi_const,local_a1[comm_keyval].mpi_const,attribute_val,flag);
+  }
+  if (*flag && *(int *)attribute_val) {
+      int **vval = (int **)attribute_val;
+      int proc_null_check = *vval[0];
+      if (proc_null_check == local_a1[ISC_PROC_NULL_].mpi_const) {
+	  _isc_proc_null = local_a1[ISC_PROC_NULL_].self;
+	  *vval = &_isc_proc_null;
+      }
   }
   return mpi_return;
 }

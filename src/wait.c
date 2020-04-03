@@ -47,7 +47,10 @@ MPI_Wait (MPI_Request *request, MPI_Status *status)
 	}
       } else {
 	mpi_return = (*VendorMPI_Test)(&local_a0[*request].mpi_const,status->reserved);
-	native_status_to_isc(1,status->reserved,(int *)status);
+	if (mpi_return == 0)
+	    native_status_to_isc_no_error(1,status->reserved, (int *)status);
+	else 
+	    native_status_to_isc(1,status->reserved,(int *)status);
 	if (local_a0[*request].mpi_const == local_a0[MPI_REQUEST_NULL].mpi_const) {
 	  free_index(active_requests,*request);
 	  *request = MPI_REQUEST_NULL;

@@ -94,8 +94,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = 
 host_triplet = 
-noinst_PROGRAMS = mpi_t_str$(EXEEXT) mpit_vars$(EXEEXT) \
+#noinst_PROGRAMS = mpi_t_str$(EXEEXT) mpit_vars$(EXEEXT) \
 	cvarwrite$(EXEEXT) getindex$(EXEEXT)
+noinst_PROGRAMS =
 subdir = mpi_t
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/confdb/aclocal_cache.m4 \
@@ -389,7 +390,8 @@ LDADD = $(top_builddir)/util/mtest.o \
 	$(top_builddir)/util/mtest_datatype_gen.o
 CLEANFILES = $(SUMMARY_BASENAME).xml $(SUMMARY_BASENAME).tap $(SUMMARY_BASENAME).junit.xml
 EXTRA_DIST = testlist
-all: all-am
+#all: all-am
+all: 
 
 .SUFFIXES:
 .SUFFIXES: .c .o .obj
@@ -554,7 +556,8 @@ distdir: $(DISTFILES)
 	done
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS)
+#all-am: Makefile $(PROGRAMS)
+all-am: 
 installdirs:
 install: install-am
 install-exec: install-exec-am

@@ -49,9 +49,10 @@ int maybe_free_grequest_context_by_state(void *extra_state)
     while(context != NULL) {
 	if (context->extra_state == extra_state) {
 	    found = 1;
-	    if (prev) {
+	    if (prev == NULL) {
 		grequests_head = context->next;
 	    }
+	    else prev->next = context->next;
 	    free(context);
 	    context = NULL;
 	}
