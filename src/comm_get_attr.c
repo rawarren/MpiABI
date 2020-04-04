@@ -30,13 +30,19 @@ MPI_Comm_get_attr (MPI_Comm comm, int comm_keyval, void *attribute_val, int *fla
       int (*VendorMPI_Comm_get_attr)(int,int comm_keyval,void *attribute_val, int *flag) = address;
       mpi_return = (*VendorMPI_Comm_get_attr)(local_a0[comm].mpi_const,local_a1[comm_keyval].mpi_const,attribute_val,flag);
   }
-  if (*flag && *(int *)attribute_val) {
+  if (*flag) {
+      int *a_val = (int *)attribute_val;
+      if (*a_val == local_a1[ISC_PROC_NULL_].mpi_const) {
+	  *a_val = _isc_proc_null;
+      }
+#if 0	  
       int **vval = (int **)attribute_val;
       int proc_null_check = *vval[0];
       if (proc_null_check == local_a1[ISC_PROC_NULL_].mpi_const) {
 	  _isc_proc_null = local_a1[ISC_PROC_NULL_].self;
 	  *vval = &_isc_proc_null;
       }
+#endif
   }
   return mpi_return;
 }

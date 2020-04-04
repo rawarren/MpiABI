@@ -342,10 +342,12 @@ add_ABI_userftn_intercept(ISC_Op op, MPI_User_function *user_ftn, int use_ptrs )
 	}
 	new_intercept = &op_intercepts[next];
 	new_intercept->op = op;
-	new_intercept->abi_ftn = next_abi_ftn(use_ptrs, active_entries);
+	// new_intercept->abi_ftn = next_abi_ftn(use_ptrs, active_entries);
+	new_intercept->abi_ftn = next_abi_ftn(use_ptrs, next);
 	new_intercept->user_ftn = user_ftn;
 	new_intercept->index = next;
-	active_entries++;
+	if (next == active_entries)
+	    active_entries++;
 	return new_intercept;
     }
     return NULL;
@@ -371,7 +373,8 @@ int maybe_free_ABI_usrftn_intercept(MPI_Op op)
 	     * because some async operations may not have
 	     * completed prior to the op_free call!
 	     */
-	    active_entries--;	    
+	    if (i == active_entries)
+		active_entries--;
 	    return found;
 	}
     }
