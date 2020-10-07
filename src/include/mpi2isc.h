@@ -15,20 +15,20 @@ extern int _next_history_index;
 #define FTN_ENTER() _record_ftn_entry(__FUNCTION__)
 
 /* Our own typedefs */
-typedef long			 ISC_Aint;
-typedef long long		 ISC_Offset;
-typedef unsigned long long       ISC_Count;
-typedef unsigned int		 ISC_Request;
-typedef unsigned int		 ISC_Group;
-typedef unsigned int		 ISC_Comm;
-typedef unsigned int		 ISC_Errhandler;
-typedef unsigned int		 ISC_Op;
-typedef unsigned int		 ISC_Datatype;
-typedef unsigned int 		 ISC_Win;
-typedef unsigned int             ISC_Message;
-typedef unsigned int 		 ISC_File;
-typedef unsigned int             ISC_Info;
-typedef int                      ISC_Fint;
+typedef long                 ISC_Aint;
+typedef long long            ISC_Offset;
+typedef unsigned long long   ISC_Count;
+typedef unsigned int         ISC_Request;
+typedef unsigned int         ISC_Group;
+typedef unsigned int         ISC_Comm;
+typedef unsigned int         ISC_Errhandler;
+typedef unsigned int         ISC_Op;
+typedef unsigned int         ISC_Datatype;
+typedef unsigned int         ISC_Win;
+typedef unsigned int         ISC_Message;
+typedef unsigned int         ISC_File;
+typedef unsigned int         ISC_Info;
+typedef int                  ISC_Fint;
 
 /* Borrowed From MPICH to deal with fortran character arrays/ strings */
 #ifdef USE_FORT_STR_LEN_SIZET
@@ -53,10 +53,10 @@ typedef int                      ISC_Fint;
 /* Hopefully this is large enough. See notes in iscmpi_mapping.c */
 #define MAX_MPI_STATUS_SIZE 8
 typedef struct { 
-	int MPI_SOURCE;
-	int MPI_TAG;
-	int MPI_ERROR;
-        int reserved[MAX_MPI_STATUS_SIZE];
+    int MPI_SOURCE;
+    int MPI_TAG;
+    int MPI_ERROR;
+    int reserved[MAX_MPI_STATUS_SIZE];
 } ISC_Status;
 
 typedef int ISC_Copy_function(ISC_Comm, int, void *, void *, void *, int *);
@@ -89,7 +89,8 @@ typedef int (ISC_Win_delete_attr_function)(ISC_Win, int, void *, void *);
 typedef int (ISC_WIN_DUP_FN)(ISC_Win, int, void *, void *, void *, int *);
 extern int ISC_dup_function(int win, int key, void *extra, void *attrin, void *attrout, int *flat);
 #define MPI_WIN_DUP_FN ISC_dup_function
-
+#define MPI_COMM_DUP_FN ISC_dup_function
+#define MPI_TYPE_DUP_FN ISC_dup_function
 
 
 /* The order of this structure needs to match the list of variables
@@ -107,12 +108,12 @@ typedef struct {
 } f_common_t;
 
 
-#define MPI_F_STATUS_IGNORE	 (int *)ISC_F_STATUS_IGNORE
-#define MPI_F_STATUSES_IGNORE	 (int *)ISC_F_STATUSES_IGNORE
+#define MPI_F_STATUS_IGNORE  (int *)ISC_F_STATUS_IGNORE
+#define MPI_F_STATUSES_IGNORE    (int *)ISC_F_STATUSES_IGNORE
 
 /* These are always identical */
-#define MPI_STATUS_IGNORE	 (ISC_Status *)ISC_STATUS_IGNORE
-#define MPI_STATUSES_IGNORE	 (ISC_Status *)ISC_STATUS_IGNORE
+#define MPI_STATUS_IGNORE    (ISC_Status *)ISC_STATUS_IGNORE
+#define MPI_STATUSES_IGNORE  (ISC_Status *)ISC_STATUS_IGNORE
 
 #define MPI_Offset               ISC_Offset
 #define MPI_Count                ISC_Count
@@ -306,15 +307,15 @@ typedef struct {
 #define MPI_ERR_SIZE             ISC_ERR_SIZE
 #define MPI_ERR_DISP             ISC_ERR_DISP
 #define MPI_ERR_ASSERT           ISC_ERR_ASSERT          
-#define	MPI_ERR_RMA_RANGE        ISC_ERR_RMA_RANGE,
-#define	MPI_ERR_RMA_ATTACH       ISC_ERR_RMA_ATTACH
-#define	MPI_ERR_RMA_SHARED       ISC_ERR_RMA_SHARED
-#define	MPI_ERR_RMA_FLAVOR       ISC_ERR_RMA_FLAVOR
+#define MPI_ERR_RMA_RANGE        ISC_ERR_RMA_RANGE,
+#define MPI_ERR_RMA_ATTACH       ISC_ERR_RMA_ATTACH
+#define MPI_ERR_RMA_SHARED       ISC_ERR_RMA_SHARED
+#define MPI_ERR_RMA_FLAVOR       ISC_ERR_RMA_FLAVOR
 #define MPI_ERR_LASTCODE         ISC_ERR_LASTCODE        
 
 /* Error handlers */
 #define MPI_ERRHANDLER_NULL      ISC_ERRHANDLER_NULL
-#define MPI_ERRORS_ARE_FATAL	 ISC_ERRORS_ARE_FATAL
+#define MPI_ERRORS_ARE_FATAL     ISC_ERRORS_ARE_FATAL
 #define MPI_ERRORS_RETURN        ISC_ERRORS_RETURN
 
 /* Info objects */
@@ -328,23 +329,23 @@ typedef struct {
 #define MPI_FILE_NULL            ISC_FILE_NULL
 
 /* Misc */
-#define	MPI_ANY_SOURCE           ISC_ANY_SOURCE
-#define	MPI_PROC_NULL            ISC_PROC_NULL
-#define	MPI_ROOT                 ISC_ROOT
-#define	MPI_ANY_TAG              ISC_ANY_TAG
-#define	MPI_MAX_PROCESSOR_NAME   ISC_MAX_PROCESSOR_NAME
-#define	MPI_MAX_ERROR_STRING     ISC_MAX_ERROR_STRING
-#define	MPI_MAX_OBJECT_NAME      ISC_MAX_OBJECT_NAME
+#define MPI_ANY_SOURCE           ISC_ANY_SOURCE
+#define MPI_PROC_NULL            ISC_PROC_NULL
+#define MPI_ROOT                 ISC_ROOT
+#define MPI_ANY_TAG              ISC_ANY_TAG
+#define MPI_MAX_PROCESSOR_NAME   ISC_MAX_PROCESSOR_NAME
+#define MPI_MAX_ERROR_STRING     ISC_MAX_ERROR_STRING
+#define MPI_MAX_OBJECT_NAME      ISC_MAX_OBJECT_NAME
 #define MPI_MAX_DATAREP_STRING   ISC_MAX_DATAREP_STRING
 #define MPI_MAX_LIBRARY_VERSION_STRING ISC_MAX_LIBRARY_VERSION_STRING
-#define	MPI_UNDEFINED            ISC_UNDEFINED
-#define	MPI_CART                 ISC_CART
-#define	MPI_GRAPH                ISC_GRAPH
-#define	MPI_KEYVAL_INVALID       ISC_KEYVAL_INVALID
-#define	MPI_BSEND_OVERHEAD       ISC_BSEND_OVERHEAD
-#define	MPI_MAX_INFO_KEY         ISC_MAX_INFO_KEY
-#define	MPI_MAX_INFO_VAL         ISC_MAX_INFO_VAL
-#define	MPI_MAX_PORT_NAME        ISC_MAX_PORT_NAME
+#define MPI_UNDEFINED            ISC_UNDEFINED
+#define MPI_CART                 ISC_CART
+#define MPI_GRAPH                ISC_GRAPH
+#define MPI_KEYVAL_INVALID       ISC_KEYVAL_INVALID
+#define MPI_BSEND_OVERHEAD       ISC_BSEND_OVERHEAD
+#define MPI_MAX_INFO_KEY         ISC_MAX_INFO_KEY
+#define MPI_MAX_INFO_VAL         ISC_MAX_INFO_VAL
+#define MPI_MAX_PORT_NAME        ISC_MAX_PORT_NAME
 #define MPI_MODE_CREATE          ISC_MODE_CREATE
 #define MPI_MODE_RDONLY          ISC_MODE_RDONLY
 #define MPI_MODE_WRONLY          ISC_MODE_WRONLY
@@ -370,12 +371,12 @@ typedef struct {
 #define MPI_WIN_FLAVOR_SHARED    ISC_WIN_FLAVOR_SHARED
 #define MPI_WIN_SEPARATE         ISC_WIN_SEPARATE
 #define MPI_WIN_UNIFIED          ISC_WIN_UNIFIED
-#define	MPI_ORDER_C              ISC_ORDER_C
-#define	MPI_ORDER_FORTRAN        ISC_ORDER_FORTRAN
-#define	MPI_DISTRIBUTE_BLOCK     ISC_DISTRIBUTE_BLOCK
-#define	MPI_DISTRIBUTE_CYCLIC    ISC_DISTRIBUTE_CYCLIC
-#define	MPI_DISTRIBUTE_NONE      ISC_DISTRIBUTE_NONE
-#define	MPI_DISTRIBUTE_DFLT_DARG ISC_DISTRIBUTE_DFLT_DARG
+#define MPI_ORDER_C              ISC_ORDER_C
+#define MPI_ORDER_FORTRAN        ISC_ORDER_FORTRAN
+#define MPI_DISTRIBUTE_BLOCK     ISC_DISTRIBUTE_BLOCK
+#define MPI_DISTRIBUTE_CYCLIC    ISC_DISTRIBUTE_CYCLIC
+#define MPI_DISTRIBUTE_NONE      ISC_DISTRIBUTE_NONE
+#define MPI_DISTRIBUTE_DFLT_DARG ISC_DISTRIBUTE_DFLT_DARG
 #define MPI_IDENT                ISC_IDENT
 #define MPI_CONGRUENT            ISC_CONGRUENT
 #define MPI_SIMILAR              ISC_SIMILAR
@@ -387,24 +388,24 @@ typedef struct {
 #define MPI_LOCK_EXCLUSIVE       ISC_LOCK_EXCLUSIVE
 #define MPI_LOCK_SHARED          ISC_LOCK_SHARED
 
-#define	MPI_COMBINER_NAMED	 ISC_COMBINER_NAMED
-#define	MPI_COMBINER_DUP	 ISC_COMBINER_DUP
-#define	MPI_COMBINER_CONTIGUOUS	 ISC_COMBINER_CONTIGUOUS
-#define	MPI_COMBINER_VECTOR	 ISC_COMBINER_VECTOR
-#define	MPI_COMBINER_HVECTOR_INTEGER ISC_COMBINER_HVECTOR_INTEGER
-#define	MPI_COMBINER_HVECTOR	 ISC_COMBINER_HVECTOR
-#define	MPI_COMBINER_INDEXED	 ISC_COMBINER_INDEXED
-#define	MPI_COMBINER_HINDEXED_INTEGER ISC_COMBINER_HINDEXED_INTEGER
-#define	MPI_COMBINER_HINDEXED	 ISC_COMBINER_HINDEXED
-#define	MPI_COMBINER_INDEXED_BLOCK ISC_COMBINER_INDEXED_BLOCK
-#define	MPI_COMBINER_STRUCT_INTEGER ISC_COMBINER_STRUCT_INTEGER
-#define	MPI_COMBINER_STRUCT	 ISC_COMBINER_STRUCT
-#define	MPI_COMBINER_SUBARRAY	 ISC_COMBINER_SUBARRAY
-#define	MPI_COMBINER_DARRAY	 ISC_COMBINER_DARRAY
-#define	MPI_COMBINER_F90_REAL	 ISC_COMBINER_F90_REAL
-#define	MPI_COMBINER_F90_COMPLEX ISC_COMBINER_F90_COMPLEX
-#define	MPI_COMBINER_F90_INTEGER ISC_COMBINER_F90_INTEGER
-#define	MPI_COMBINER_RESIZED	 ISC_COMBINER_RESIZED
+#define MPI_COMBINER_NAMED   ISC_COMBINER_NAMED
+#define MPI_COMBINER_DUP     ISC_COMBINER_DUP
+#define MPI_COMBINER_CONTIGUOUS  ISC_COMBINER_CONTIGUOUS
+#define MPI_COMBINER_VECTOR  ISC_COMBINER_VECTOR
+#define MPI_COMBINER_HVECTOR_INTEGER ISC_COMBINER_HVECTOR_INTEGER
+#define MPI_COMBINER_HVECTOR     ISC_COMBINER_HVECTOR
+#define MPI_COMBINER_INDEXED     ISC_COMBINER_INDEXED
+#define MPI_COMBINER_HINDEXED_INTEGER ISC_COMBINER_HINDEXED_INTEGER
+#define MPI_COMBINER_HINDEXED    ISC_COMBINER_HINDEXED
+#define MPI_COMBINER_INDEXED_BLOCK ISC_COMBINER_INDEXED_BLOCK
+#define MPI_COMBINER_STRUCT_INTEGER ISC_COMBINER_STRUCT_INTEGER
+#define MPI_COMBINER_STRUCT  ISC_COMBINER_STRUCT
+#define MPI_COMBINER_SUBARRAY    ISC_COMBINER_SUBARRAY
+#define MPI_COMBINER_DARRAY  ISC_COMBINER_DARRAY
+#define MPI_COMBINER_F90_REAL    ISC_COMBINER_F90_REAL
+#define MPI_COMBINER_F90_COMPLEX ISC_COMBINER_F90_COMPLEX
+#define MPI_COMBINER_F90_INTEGER ISC_COMBINER_F90_INTEGER
+#define MPI_COMBINER_RESIZED     ISC_COMBINER_RESIZED
 #define MPI_APPNUM               ISC_APPNUM
 #define MPI_LASTUSEDCODE         ISC_LASTUSEDCODE
 #define MPI_UNIVERSE_SIZE        ISC_UNIVERSE_SIZE
@@ -418,10 +419,10 @@ typedef struct {
 
 /* Additional MISC */
 #define MPI_BOTTOM               ((void *)ISC_BOTTOM)
-#define	MPI_IN_PLACE             ((void *)ISC_IN_PLACE)
-#define	MPI_ARGV_NULL            ((char **)ISC_ARGV_NULL)
-#define	MPI_ARGVS_NULL           ((char ***)ISC_ARGVS_NULL)
-#define	MPI_ERRCODES_IGNORE      ((int *)ISC_ERRCODES_IGNORE)
+#define MPI_IN_PLACE             ((void *)ISC_IN_PLACE)
+#define MPI_ARGV_NULL            ((char **)ISC_ARGV_NULL)
+#define MPI_ARGVS_NULL           ((char ***)ISC_ARGVS_NULL)
+#define MPI_ERRCODES_IGNORE      ((int *)ISC_ERRCODES_IGNORE)
 #define MPI_UNWEIGHTED           ((int *)ISC_UNWEIGHTED)
 #define MPI_WEIGHTS_EMPTY        ((int *)ISC_WEIGHTS_EMPTY)
 
@@ -694,8 +695,8 @@ typedef struct {
 #define MPI_Win_set_errhandler ISC_Win_set_errhandler
 
 #define MPI_Grequest_cancel_function ISC_Grequest_cancel_function
-#define	MPI_Grequest_free_function ISC_Grequest_free_function
-#define	MPI_Grequest_query_function ISC_Grequest_query_function
+#define MPI_Grequest_free_function ISC_Grequest_free_function
+#define MPI_Grequest_query_function ISC_Grequest_query_function
 
 #define MPI_Datarep_conversion_function ISC_Datarep_conversion_function
 #define MPI_Datarep_extent_function ISC_Datarep_extent_function
@@ -877,9 +878,9 @@ typedef struct {
 #define MPI_Aint_diff ISC_Aint_diff
 
 #define MPI_THREAD_SINGLE ISC_THREAD_SINGLE
-#define	MPI_THREAD_FUNNELED ISC_THREAD_FUNNELED
-#define	MPI_THREAD_SERIALIZED ISC_THREAD_SERIALIZED
-#define	MPI_THREAD_MULTIPLE ISC_THREAD_MULTIPLE
+#define MPI_THREAD_FUNNELED ISC_THREAD_FUNNELED
+#define MPI_THREAD_SERIALIZED ISC_THREAD_SERIALIZED
+#define MPI_THREAD_MULTIPLE ISC_THREAD_MULTIPLE
 
 #if 0
 #define MPIX_Status_set_source ISCX_Status_set_source
@@ -907,29 +908,29 @@ extern int ISC_Dup_fn(ISC_Comm oldcomm, int keyval, void *extra, void *attr_in, 
 #define INPLACE(buf) (((buf) != (void *)ISC_IN_PLACE) ? BOTTOM(buf) : ((api_use_ptrs *)(active_addrs->api_declared))[ISC_IN_PLACE].mpi_const)
 #define ARGVNULL(arg) (((arg) != (char **)ISC_ARGV_NULL) ? (arg) : ((api_use_ptrs *)(active_addrs->api_declared))[ISC_ARGV_NULL].mpi_const)
 #define NULLCOPYFN(f) (((f) != (void *)ISC_NULL_COPY_FN) ? ((callbacks_use_integers > 0) ? \
-							    (MPI_Copy_function *)ISC_Integer_comm_copy_function : \
-							    (MPI_Copy_function *)ISC_Pointer_comm_copy_function) : \
-		       ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_COPY_FN].mpi_const)
+                                (MPI_Copy_function *)ISC_Integer_comm_copy_function : \
+                                (MPI_Copy_function *)ISC_Pointer_comm_copy_function) : \
+               ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_COPY_FN].mpi_const)
 #define NULLDELFN(f)  (((f) != (void *)ISC_NULL_DELETE_FN) ? ((callbacks_use_integers > 0) ? \
-							      (MPI_Delete_function *)ISC_Integer_comm_delete_function : \
-							      (MPI_Delete_function *)ISC_Pointer_comm_delete_function) : \
-		       ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_DELETE_FN].mpi_const)
+                                  (MPI_Delete_function *)ISC_Integer_comm_delete_function : \
+                                  (MPI_Delete_function *)ISC_Pointer_comm_delete_function) : \
+               ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_DELETE_FN].mpi_const)
 #define NULLTYPCOPYFN(f) (((f) != (void *)ISC_NULL_COPY_FN) ? ((callbacks_use_integers > 0) ? \
-							       (MPI_Type_copy_attr_function *)ISC_Integer_datatype_copy_function : \
-							       (MPI_Type_copy_attr_function *)ISC_Pointer_datatype_copy_function) : \
-			  ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_COPY_FN].mpi_const)
+                                   (MPI_Type_copy_attr_function *)ISC_Integer_datatype_copy_function : \
+                                   (MPI_Type_copy_attr_function *)ISC_Pointer_datatype_copy_function) : \
+              ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_COPY_FN].mpi_const)
 #define NULLTYPDELFN(f)  (((f) != (void *)ISC_NULL_DELETE_FN) ? ((callbacks_use_integers > 0) ? \
-								 (MPI_Type_delete_attr_function *)ISC_Integer_datatype_delete_function : \
-								 (MPI_Type_delete_attr_function *)ISC_Pointer_datatype_delete_function) : \
-			  ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_DELETE_FN].mpi_const)
+                                 (MPI_Type_delete_attr_function *)ISC_Integer_datatype_delete_function : \
+                                 (MPI_Type_delete_attr_function *)ISC_Pointer_datatype_delete_function) : \
+              ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_DELETE_FN].mpi_const)
 #define NULLWINCOPYFN(f) (((f) != (void *)ISC_NULL_COPY_FN) ? ((callbacks_use_integers > 0) ? \
-							       (MPI_Win_copy_attr_function *)ISC_Integer_win_copy_function : \
-							       (MPI_Win_copy_attr_function *)ISC_Pointer_win_copy_function) : \
-			  ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_COPY_FN].mpi_const)
+                                   (MPI_Win_copy_attr_function *)ISC_Integer_win_copy_function : \
+                                   (MPI_Win_copy_attr_function *)ISC_Pointer_win_copy_function) : \
+              ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_COPY_FN].mpi_const)
 #define NULLWINDELFN(f)  (((f) != (void *)ISC_NULL_DELETE_FN) ? ((callbacks_use_integers > 0) ? \
-								 (MPI_Win_delete_attr_function *)ISC_Integer_win_delete_function : \
-								 (MPI_Win_delete_attr_function *)ISC_Pointer_win_delete_function) : \
-			  ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_DELETE_FN].mpi_const)
+                                 (MPI_Win_delete_attr_function *)ISC_Integer_win_delete_function : \
+                                 (MPI_Win_delete_attr_function *)ISC_Pointer_win_delete_function) : \
+              ((api_use_ptrs *)(active_addrs->api_declared))[ISC_NULL_DELETE_FN].mpi_const)
 
 /* Fortran versions of the above macros */
 #define FBOTTOM(buf) (((buf) != (void *)__true_fortran_bottom) ? (buf) : MPI_BOTTOM)

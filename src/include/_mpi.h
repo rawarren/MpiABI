@@ -39,20 +39,20 @@ extern "C" {
 #include "mpi2isc.h"
 
 #if 0
-typedef long			 MPI_Aint;
-typedef long long		 MPI_Offset;
-typedef unsigned long long       MPI_Count;
-typedef unsigned int		 MPI_Request;
-typedef unsigned int		 MPI_Group;
-typedef unsigned int		 MPI_Comm;
-typedef unsigned int		 MPI_Errhandler;
-typedef unsigned int		 MPI_Op;
-typedef unsigned int		 MPI_Datatype;
-typedef unsigned int 		 MPI_Win;
-typedef unsigned int             MPI_Message;
-typedef unsigned int 		 MPI_File;
-typedef unsigned int             MPI_Info;
-typedef int                      MPI_Fint;
+typedef long                 MPI_Aint;
+typedef long long            MPI_Offset;
+typedef unsigned long long   MPI_Count;
+typedef unsigned int         MPI_Request;
+typedef unsigned int         MPI_Group;
+typedef unsigned int         MPI_Comm;
+typedef unsigned int         MPI_Errhandler;
+typedef unsigned int         MPI_Op;
+typedef unsigned int         MPI_Datatype;
+typedef unsigned int         MPI_Win;
+typedef unsigned int         MPI_Message;
+typedef unsigned int         MPI_File;
+typedef unsigned int         MPI_Info;
+typedef int                  MPI_Fint;
 #endif
 
 /* The following MPIX_Status_{get,set} functions
@@ -228,7 +228,7 @@ DLLDEF int MPI_Comm_get_parent(MPI_Comm *);
 DLLDEF int MPI_Comm_join(int, MPI_Comm *);
 DLLDEF int MPI_Comm_spawn(char *, char *[], int, MPI_Info, int , MPI_Comm, MPI_Comm *, int []);
 DLLDEF int MPI_Comm_spawn_multiple(int, char *[], char **[], int [], MPI_Info [], int,
-			    MPI_Comm, MPI_Comm *, int []); 
+                MPI_Comm, MPI_Comm *, int []); 
 DLLDEF int MPI_Lookup_name(char *, MPI_Info, char *);
 DLLDEF int MPI_Open_port(MPI_Info, char *);
 DLLDEF int MPI_Publish_name(char *, MPI_Info, char *);
@@ -236,31 +236,31 @@ DLLDEF int MPI_Unpublish_name(char *, MPI_Info, char *);
 
 /* One-Sided Communications */
 DLLDEF int MPI_Accumulate(void *, int, MPI_Datatype, int, MPI_Aint, int,
-		   MPI_Datatype,  MPI_Op, MPI_Win);
+           MPI_Datatype,  MPI_Op, MPI_Win);
 
 DLLDEF int MPI_Raccumulate(void *, int, MPI_Datatype, int, MPI_Aint, int,
-			   MPI_Datatype,  MPI_Op, MPI_Win, MPI_Request *);
+               MPI_Datatype,  MPI_Op, MPI_Win, MPI_Request *);
 
 DLLDEF int MPI_Get_accumulate (void *origin_addr, int origin_count, MPI_Datatype origin_datatype,
-	    void *result_addr, int result_count, MPI_Datatype result_datatype,
+        void *result_addr, int result_count, MPI_Datatype result_datatype,
             int target_rank, MPI_Aint target_disp, int target_count, MPI_Datatype target_datatype, MPI_Op op, MPI_Win win);
 DLLDEF int MPI_Rget_accumulate (void *origin_addr, int origin_count, MPI_Datatype origin_datatype,
-	    void *result_addr, int result_count, MPI_Datatype result_datatype,
+        void *result_addr, int result_count, MPI_Datatype result_datatype,
             int target_rank, MPI_Aint target_disp, int target_count, MPI_Datatype target_datatype,
-	    MPI_Op op, MPI_Win win, MPI_Request *);
+        MPI_Op op, MPI_Win win, MPI_Request *);
 
 DLLDEF int MPI_Fetch_and_op (void *origin_addr, void *result_addr, MPI_Datatype datatype,
             int target_rank, MPI_Aint target_disp, MPI_Op op, MPI_Win win);
 DLLDEF int MPI_Compare_and_swap (void *origin_addr, void *compare_addr, void *result_addr, MPI_Datatype datatype,
             int target_rank, MPI_Aint target_disp, MPI_Win win);
 DLLDEF int MPI_Get(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
-	    MPI_Win);
+        MPI_Win);
 DLLDEF int MPI_Rget(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
-	    MPI_Win, MPI_Request *);
+        MPI_Win, MPI_Request *);
 DLLDEF int MPI_Put(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
-	    MPI_Win);
+        MPI_Win);
 DLLDEF int MPI_Rput(void *, int, MPI_Datatype, int, MPI_Aint, int, MPI_Datatype,
-	    MPI_Win, MPI_Request *);
+        MPI_Win, MPI_Request *);
 DLLDEF int MPI_Win_complete(MPI_Win);
 DLLDEF int MPI_Win_create(void *, MPI_Aint, int, MPI_Info, MPI_Comm, MPI_Win *);
 DLLDEF int MPI_Win_create_dynamic(MPI_Info, MPI_Comm, MPI_Win *);
@@ -341,9 +341,9 @@ DLLDEF int MPI_Get_address (void *, MPI_Aint *);
 DLLDEF int MPI_Grequest_complete(MPI_Request);
 DLLDEF int MPI_Grequest_start (MPI_Grequest_query_function *, 
                                MPI_Grequest_free_function *,
-			       MPI_Grequest_cancel_function *,
-			       void *, 
-			       MPI_Request *);
+                               MPI_Grequest_cancel_function *,
+                               void *, 
+                               MPI_Request *);
 DLLDEF int MPI_Init_thread(int *, char ***, int, int *);
 DLLDEF int MPI_Is_thread_main(int *);
 DLLDEF int MPI_Info_dup (MPI_Info , MPI_Info *);
@@ -438,27 +438,27 @@ DLLDEF int MPI_File_set_info(MPI_File, MPI_Info);
 DLLDEF int MPI_File_get_info(MPI_File, MPI_Info *);
 /* Section 9.3 */
 DLLDEF int MPI_File_set_view(MPI_File, MPI_Offset, MPI_Datatype,
-	         MPI_Datatype, char *, MPI_Info);
+                             MPI_Datatype, char *, MPI_Info);
 DLLDEF int MPI_File_get_view(MPI_File, MPI_Offset *,
-                 MPI_Datatype *, MPI_Datatype *, char *);
+                             MPI_Datatype *, MPI_Datatype *, char *);
 
 /* Section 9.4.2 */
 DLLDEF int MPI_File_read_at(MPI_File, MPI_Offset, void *,
-	      int, MPI_Datatype, MPI_Status *);
+          int, MPI_Datatype, MPI_Status *);
 DLLDEF int MPI_File_read_at_all(MPI_File, MPI_Offset, void *,
-	      int, MPI_Datatype, MPI_Status *);
+          int, MPI_Datatype, MPI_Status *);
 DLLDEF int MPI_File_write_at(MPI_File, MPI_Offset, void *,
-	      int, MPI_Datatype, MPI_Status *);
+          int, MPI_Datatype, MPI_Status *);
 DLLDEF int MPI_File_write_at_all(MPI_File, MPI_Offset, void *,
-	      int, MPI_Datatype, MPI_Status *);
+          int, MPI_Datatype, MPI_Status *);
 DLLDEF int MPI_File_iread_at(MPI_File, MPI_Offset, void *,
-	      int, MPI_Datatype, MPIO_Request *);
+          int, MPI_Datatype, MPIO_Request *);
 DLLDEF int MPI_File_iread_at_all(MPI_File, MPI_Offset, void *,
-	      int, MPI_Datatype, MPIO_Request *);
+          int, MPI_Datatype, MPIO_Request *);
 DLLDEF int MPI_File_iwrite_at(MPI_File, MPI_Offset, void *,
-	      int, MPI_Datatype, MPIO_Request *);
+          int, MPI_Datatype, MPIO_Request *);
 DLLDEF int MPI_File_iwrite_at_all(MPI_File, MPI_Offset, void *,
-	      int, MPI_Datatype, MPIO_Request *);
+          int, MPI_Datatype, MPIO_Request *);
 
 /* Section 9.4.3 */
 DLLDEF int MPI_File_read(MPI_File, void *, int, MPI_Datatype, MPI_Status *);
@@ -477,7 +477,7 @@ DLLDEF int MPI_File_read_shared(MPI_File, void *, int, MPI_Datatype, MPI_Status 
 DLLDEF int MPI_File_write_shared(MPI_File, void *, int, MPI_Datatype, MPI_Status *);
 DLLDEF int MPI_File_iread_shared(MPI_File, void *, int, MPI_Datatype, MPIO_Request *);
 DLLDEF int MPI_File_iwrite_shared(MPI_File, void *, int,
-			   MPI_Datatype, MPIO_Request *);
+               MPI_Datatype, MPIO_Request *);
 DLLDEF int MPI_File_read_ordered(MPI_File, void *, int,
                           MPI_Datatype, MPI_Status *);
 DLLDEF int MPI_File_write_ordered(MPI_File, void *, int,
@@ -506,10 +506,10 @@ DLLDEF int MPI_File_get_type_extent(MPI_File, MPI_Datatype, MPI_Aint *);
 
 /* Section 9.5.3 */
 DLLDEF int MPI_Register_datarep(char *,
-			 MPI_Datarep_conversion_function *,
-			 MPI_Datarep_conversion_function *,
-			 MPI_Datarep_extent_function *,
-			 void *);
+             MPI_Datarep_conversion_function *,
+             MPI_Datarep_conversion_function *,
+             MPI_Datarep_extent_function *,
+             void *);
 
 /* Section 9.6.1 */
 DLLDEF int MPI_File_set_atomicity(MPI_File, int);
@@ -540,45 +540,45 @@ DLLDEF int MPI_Dist_graph_neighbors(MPI_Comm comm, int maxindegree, int *sources
 
 /* Dist Graph */
 DLLDEF int MPI_Dist_graph_create(MPI_Comm comm_old, int n, int sources[], int degrees[],
-			int destinations[], int weights[], MPI_Info info,
-			int reorder, MPI_Comm *comm_dist_graph);
+            int destinations[], int weights[], MPI_Info info,
+            int reorder, MPI_Comm *comm_dist_graph);
 
 DLLDEF int MPI_Dist_graph_create_adjacent(MPI_Comm comm_old, int indegree, int sources[],
-			int sourceweights[], int outdegree,
-			int destinations[], int destweights[],
-			MPI_Info info, int reorder, MPI_Comm *comm_dist_graph);
+            int sourceweights[], int outdegree,
+            int destinations[], int destweights[],
+            MPI_Info info, int reorder, MPI_Comm *comm_dist_graph);
 
 /* Neighborhood collectives */
 DLLDEF int MPI_Ineighbor_allgather( void *sendbuf, int sendcount, MPI_Datatype sendtype,
                             void *recvbuf, int recvcount, MPI_Datatype recvtype,
-				   MPI_Comm comm, MPI_Request *request);
+                   MPI_Comm comm, MPI_Request *request);
 DLLDEF int MPI_Ineighbor_allgatherv( void *sendbuf, int sendcount, MPI_Datatype sendtype,
                              void *recvbuf,  int recvcounts[],  int displs[],
-				    MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
+                    MPI_Datatype recvtype, MPI_Comm comm, MPI_Request *request);
 DLLDEF int MPI_Ineighbor_alltoall( void *sendbuf, int sendcount, MPI_Datatype sendtype,
                            void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm,
-				  MPI_Request *request);
+                  MPI_Request *request);
 DLLDEF int MPI_Ineighbor_alltoallv( void *sendbuf,  int sendcounts[],  int sdispls[],
                             MPI_Datatype sendtype, void *recvbuf,  int recvcounts[],
                              int rdispls[], MPI_Datatype recvtype, MPI_Comm comm,
-				   MPI_Request *request);
+                   MPI_Request *request);
 DLLDEF int MPI_Ineighbor_alltoallw( void *sendbuf,  int sendcounts[],
-				    MPI_Aint sdispls[],  MPI_Datatype sendtypes[],
-				    void *recvbuf,  int recvcounts[],  MPI_Aint rdispls[],
-				    MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request);
+                    MPI_Aint sdispls[],  MPI_Datatype sendtypes[],
+                    void *recvbuf,  int recvcounts[],  MPI_Aint rdispls[],
+                    MPI_Datatype recvtypes[], MPI_Comm comm, MPI_Request *request);
 DLLDEF int MPI_Neighbor_allgather( void *sendbuf, int sendcount, MPI_Datatype sendtype,
-				  void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
+                  void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
 DLLDEF int MPI_Neighbor_allgatherv( void *sendbuf, int sendcount, MPI_Datatype sendtype,
                             void *recvbuf,  int recvcounts[],  int displs[],
-				   MPI_Datatype recvtype, MPI_Comm comm);
+                   MPI_Datatype recvtype, MPI_Comm comm);
 DLLDEF int MPI_Neighbor_alltoall( void *sendbuf, int sendcount, MPI_Datatype sendtype,
-				 void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
+                 void *recvbuf, int recvcount, MPI_Datatype recvtype, MPI_Comm comm);
 DLLDEF int MPI_Neighbor_alltoallv( void *sendbuf,  int sendcounts[],  int sdispls[],
                            MPI_Datatype sendtype, void *recvbuf,  int recvcounts[],
-				   int rdispls[], MPI_Datatype recvtype, MPI_Comm comm);
+                   int rdispls[], MPI_Datatype recvtype, MPI_Comm comm);
 DLLDEF int MPI_Neighbor_alltoallw( void *sendbuf,  int sendcounts[],  MPI_Aint sdispls[],
                             MPI_Datatype sendtypes[], void *recvbuf,  int recvcounts[],
-				   MPI_Aint rdispls[],  MPI_Datatype recvtypes[], MPI_Comm comm);
+                   MPI_Aint rdispls[],  MPI_Datatype recvtypes[], MPI_Comm comm);
 
 
 DLLDEF MPI_Aint MPI_Aint_add(MPI_Aint base, MPI_Aint disp);

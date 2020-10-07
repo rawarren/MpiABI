@@ -26,7 +26,7 @@ MPI_Type_dup (MPI_Datatype type, MPI_Datatype *newtype)
     api_use_ptrs *local_a1= active_datatypes->api_declared;
     int (*VendorMPI_Type_dup)(void *,void **) = address;
     mpi_return = (*VendorMPI_Type_dup)(local_a0[type].mpi_const,&local_a1[*newtype].mpi_const);
-    if (local_a1[*newtype].mpi_const == local_a1[MPI_DATATYPE_NULL].mpi_const) {
+    if (mpi_return || (local_a1[*newtype].mpi_const == local_a1[MPI_DATATYPE_NULL].mpi_const)) {
       free_index(active_datatypes,*newtype);
       *newtype = MPI_DATATYPE_NULL;
       return mpi_return;
@@ -36,7 +36,7 @@ MPI_Type_dup (MPI_Datatype type, MPI_Datatype *newtype)
     api_use_ints *local_a1= active_datatypes->api_declared;
     int (*VendorMPI_Type_dup)(int,int *) = address;
     mpi_return = (*VendorMPI_Type_dup)(local_a0[type].mpi_const,&local_a1[*newtype].mpi_const);
-    if (local_a1[*newtype].mpi_const == local_a1[MPI_DATATYPE_NULL].mpi_const) {
+    if (mpi_return || (local_a1[*newtype].mpi_const == local_a1[MPI_DATATYPE_NULL].mpi_const)) {
       free_index(active_datatypes,*newtype);
       *newtype = MPI_DATATYPE_NULL;
       return mpi_return;
