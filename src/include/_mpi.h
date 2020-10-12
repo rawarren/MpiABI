@@ -32,28 +32,12 @@ extern "C" {
 #endif
 
 #define MPI_VERSION 3
-#define MPI_SUBVERSION 0
+#define MPI_SUBVERSION 1
 #define MPIX_HAVE_MPI_STATUS_GETSET 1
+#define MPIABI_VERSION 0x0100
 
 /* We redefine all MPI constants to be ISC constants */
 #include "mpi2isc.h"
-
-#if 0
-typedef long                 MPI_Aint;
-typedef long long            MPI_Offset;
-typedef unsigned long long   MPI_Count;
-typedef unsigned int         MPI_Request;
-typedef unsigned int         MPI_Group;
-typedef unsigned int         MPI_Comm;
-typedef unsigned int         MPI_Errhandler;
-typedef unsigned int         MPI_Op;
-typedef unsigned int         MPI_Datatype;
-typedef unsigned int         MPI_Win;
-typedef unsigned int         MPI_Message;
-typedef unsigned int         MPI_File;
-typedef unsigned int         MPI_Info;
-typedef int                  MPI_Fint;
-#endif
 
 /* The following MPIX_Status_{get,set} functions
  * allow libraries such as mpi4py to utilize these
@@ -111,7 +95,7 @@ DLLDEF int MPI_Type_hvector(int, int, MPI_Aint, MPI_Datatype, MPI_Datatype *);
 DLLDEF int MPI_Type_indexed(int, int *, int *, MPI_Datatype, MPI_Datatype *);
 DLLDEF int MPI_Type_hindexed(int, int *, MPI_Aint *, MPI_Datatype, MPI_Datatype *);
 DLLDEF int MPI_Type_create_indexed_block (int , int , int *, MPI_Datatype , MPI_Datatype *);
-DLLDEF int MPI_Type_create_hindexed_block (int , int , MPI_Aint *, MPI_Datatype , MPI_Datatype *);  
+DLLDEF int MPI_Type_create_hindexed_block (int , int , MPI_Aint [], MPI_Datatype , MPI_Datatype *);
 DLLDEF int MPI_Type_create_resized (MPI_Datatype , MPI_Aint , MPI_Aint , MPI_Datatype *);
 DLLDEF int MPI_Type_struct(int, int *, MPI_Aint *, MPI_Datatype *, MPI_Datatype *);
 DLLDEF int MPI_Address(void*, MPI_Aint *);
@@ -412,6 +396,8 @@ DLLDEF MPI_Fint MPI_Win_c2f(MPI_Win);
 DLLDEF MPI_Fint MPI_Info_c2f(MPI_Info);
 DLLDEF MPI_Fint MPI_Errhandler_c2f(MPI_Errhandler);
 DLLDEF MPI_Fint MPI_Message_c2f(MPI_Message);
+DLLDEF MPI_Fint MPI_Status_c2f (MPI_Status *c_status, MPI_Fint *f_status);
+DLLDEF MPI_Fint MPI_File_c2f (MPI_File);
 
 DLLDEF MPI_Comm MPI_Comm_f2c(MPI_Fint);
 DLLDEF MPI_Datatype MPI_Type_f2c(MPI_Fint);
@@ -422,6 +408,8 @@ DLLDEF MPI_Win MPI_Win_f2c(MPI_Fint);
 DLLDEF MPI_Info MPI_Info_f2c(MPI_Fint);
 DLLDEF MPI_Errhandler MPI_Errhandler_f2c(MPI_Fint);
 DLLDEF MPI_Message MPI_Message_f2c(MPI_Fint);
+DLLDEF MPI_Fint MPI_Status_f2c (MPI_Fint *f_status, MPI_Status *c_status);
+DLLDEF MPI_File MPI_File_f2c (MPI_Fint);
 
 
 /* MPI-IO File related functions */
@@ -459,6 +447,10 @@ DLLDEF int MPI_File_iwrite_at(MPI_File, MPI_Offset, void *,
           int, MPI_Datatype, MPIO_Request *);
 DLLDEF int MPI_File_iwrite_at_all(MPI_File, MPI_Offset, void *,
           int, MPI_Datatype, MPIO_Request *);
+
+DLLDEF int MPI_File_iread_all (MPI_File , void *, int, MPI_Datatype , MPI_Request *);
+DLLDEF int MPI_File_iwrite_all (MPI_File, void *, int, MPI_Datatype , MPI_Request *);
+
 
 /* Section 9.4.3 */
 DLLDEF int MPI_File_read(MPI_File, void *, int, MPI_Datatype, MPI_Status *);
@@ -583,6 +575,8 @@ DLLDEF int MPI_Neighbor_alltoallw( void *sendbuf,  int sendcounts[],  MPI_Aint s
 
 DLLDEF MPI_Aint MPI_Aint_add(MPI_Aint base, MPI_Aint disp);
 DLLDEF MPI_Aint MPI_Aint_diff(MPI_Aint addr1, MPI_Aint addr2);
+
+DLLDEF int MPI_Comm_idup (MPI_Comm comm, MPI_Comm *newcomm, MPI_Request *request);
 
 #if defined(__cplusplus)
 }

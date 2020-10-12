@@ -1065,7 +1065,7 @@ int ISC_Pointer_win_delete_function (void * win, int win_keyval, void *attribute
 
 
 
-int ISC_dup_function(int in, int key, void *extra, void *attrin, void *attrout, int *flat)
+int ISC_dup_function(int *in, int *key, void *extra, void *attrin, void *attrout, int *flat)
 {
     puts("MPI_Xxx_dup is not functional!");
     return 0;

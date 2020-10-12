@@ -112,6 +112,12 @@ typedef enum {
 #if defined(HAVE_MPI_INTEGER16)
     ISC_INTEGER16,             /* 62 */
 #endif
+	ISC_LOGICAL1,
+	ISC_LOGICAL2,
+	ISC_LOGICAL4,
+	ISC_LOGICAL8,
+	ISC_REAL2,
+	ISC_COMPLEX4,
     predefined_datatype_count
 } _isc_datatypes;
 
@@ -238,43 +244,44 @@ typedef enum {
     ISC_COMBINER_HINDEXED_INTEGER,/* 25 */
     ISC_COMBINER_HINDEXED,        /* 26 */
     ISC_COMBINER_INDEXED_BLOCK,   /* 27 */
-    ISC_COMBINER_STRUCT_INTEGER,  /* 28 */
-    ISC_COMBINER_STRUCT,          /* 29 */
-    ISC_COMBINER_SUBARRAY,        /* 30 */
-    ISC_COMBINER_DARRAY,          /* 31 */
-    ISC_COMBINER_F90_REAL,        /* 32 */
-    ISC_COMBINER_F90_COMPLEX,     /* 33 */
-    ISC_COMBINER_F90_INTEGER,     /* 34 */
-    ISC_COMBINER_RESIZED,         /* 35 */
-    ISC_APPNUM,                   /* 36 */
-    ISC_LASTUSEDCODE,             /* 37 */
-    ISC_UNIVERSE_SIZE,            /* 38 */
-    ISC_WIN_BASE,                 /* 39 */
-    ISC_WIN_SIZE,                 /* 40 */
-    ISC_WIN_DISP_UNIT,            /* 41 */
-    ISC_DISPLACEMENT_CURRENT,     /* 42 */
-    ISC_LOCK_EXCLUSIVE,           /* 43 */
-    ISC_LOCK_SHARED,              /* 44 */
-    ISC_SEEK_SET,                 /* 45 */
-    ISC_SEEK_CUR,                 /* 46 */
-    ISC_SEEK_END,                 /* 47 */
-    ISC_COMM_TYPE_SHARED,         /* 48 */
-    ISC_DIST_GRAPH,               /* 49 */
+    ISC_COMBINER_HINDEXED_BLOCK,  /* 28 */
+    ISC_COMBINER_STRUCT_INTEGER,  /* 29 */
+    ISC_COMBINER_STRUCT,          /* 30 */
+    ISC_COMBINER_SUBARRAY,        /* 31 */
+    ISC_COMBINER_DARRAY,          /* 32 */
+    ISC_COMBINER_F90_REAL,        /* 33 */
+    ISC_COMBINER_F90_COMPLEX,     /* 34 */
+    ISC_COMBINER_F90_INTEGER,     /* 35 */
+    ISC_COMBINER_RESIZED,         /* 36 */
+    ISC_APPNUM,                   /* 37 */
+    ISC_LASTUSEDCODE,             /* 38 */
+    ISC_UNIVERSE_SIZE,            /* 39 */
+    ISC_WIN_BASE,                 /* 40 */
+    ISC_WIN_SIZE,                 /* 41 */
+    ISC_WIN_DISP_UNIT,            /* 42 */
+    ISC_DISPLACEMENT_CURRENT,     /* 43 */
+    ISC_LOCK_EXCLUSIVE,           /* 44 */
+    ISC_LOCK_SHARED,              /* 45 */
+    ISC_SEEK_SET,                 /* 46 */
+    ISC_SEEK_CUR,                 /* 47 */
+    ISC_SEEK_END,                 /* 48 */
+    ISC_COMM_TYPE_SHARED,         /* 49 */
+    ISC_DIST_GRAPH,               /* 50 */
     /* FLAVORS */
-    ISC_WIN_FLAVOR_CREATE,        /* 50 */
-    ISC_WIN_FLAVOR_ALLOCATE,      /* 51 */
-    ISC_WIN_FLAVOR_DYNAMIC,       /* 52 */
-    ISC_WIN_FLAVOR_SHARED,        /* 53 */
+    ISC_WIN_FLAVOR_CREATE,        /* 51 */
+    ISC_WIN_FLAVOR_ALLOCATE,      /* 52 */
+    ISC_WIN_FLAVOR_DYNAMIC,       /* 53 */
+    ISC_WIN_FLAVOR_SHARED,        /* 54 */
     /* MODELS */
-    ISC_WIN_SEPARATE,             /* 54 */
-    ISC_WIN_UNIFIED,              /* 55 */
-    ISC_WIN_CREATE_FLAVOR,        /* 56 */
-    ISC_WIN_MODEL,                /* 57 */
+    ISC_WIN_SEPARATE,             /* 55 */
+    ISC_WIN_UNIFIED,              /* 56 */
+    ISC_WIN_CREATE_FLAVOR,        /* 57 */
+    ISC_WIN_MODEL,                /* 58 */
     predefined_misc_count
 } _isc_misc;
 
 typedef enum {
-  ISC_MODE_UNUSED_ = 0,           /* bitfields don't allow 0s */
+    ISC_MODE_UNUSED_ = 0,         /* bitfields don't allow 0s */
     ISC_MODE_CREATE_,             /* 1 */
     ISC_MODE_RDONLY_,             /* 2 */
     ISC_MODE_WRONLY_,             /* 4 */

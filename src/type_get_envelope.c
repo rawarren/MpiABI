@@ -28,7 +28,16 @@ MPI_Type_get_envelope (MPI_Datatype type, int *num_integers, int *num_addresses,
     int (*VendorMPI_Type_get_envelope)(int,int *num_integers,int *num_addresses,int *num_datatypes, int *combiner) = address;
     mpi_return = (*VendorMPI_Type_get_envelope)(local_a0[type].mpi_const,num_integers,num_addresses,num_datatypes,&native_combiner);
   }
-  if (combiner) {
+  if ((mpi_return == 0) && combiner) {
+#if 1
+	  int i;
+	  for (i=ISC_COMBINER_NAMED; i < predefined_misc_count; i++) {
+		  if (native_combiner == local_a1[i].mpi_const) {
+			  *combiner = local_a1[i].self;
+			  return mpi_return;
+		  }
+	  }
+#else
     if (native_combiner == local_a1[ISC_COMBINER_NAMED].mpi_const) {
         *combiner = MPI_COMBINER_NAMED;
     } else if (native_combiner == local_a1[ISC_COMBINER_DUP].mpi_const) {
@@ -49,6 +58,8 @@ MPI_Type_get_envelope (MPI_Datatype type, int *num_integers, int *num_addresses,
         *combiner = MPI_COMBINER_HINDEXED;
     } else if (native_combiner == local_a1[ISC_COMBINER_INDEXED_BLOCK].mpi_const) {
         *combiner = MPI_COMBINER_INDEXED_BLOCK;
+    } else if (native_combiner == local_a1[ISC_COMBINER_HINDEXED_BLOCK].mpi_const) {
+        *combiner = MPI_COMBINER_HINDEXED_BLOCK;
     } else if (native_combiner == local_a1[ISC_COMBINER_STRUCT_INTEGER].mpi_const) {
         *combiner = MPI_COMBINER_STRUCT_INTEGER;
     } else if (native_combiner == local_a1[ISC_COMBINER_STRUCT].mpi_const) {
@@ -66,6 +77,7 @@ MPI_Type_get_envelope (MPI_Datatype type, int *num_integers, int *num_addresses,
     } else if (native_combiner == local_a1[ISC_COMBINER_RESIZED].mpi_const) {
         *combiner = MPI_COMBINER_RESIZED;
     }
+#endif
   }
   return mpi_return;
 }

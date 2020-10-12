@@ -87,10 +87,10 @@ typedef int (ISC_Win_copy_attr_function)(ISC_Win, int, void *, void *, void *, i
 typedef int (ISC_Win_delete_attr_function)(ISC_Win, int, void *, void *);
 
 typedef int (ISC_WIN_DUP_FN)(ISC_Win, int, void *, void *, void *, int *);
-extern int ISC_dup_function(int win, int key, void *extra, void *attrin, void *attrout, int *flat);
-#define MPI_WIN_DUP_FN ISC_dup_function
-#define MPI_COMM_DUP_FN ISC_dup_function
-#define MPI_TYPE_DUP_FN ISC_dup_function
+
+#define MPI_WIN_DUP_FN Isc_dup_function
+// #define MPI_COMM_DUP_FN Isc_dup_function
+// #define MPI_TYPE_DUP_FN Isc_dup_function
 
 
 /* The order of this structure needs to match the list of variables
@@ -223,6 +223,12 @@ typedef struct {
 #define MPI_INTEGER16            ISC_INTEGER16
  */
 #define MPI_INTEGER16            ISC_DATATYPE_NULL
+#define MPI_LOGICAL1             ISC_DATATYPE_NULL
+#define MPI_LOGICAL2             ISC_DATATYPE_NULL
+#define MPI_LOGICAL4             ISC_DATATYPE_NULL
+#define MPI_LOGICAL8             ISC_DATATYPE_NULL
+#define MPI_REAL2                ISC_DATATYPE_NULL
+#define MPI_COMPLEX4             ISC_DATATYPE_NULL
 /* No support yet for CXX types */
 #define MPI_CXX_BOOL             ISC_DATATYPE_NULL
 #define MPI_CXX_FLOAT_COMPLEX    ISC_DATATYPE_NULL
@@ -307,7 +313,7 @@ typedef struct {
 #define MPI_ERR_SIZE             ISC_ERR_SIZE
 #define MPI_ERR_DISP             ISC_ERR_DISP
 #define MPI_ERR_ASSERT           ISC_ERR_ASSERT          
-#define MPI_ERR_RMA_RANGE        ISC_ERR_RMA_RANGE,
+#define MPI_ERR_RMA_RANGE        ISC_ERR_RMA_RANGE
 #define MPI_ERR_RMA_ATTACH       ISC_ERR_RMA_ATTACH
 #define MPI_ERR_RMA_SHARED       ISC_ERR_RMA_SHARED
 #define MPI_ERR_RMA_FLAVOR       ISC_ERR_RMA_FLAVOR
@@ -406,6 +412,7 @@ typedef struct {
 #define MPI_COMBINER_F90_COMPLEX ISC_COMBINER_F90_COMPLEX
 #define MPI_COMBINER_F90_INTEGER ISC_COMBINER_F90_INTEGER
 #define MPI_COMBINER_RESIZED     ISC_COMBINER_RESIZED
+#define MPI_COMBINER_HINDEXED_BLOCK ISC_COMBINER_HINDEXED_BLOCK
 #define MPI_APPNUM               ISC_APPNUM
 #define MPI_LASTUSEDCODE         ISC_LASTUSEDCODE
 #define MPI_UNIVERSE_SIZE        ISC_UNIVERSE_SIZE

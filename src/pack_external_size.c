@@ -19,6 +19,7 @@ MPI_Pack_external_size (char *datarep, int incount, MPI_Datatype datatype, MPI_A
       return -1;
     }
   }
+
   if (active_datatypes->use_ptrs) { api_use_ptrs *local_a0 = active_datatypes->api_declared;
     int (*VendorMPI_Pack_external_size)(char *datarep,int incount,void *, MPI_Aint *size) = address;
     mpi_return = (*VendorMPI_Pack_external_size)(datarep,incount,local_a0[datatype].mpi_const,size);
