@@ -31,17 +31,8 @@ MPI_Type_get_attr (MPI_Datatype type, int type_keyval, void *attribute_val, int 
   }
   if (*flag) {
       int *a_val = (int *)attribute_val;
-      if (*a_val == local_a1[ISC_PROC_NULL_].mpi_const) {
-	  *a_val = _isc_proc_null;
-      }
-#if 0
-      int **vval = (int **)attribute_val;
-      int proc_null_check = *vval[0];
-      if (proc_null_check == local_a1[ISC_PROC_NULL_].mpi_const) {
-	  _isc_proc_null = local_a1[ISC_PROC_NULL_].self;
-	  *vval = &_isc_proc_null;
-      }
-#endif
+      if (*a_val == local_a1[ISC_PROC_NULL_].mpi_const)
+		  *a_val = local_a1[ISC_PROC_NULL_].self;
   }
   return mpi_return;
 }

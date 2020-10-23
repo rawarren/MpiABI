@@ -74,9 +74,7 @@
 				 * the predefined_xxx_count falls out
 				 * from the enum structures ;-) */
 
-#include "mpi.h"		/* IMPORTANT!!!
-				 * This needs to be the vendor MPI.H */
-
+#include "mpi.h"
 
 #ifndef NULL
 #define NULL (void *)0

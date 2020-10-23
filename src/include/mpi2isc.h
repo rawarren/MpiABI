@@ -955,8 +955,10 @@ extern int *__true_fortran_errcodes_ignore;
 extern int *__true_fortran_status_ignore;
 extern int *__true_fortran_statuses_ignore;
 
-extern int save_user_copy_callback(void *, int, callback_t );
-extern int save_user_delete_callback(void *, int, callback_t);  
+extern int locate_saved_copy_callback(int, int, callback_t, keyvalpair_t **);
+extern int locate_saved_delete_callback(int, int, callback_t, keyvalpair_t **);
+extern int save_user_copy_callback(void *, int, int, callback_t );
+extern int save_user_delete_callback(void *, int, int, callback_t);  
 extern int maybe_update_callbacks(int, int, callback_t);
 extern int remove_object_keyval_callbacks(int, int, callback_t);
 extern int maybe_dup_internal_reference(int, int, int, callback_t);

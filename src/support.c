@@ -563,18 +563,11 @@ resolve_mpi_constants(void)
 
 typedef enum {
   COMM_CALLBACK=1,
-  DATATYPE_CALLBACK
+  DATATYPE_CALLBACK,
+  WIN_CALLBACK
 } callback_t;
 
 #endif
-
-
-typedef struct keyvalpair {
-  int keyval;
-  int isc_object;
-  void *ftn_pointer;
-  struct keyvalpair *next;
-} keyvalpair_t;
 
 static keyvalpair_t *comm_attr_copy_callbacks = NULL;
 static keyvalpair_t *comm_attr_delete_callbacks = NULL;
@@ -585,13 +578,78 @@ static keyvalpair_t *win_attr_delete_callbacks = NULL;
 
 static pthread_mutex_t funnel_new_callback;
 
-int save_user_copy_callback(void *copyfn, int keyval, callback_t this_callback_type)
+
+int
+locate_saved_copy_callback(int keyval, int isc_object, callback_t this_callback_type, keyvalpair_t **user_callback)
+{
+	int this_result = 0;
+	if (this_callback_type == COMM_CALLBACK) {
+		keyvalpair_t *this_callback = comm_attr_copy_callbacks;
+		while (this_callback) {
+			if ((this_callback->keyval == keyval) &&
+				(this_callback->isc_object == isc_object)) {
+				*user_callback = this_callback;
+				break;
+			}
+			this_callback = this_callback->next;
+		}
+	}
+	else if (this_callback_type == DATATYPE_CALLBACK) {
+		keyvalpair_t *this_callback = datatype_attr_copy_callbacks;
+		while (this_callback) {
+			if (this_callback->keyval == keyval) {
+				*user_callback = this_callback;
+				break;
+			}
+			this_callback = this_callback->next;
+		}
+	}
+	/* Windows */
+	else if (this_callback_type == 3) {
+	}
+	return this_result;
+}
+
+int
+locate_saved_delete_callback(int keyval, int isc_object, callback_t this_callback_type, keyvalpair_t **user_callback)
+{
+	int this_result = 0;
+	if (this_callback_type == COMM_CALLBACK) {
+		keyvalpair_t *this_callback = comm_attr_delete_callbacks;
+		while (this_callback) {
+			if ((this_callback->keyval == keyval) &&
+				(this_callback->isc_object == isc_object)) {
+				*user_callback = this_callback;
+				break;
+			}
+			this_callback = this_callback->next;
+		}
+	}
+	else if (this_callback_type == DATATYPE_CALLBACK) {
+		keyvalpair_t *this_callback = datatype_attr_delete_callbacks;
+		while (this_callback) {
+			if (this_callback->keyval == keyval) {
+				*user_callback = this_callback;
+				break;
+			}
+			this_callback = this_callback->next;
+		}
+	}
+	/* Windows */
+	else if (this_callback_type == 3) {
+	}
+	return this_result;
+}
+
+int save_user_copy_callback(void *copyfn, int keyval, int use_ptrs, callback_t this_callback_type)
 {
   keyvalpair_t *new_callback = (keyvalpair_t *)calloc(1, sizeof(keyvalpair_t));
   if (new_callback == NULL) return -1;
   LOCK(funnel_new_callback,__LINE__);
   new_callback->keyval = keyval;
   new_callback->ftn_pointer = copyfn;
+  new_callback->use_ptrs = use_ptrs;
+  new_callback->obj_type = this_callback_type;
   if (this_callback_type == COMM_CALLBACK) {
     new_callback->next = comm_attr_copy_callbacks;
     comm_attr_copy_callbacks = new_callback;
@@ -608,13 +666,15 @@ int save_user_copy_callback(void *copyfn, int keyval, callback_t this_callback_t
   return 0;
 }
 
-int save_user_delete_callback(void *delfn, int keyval, callback_t this_callback_type)
+int save_user_delete_callback(void *delfn, int keyval, int use_ptrs, callback_t this_callback_type)
 {
   keyvalpair_t *new_callback = (keyvalpair_t *)calloc(1, sizeof(keyvalpair_t));
   if (new_callback == NULL) return -1;
   LOCK(funnel_new_callback,__LINE__);
   new_callback->keyval = keyval;
   new_callback->ftn_pointer = delfn;
+  new_callback->use_ptrs = use_ptrs;
+  new_callback->obj_type = this_callback_type;
   if (this_callback_type == COMM_CALLBACK) {
     new_callback->next = comm_attr_delete_callbacks;
     comm_attr_delete_callbacks = new_callback;
@@ -633,15 +693,15 @@ int save_user_delete_callback(void *delfn, int keyval, callback_t this_callback_
 
 static int __maybe_update_callbacks(keyvalpair_t *head, int isc_object, int keyval)
 {
-  keyvalpair_t *this = head;
-  while(this != NULL) {
-    if (this->keyval == keyval) {
-      this->isc_object = isc_object;
-      return 1;
-    }
-    this = this->next;
-  }
-  return 0;
+	keyvalpair_t *this = head;
+	while(this != NULL) {
+		if ((this->keyval == keyval) && (this->isc_object == 0)) {
+			this->isc_object = isc_object;
+			return 1;
+		}
+		this = this->next;
+	}
+	return 0;
 }
 
 static keyvalpair_t * __maybe_delete_callbacks(keyvalpair_t *head, int isc_object, int keyval)

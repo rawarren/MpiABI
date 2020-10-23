@@ -406,6 +406,15 @@ typedef enum {
   WIN_CALLBACK=3
 } callback_t;
 
+typedef struct keyvalpair {
+  int use_ptrs;
+  int keyval;
+  int isc_object;
+  callback_t obj_type;
+  void *ftn_pointer;
+  struct keyvalpair *next;
+} keyvalpair_t;
+
 #endif
 
 typedef struct _isc_const {

@@ -28,7 +28,8 @@ MPI_Comm_delete_attr (MPI_Comm comm, int comm_keyval)
     mpi_return = (*VendorMPI_Comm_delete_attr)(local_a0[comm].mpi_const,local_a1[comm_keyval].mpi_const);
   }
 
-  if ((mpi_return == 0) && (attr_reference_exists(comm,comm_keyval,COMM_CALLBACK) == 0)) {
+  // if ((mpi_return == 0) && (attr_reference_exists(comm,comm_keyval,COMM_CALLBACK) == 0)) {
+  if (mpi_return == 0) {
     remove_object_keyval_callbacks(comm,comm_keyval,COMM_CALLBACK);
     free_index(active_miscs,comm_keyval);
   }

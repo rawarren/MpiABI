@@ -25,10 +25,10 @@ MPI_Win_create_keyval (MPI_Win_copy_attr_function *win_copy_attr_fn, MPI_Win_del
     int (*VendorMPI_Win_create_keyval) (MPI_Win_copy_attr_function *win_copy_attr_fn, MPI_Win_delete_attr_function *win_delete_attr_fn, int *win_keyval, void *extra_state) = address;
     mpi_return = (*VendorMPI_Win_create_keyval)(NULLWINCOPYFN(win_copy_attr_fn),NULLWINDELFN(win_delete_attr_fn),&local_a0[*win_keyval].mpi_const,extra_state);
     if (win_copy_attr_fn != MPI_NULL_COPY_FN) {
-      save_user_copy_callback(win_copy_attr_fn,*win_keyval,WIN_CALLBACK);
+		save_user_copy_callback(win_copy_attr_fn,*win_keyval,active_wins->use_ptrs, WIN_CALLBACK);
     }
     if (win_delete_attr_fn != MPI_NULL_DELETE_FN) {
-      save_user_delete_callback(win_delete_attr_fn,*win_keyval,WIN_CALLBACK);
+		save_user_delete_callback(win_delete_attr_fn,*win_keyval,active_wins->use_ptrs, WIN_CALLBACK);
     }
 
     return mpi_return;
